@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{7301BFB3-BA40-1EED-555B-76D066D86314}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_IPHONE;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_WWW;ENABLE_IMAGEEFFECTS;UNITY_IPHONE_API;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;UNITY_IOS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_3;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Lib\JSONObject.cs" />
+     <Compile Include="Assets\Lib\xCodeObject.cs" />
+     <Compile Include="Assets\Resources\Script\AutoMoveObject.cs" />
+     <Compile Include="Assets\Resources\Script\GameScene.cs" />
+     <Compile Include="Assets\Resources\Script\ObjectPool.cs" />
+     <Compile Include="Assets\Resources\Script\Player.cs" />
+     <Compile Include="Assets\Resources\Script\PlayerChild.cs" />
+     <Compile Include="Assets\Resources\Script\StackMoveObject.cs" />
+     <Compile Include="Assets\Social\Amazon.cs" />
+     <Compile Include="Assets\Social\CallBackFunctionMngr.cs" />
+     <Compile Include="Assets\Social\Chartboost.cs" />
+     <Compile Include="Assets\Social\DeviceInfo.cs" />
+     <Compile Include="Assets\Social\Everyplay.cs" />
+     <Compile Include="Assets\Social\EveryplayMiniJSON.cs" />
+     <Compile Include="Assets\Social\Facebook.cs" />
+     <Compile Include="Assets\Social\Flurry.cs" />
+     <Compile Include="Assets\Social\IAd.cs" />
+     <Compile Include="Assets\Social\ICloud.cs" />
+     <Compile Include="Assets\Social\InAppPurchase.cs" />
+     <Compile Include="Assets\Social\Mail.cs" />
+     <Compile Include="Assets\Social\PingObject.cs" />
+     <Compile Include="Assets\Social\ResponceObject.cs" />
+     <Compile Include="Assets\Social\Test\Test.cs" />
+     <Compile Include="Assets\Social\Test\TestAmazon.cs" />
+     <Compile Include="Assets\Social\Test\TestBase.cs" />
+     <Compile Include="Assets\Social\Test\TestChartboost.cs" />
+     <Compile Include="Assets\Social\Test\TestDeviceInfo.cs" />
+     <Compile Include="Assets\Social\Test\TestEveryplay.cs" />
+     <Compile Include="Assets\Social\Test\TestFacebook.cs" />
+     <Compile Include="Assets\Social\Test\TestFlurry.cs" />
+     <Compile Include="Assets\Social\Test\TestGameCenter.cs" />
+     <Compile Include="Assets\Social\Test\TestIAd.cs" />
+     <Compile Include="Assets\Social\Test\TestIcloud.cs" />
+     <Compile Include="Assets\Social\Test\TestInAppPurchase.cs" />
+     <Compile Include="Assets\Social\Test\TestMail.cs" />
+     <Compile Include="Assets\Social\Test\TestTwitter.cs" />
+     <Compile Include="Assets\Social\Test\TesteParse.cs" />
+     <Compile Include="Assets\Social\Twitter.cs" />
+     <Compile Include="Assets\Social\Usage\SettingProject.cs" />
+     <Compile Include="Assets\Social\Utils\DeviceUtil.cs" />
+     <Compile Include="Assets\Social\Utils\Extension.cs" />
+     <Compile Include="Assets\Social\Utils\Finder.cs" />
+     <Compile Include="Assets\Social\Utils\Log.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\ActionStorer.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\BaseExpression.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\Condition.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\ConstVariable.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\EditorScript.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\Expression.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\IVariable.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\ObjectVariable.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\UnityAction.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Act\UnityActionPool.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Core\PropertyResolver.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Core\TouchProcessor.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Core\ViewManager.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\DropDownControl.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDBase.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDFps.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDImage.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDLabel.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDLoadMenu.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDManager.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDSelectionGrid.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDTextField.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDToggle.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDToolBar.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HUDWindow.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\HUD\HudButton.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\ID\Config.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\ID\Defines.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\ID\Enums.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\ID\Setup.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\Checker.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\Console.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\Loader.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\Log.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\Storer.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\XMLDifference.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\XMLLoader.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\IO\XMLStorer.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Background.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\Button.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\ButtonBase.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\ButtonStandartBase.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\ComplexButton.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\GroupObject.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\IconButton.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Button\TextButton.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Checkbox\Checkbox.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Checkbox\CheckedBase.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Checkbox\ComplexCheckbox.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Checkbox\ComplexCheckedBase.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Container\NodeContainer.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Container\Panel.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Container\RadioGroup.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Container\ScrollView.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Container\Slot.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Container\View.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\GroupingObject.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\IAnimation.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\ICall.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\IChecke.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\IFloatSize.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\ILanguage.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\IProgress.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\IRelative.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\IStorage.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\ITouchable.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Label.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\ParallaxCore.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\ParallaxObject.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\RadioButton\ComplexRadioButton.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\RadioButton\RadioButton.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\Render.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\ScrollBar.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Node\VisualNode.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\PropertyPathSelector.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Reflection\DllManager.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Reflection\Reflection.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Tools\Grid.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Tools\Resizer.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Util\Extension.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Util\Finder.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Util\Map.cs" />
+     <Compile Include="Assets\UIEditor\Scripts\Util\TypeConverter.cs" />
+     <Compile Include="Assets\UIEditor\TestView.cs" />
+     <None Include="Assets\UIEditor\Shaders\Tiling.shader" />
+     <None Include="Assets\UIEditor\Shaders\CC Text CG.cginc" />
+     <None Include="Assets\Parse\Parse.Unity.xml" />
+     <None Include="Assets\UIEditor\Shaders\FontColor.shader" />
+     <None Include="Assets\UIEditor\Shaders\Outline.shader" />
+     <None Include="Assets\Parse\third_party_licenses.txt" />
+     <None Include="Assets\UIEditor\Shaders\Opacity.shader" />
+ <Reference Include="Assets\PlistCSMono">
+ <HintPath>Assets\PlistCSMono.dll</HintPath>
+ </Reference>
+ <Reference Include="Assets\Parse\Parse.Unity">
+ <HintPath>Assets\Parse\Parse.Unity.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
