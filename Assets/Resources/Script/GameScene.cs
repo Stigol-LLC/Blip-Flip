@@ -198,7 +198,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         //}
         currentShow = 1;
         CountScore = 0;
-        count_label.MTextMesh.text = CountScore.ToString();
+        //count_label.MTextMesh.text = CountScore.ToString();
     }
 
     private IEnumerator ShowGameOverView() {
@@ -245,7 +245,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //            StopCoroutine( "StartAnimationPlay" );
 //            StartCoroutine( "StartAnimationPlay", 0.25f / _playerAnimator.speed );
 //            Debug.Log( playState );
-        Debug.Log( playState );
+       // Debug.Log( playState );
             _playerAnimator.Play( playState );
         SetSide( stateName );
             currentShow = num;
@@ -277,35 +277,35 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Start() {
-        musicPlay = ( PlayerPrefs.GetInt( "music" ) != 0 );
-        if ( musicPlay ) {
-            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOff" ).IsVisible = false;
-            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOn" ).IsVisible = true;
-            musicMenu.Play();
-        } else {
-            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOff" ).IsVisible = true;
-            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOn" ).IsVisible = false;
-        }
+//        musicPlay = ( PlayerPrefs.GetInt( "music" ) != 0 );
+//        if ( musicPlay ) {
+//            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOff" ).IsVisible = false;
+//            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOn" ).IsVisible = true;
+//            musicMenu.Play();
+//        } else {
+//            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOff" ).IsVisible = true;
+//            ViewManager.Active.GetViewById( "ViewStart" ).GetChildById( "musicOn" ).IsVisible = false;
+//        }
         Application.targetFrameRate = 60;
         TouchProcessor.Instance.AddListener( this, -1 );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Restart", Restart );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Home", GoHome );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "GameCentr", GameCentr );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_TWITTER", Twitter );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_FACEBOOK", Facebook );
-        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
-        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "Start", StartGame );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "GameCentr", GameCentr );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( DefineActionName.BTN_MUSIC.ToString(), ChangeMusic );
-        moveBackground.Pause = false;
-        ViewManager.Active.GetViewById( "ViewSpalshScreen" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = true;
-        ViewManager.Active.GetViewById( "ViewStart" );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Restart", Restart );
+//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Home", GoHome );
+//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "GameCentr", GameCentr );
+//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_TWITTER", Twitter );
+//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_FACEBOOK", Facebook );
+//        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
+//        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
+//        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "Start", StartGame );
+//        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "GameCentr", GameCentr );
+//        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( DefineActionName.BTN_MUSIC.ToString(), ChangeMusic );
+//        moveBackground.Pause = false;
+//        ViewManager.Active.GetViewById( "ViewSpalshScreen" ).IsVisible = false;
+//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = true;
+//        ViewManager.Active.GetViewById( "ViewStart" );
+//        ViewManager.Active.GetViewById( "ViewStart" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
 
         PlayGame();
     }
@@ -325,94 +325,94 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Update() {
-        AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
-        List<GameObject> listGo = currMove.ListActiveObject;
-        GameObject go = null;
-        int indexLeft = -1;
-        for ( int i = listGo.Count - 1; i >= 0; --i ) {
-            if ( listGo[ i ].transform.position.x < _player.playerNode.transform.position.x ) {
-                go = listGo[ i ];
-                indexLeft = i;
-                break;
-            }
-        }
-        ;
-        if ( isTutorial ) {
-            bool setFast = false;
-            int needShow = -1;
-            List<GameObject> listTutorial = moveBarrier.ListMoveObject[ 0 ].ListActiveObject;
-            for ( int i = 0; i < listTutorial.Count; ++i ) {
-                if ( listTutorial[ i ].transform.position.x > _player.playerNode.transform.position.x ) {
-                    VisualNode vn = listTutorial[ i ].GetComponent<VisualNode>();
-                    if ( vn != null ) {
-                        needShow = int.Parse( listTutorial[ i ].GetComponent<VisualNode>().Id );
-                        if ( needShow == currentShow ) {
-                            setFast = true;
-                            tutorialFindObject = listTutorial[ i ];
-                            break;
-                        }
-                    }
-                }
-            }
-            if ( setFast ) {
-                if ( !animatorPlay &&
-                     Mathf.Abs( currMove.speed.x ) < Mathf.Abs( tutorialBaseSpeed * tutorialSpeedKoef ) ) {
-                    moveBarrier.ListMoveObject[ 0 ].speed.x = tutorialBaseSpeed * tutorialSpeedKoef;
-                }
-            } else {
-                if ( tutorialFindObject != null ) {
-                    if (
-                            Mathf.Abs(
-                                    tutorialFindObject.transform.position.x - _player.playerNode.transform.position.x ) >
-                            10.0f ) {
-                        moveBarrier.ListMoveObject[ 0 ].speed.x *= tutorialMotionDump;
-                        if ( Mathf.Abs( currMove.speed.x ) < Mathf.Abs( tutorialBaseSpeed ) ) {
-                            moveBarrier.ListMoveObject[ 0 ].speed.x = tutorialBaseSpeed;
-                        }
-                    }
-                } else {
-                    moveBarrier.ListMoveObject[ 0 ].speed.x = tutorialBaseSpeed;
-                }
-            }
-            if ( tutorialSlide != null ) {
-                if ( CountScore >= 0 &&
-                     needShow != -1 &&
-                     needShow != currentShow ) {
-                    tutorialSlide.SetActive( true );
-                    if ( !tutorialSlide.animation.isPlaying ) {
-                        //Debug.Log(needShow + " " + currentShow);
-                        int delt = ( needShow - currentShow );
-                        if ( delt == 1 ||
-                             delt == -3 ||
-                             delt == 2 ) {
-                            tutorialSlide.animation.Play( "TutorialSlideRight" );
-                        } else if ( delt == -1 ||
-                                    delt == 3 ||
-                                    delt == -2 ) {
-                            tutorialSlide.animation.Play( "TutorialSlideLeft" );
-                        }
-                    }
-                }
-            }
-            if ( moveBarrier.CurrentIndex > 0 ) {
-                Debug.Log( "Set false" );
-                isTutorial = false;
-                moveBarrier.ListMoveObject[ 0 ].Clear();
-                tutorialSlide.SetActive( false );
-                PlayerPrefs.SetInt( "MoveBarrier", moveBarrier.CurrentIndex );
-                PlayerPrefs.SetInt( "ShowTutorial", 0 );
-                PlayerPrefs.Save();
-                GameObject GreatJob = Instantiate( Resources.Load( "Text_GreatJob" ) ) as GameObject;
-                GreatJob.transform.parent = transform;
-            }
-        }
-        if ( go != lastCompliteObject ) {
-            lastCompliteObject = go;
-            CountScore++;
-            count_label.MTextMesh.text = CountScore.ToString();
-            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
-            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
-        }
+//        AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
+//        List<GameObject> listGo = currMove.ListActiveObject;
+//        GameObject go = null;
+//        int indexLeft = -1;
+//        for ( int i = listGo.Count - 1; i >= 0; --i ) {
+//            if ( listGo[ i ].transform.position.x < _player.playerNode.transform.position.x ) {
+//                go = listGo[ i ];
+//                indexLeft = i;
+//                break;
+//            }
+//        }
+//        ;
+//        if ( isTutorial ) {
+//            bool setFast = false;
+//            int needShow = -1;
+//            List<GameObject> listTutorial = moveBarrier.ListMoveObject[ 0 ].ListActiveObject;
+//            for ( int i = 0; i < listTutorial.Count; ++i ) {
+//                if ( listTutorial[ i ].transform.position.x > _player.playerNode.transform.position.x ) {
+//                    VisualNode vn = listTutorial[ i ].GetComponent<VisualNode>();
+//                    if ( vn != null ) {
+//                        needShow = int.Parse( listTutorial[ i ].GetComponent<VisualNode>().Id );
+//                        if ( needShow == currentShow ) {
+//                            setFast = true;
+//                            tutorialFindObject = listTutorial[ i ];
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//            if ( setFast ) {
+//                if ( !animatorPlay &&
+//                     Mathf.Abs( currMove.speed.x ) < Mathf.Abs( tutorialBaseSpeed * tutorialSpeedKoef ) ) {
+//                    moveBarrier.ListMoveObject[ 0 ].speed.x = tutorialBaseSpeed * tutorialSpeedKoef;
+//                }
+//            } else {
+//                if ( tutorialFindObject != null ) {
+//                    if (
+//                            Mathf.Abs(
+//                                    tutorialFindObject.transform.position.x - _player.playerNode.transform.position.x ) >
+//                            10.0f ) {
+//                        moveBarrier.ListMoveObject[ 0 ].speed.x *= tutorialMotionDump;
+//                        if ( Mathf.Abs( currMove.speed.x ) < Mathf.Abs( tutorialBaseSpeed ) ) {
+//                            moveBarrier.ListMoveObject[ 0 ].speed.x = tutorialBaseSpeed;
+//                        }
+//                    }
+//                } else {
+//                    moveBarrier.ListMoveObject[ 0 ].speed.x = tutorialBaseSpeed;
+//                }
+//            }
+//            if ( tutorialSlide != null ) {
+//                if ( CountScore >= 0 &&
+//                     needShow != -1 &&
+//                     needShow != currentShow ) {
+//                    tutorialSlide.SetActive( true );
+//                    if ( !tutorialSlide.animation.isPlaying ) {
+//                        //Debug.Log(needShow + " " + currentShow);
+//                        int delt = ( needShow - currentShow );
+//                        if ( delt == 1 ||
+//                             delt == -3 ||
+//                             delt == 2 ) {
+//                            tutorialSlide.animation.Play( "TutorialSlideRight" );
+//                        } else if ( delt == -1 ||
+//                                    delt == 3 ||
+//                                    delt == -2 ) {
+//                            tutorialSlide.animation.Play( "TutorialSlideLeft" );
+//                        }
+//                    }
+//                }
+//            }
+//            if ( moveBarrier.CurrentIndex > 0 ) {
+//                Debug.Log( "Set false" );
+//                isTutorial = false;
+//                moveBarrier.ListMoveObject[ 0 ].Clear();
+//                tutorialSlide.SetActive( false );
+//                PlayerPrefs.SetInt( "MoveBarrier", moveBarrier.CurrentIndex );
+//                PlayerPrefs.SetInt( "ShowTutorial", 0 );
+//                PlayerPrefs.Save();
+//                GameObject GreatJob = Instantiate( Resources.Load( "Text_GreatJob" ) ) as GameObject;
+//                GreatJob.transform.parent = transform;
+//            }
+//        }
+//        if ( go != lastCompliteObject ) {
+//            lastCompliteObject = go;
+//            CountScore++;
+//            count_label.MTextMesh.text = CountScore.ToString();
+//            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
+//            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
+//        }
     }
 
     private void initTutorial() {
