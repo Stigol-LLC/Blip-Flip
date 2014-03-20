@@ -51,6 +51,13 @@ public class GameScene : MonoBehaviour, ITouchable {
     };
     [SerializeField] private bool allowCircleSlide = true;
 
+    private string[] _playerSides = {
+        "up",
+        "down"
+    };
+
+    private bool _playerSide;
+
     private bool touch = true;
 
 
@@ -221,8 +228,8 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void ShowPlayer( int num, bool isSlide = false, string stateName = null ) {
-//        if ( _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash == Animator.StringToHash("Base.idle") ) {
-            string playState = stateName != null ? stateName : "slide" + currentShow + "_" + num;
+        if ( _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash == Animator.StringToHash("Base Layer.idle_"+ _playerSides[ _playerSide ? 1 : 0 ]) ) {
+            string playState = stateName != null ? GetAnimationName( stateName ) : "slide" + currentShow + "_" + num;
 //            if ( isSlide ) {
 //                ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( num.ToString() );
 //                bb.State = ButtonState.Focus;
@@ -232,15 +239,25 @@ public class GameScene : MonoBehaviour, ITouchable {
 //            if ( _playerAnimator != null ) {
 //                _playerAnimator.speed = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) * animationSpeedKoef;
 //            }
-            if ( musicPlay ) {
-                AudioSource.PlayClipAtPoint( clipSwapPlayer, Vector3.zero );
-            }
+//            if ( musicPlay ) {
+//                AudioSource.PlayClipAtPoint( clipSwapPlayer, Vector3.zero );
+//            }
 //            StopCoroutine( "StartAnimationPlay" );
 //            StartCoroutine( "StartAnimationPlay", 0.25f / _playerAnimator.speed );
 //            Debug.Log( playState );
+        Debug.Log( playState );
             _playerAnimator.Play( playState );
+        SetSide( stateName );
             currentShow = num;
-//        }
+        }
+    }
+
+    private void SetSide( string stateName ) {
+        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
+    }
+
+    private string GetAnimationName( string stateName ) {
+        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
     }
 
     private IEnumerator ShowScore( float time ) {
@@ -557,7 +574,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         bool vertical = Mathf.Abs(verticalSlideLenght) > Mathf.Abs(horizontalSlideLenght);
         if ( ! vertical  &&
              horizontalSlideLenght < -lenghtMoveTouch ) {
-            ShowPlayer( arraySlideObject[ 1 ], false, "horizontal_slide_down" ); //Slide
+            ShowPlayer( arraySlideObject[ 1 ], false, "slide" ); //Slide
         } else if ( vertical  && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
 //			indexSlide--;
 //			if(indexSlide < 0){
@@ -566,7 +583,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = 1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-                ShowPlayer( arraySlideObject[ 2 ], false, "slide_down" ); //Down
+                ShowPlayer( arraySlideObject[ 2 ], false, "transform" ); //Down
 //            }
         } else if ( vertical  && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
 //			indexSlide++;
@@ -576,7 +593,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = -1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-                ShowPlayer( arraySlideObject[ 3 ], false, "slide_up" ); //Up
+                ShowPlayer( arraySlideObject[ 3 ], false, "transform" ); //Up
 //            }
         }
 //        if ( ( slideInCurrentTouch == 1 && verticalSlideLenght > 0 ) ||
@@ -589,7 +606,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     public void TouchEnd( Vector2 touchPoint ) {
         float shift = Vector2.Distance( touchPoint, touchBegin );
         if ( shift <= _minEpsilon ) {
-            ShowPlayer( arraySlideObject[ 0 ], false, "jump_top" ); //Jump
+            ShowPlayer( arraySlideObject[ 0 ], false, "jump" ); //Jump
         }
 //        slideInCurrentTouch = 0;
     }
