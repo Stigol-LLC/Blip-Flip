@@ -34,7 +34,7 @@ public class Player : MonoBehaviour {
 			return;
 		bool haveCollision = false;
 		foreach(var go in listChild){
-			if(go.IsCollision){
+			if(go != null && go.IsCollision){
 				haveCollision = true;
 			}
 		}
