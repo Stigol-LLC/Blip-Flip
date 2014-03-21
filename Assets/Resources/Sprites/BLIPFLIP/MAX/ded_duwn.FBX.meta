@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: f5bc92c8e49bb0349a7845a0a2c60baf
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ded_down1
+    100002: ded_down10
+    100004: ded_down11
+    100006: ded_down12
+    100008: ded_down13
+    100010: ded_down14
+    100012: ded_down15
+    100014: ded_down16
+    100016: ded_down2
+    100018: ded_down3
+    100020: ded_down5
+    100022: ded_down6
+    100024: ded_down7
+    100026: ded_down8
+    100028: ded_down9
+    100030: //RootNode
+    100032: Plane027
+    400000: ded_down1
+    400002: ded_down10
+    400004: ded_down11
+    400006: ded_down12
+    400008: ded_down13
+    400010: ded_down14
+    400012: ded_down15
+    400014: ded_down16
+    400016: ded_down2
+    400018: ded_down3
+    400020: ded_down5
+    400022: ded_down6
+    400024: ded_down7
+    400026: ded_down8
+    400028: ded_down9
+    400030: //RootNode
+    400032: Plane027
+    2300000: ded_down1
+    2300002: ded_down10
+    2300004: ded_down11
+    2300006: ded_down12
+    2300008: ded_down13
+    2300010: ded_down14
+    2300012: ded_down15
+    2300014: ded_down16
+    2300016: ded_down2
+    2300018: ded_down3
+    2300020: ded_down5
+    2300022: ded_down6
+    2300024: ded_down7
+    2300026: ded_down8
+    2300028: ded_down9
+    2300030: Plane027
+    3300000: ded_down1
+    3300002: ded_down10
+    3300004: ded_down11
+    3300006: ded_down12
+    3300008: ded_down13
+    3300010: ded_down14
+    3300012: ded_down15
+    3300014: ded_down16
+    3300016: ded_down2
+    3300018: ded_down3
+    3300020: ded_down5
+    3300022: ded_down6
+    3300024: ded_down7
+    3300026: ded_down8
+    3300028: ded_down9
+    3300030: Plane027
+    4300000: ded_down9
+    4300002: ded_down15
+    4300004: ded_down10
+    4300006: ded_down16
+    4300008: ded_down14
+    4300010: Plane027
+    4300012: ded_down11
+    4300014: ded_down13
+    4300016: ded_down7
+    4300018: ded_down2
+    4300020: ded_down8
+    4300022: ded_down6
+    4300024: ded_down12
+    4300026: ded_down3
+    4300028: ded_down5
+    4300030: ded_down1
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton:
+    - name: ded_duwn(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down1
+      position: {x: -.0985753164, y: -.0134611558, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down2
+      position: {x: -.101379648, y: -.0134611558, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down3
+      position: {x: -.0985753164, y: -.0108817006, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down5
+      position: {x: -.0985753164, y: -.00800348166, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down6
+      position: {x: -.101379648, y: -.0080034826, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down7
+      position: {x: -.0985753164, y: -.00519723399, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down8
+      position: {x: -.101379648, y: -.00519723399, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down9
+      position: {x: -.0985753164, y: -.0134611558, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down10
+      position: {x: -.101379648, y: -.0134611605, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down11
+      position: {x: -.0985753164, y: -.0108816959, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down12
+      position: {x: -.101379648, y: -.0108816959, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down13
+      position: {x: -.0985753164, y: -.00800348166, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down14
+      position: {x: -.101379648, y: -.0080034826, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down15
+      position: {x: -.0985753164, y: -.00519723399, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ded_down16
+      position: {x: -.101379648, y: -.00519723399, z: 8.88690899e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Plane027
+      position: {x: -.101379648, y: -.0108816959, z: 7.69481634e-09}
+      rotation: {x: 6.12323426e-17, y: 1, z: -6.12323426e-17, w: -6.12323426e-17}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  additionalBone: 0
+  userData: 
