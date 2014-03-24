@@ -134,7 +134,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         _player.Pause = true;
         Camera.main.animation.Play();
         _playerAnimator.speed = 1.0f;
-        _playerAnimator.Play( "Kill3" );
+        _playerAnimator.Play( "death_" + _playerSides[ _playerSide ? 1 : 0 ] );
         PlayerPrefs.SetInt( "MoveBarrier", moveBarrier.CurrentIndex );
         if ( ( currentRestart % 5 ) == 0 ) {
             //Debug.Log("Show Chartboost");
