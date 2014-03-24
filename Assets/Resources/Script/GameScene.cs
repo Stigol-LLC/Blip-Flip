@@ -566,7 +566,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         if ( ! vertical &&
              horizontalSlideLenght < -lenghtMoveTouch ) {
             ShowPlayer( arraySlideObject[ 1 ], false, "slide" ); //Slide
-        } else if ( vertical && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
+        } else if ( !_playerSide && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
 //			indexSlide--;
 //			if(indexSlide < 0){
 //				indexSlide = (allowCircleSlide)?arraySlideObject.Length - 1:0;
@@ -576,7 +576,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //                 arraySlideObject.Length > indexSlide ) {
             ShowPlayer( arraySlideObject[ 2 ], false, "transform" ); //Down
 //            }
-        } else if ( vertical && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
+        } else if ( _playerSide && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
 //			indexSlide++;
 //			if(indexSlide >= arraySlideObject.Length){
 //				indexSlide = (allowCircleSlide)?0:arraySlideObject.Length - 1;
