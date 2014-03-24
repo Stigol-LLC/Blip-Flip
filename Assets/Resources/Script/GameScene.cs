@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using Social;
 using UIEditor.Core;
-using UIEditor.ID;
 using UIEditor.Node;
 using UIEditor.Util;
 using UnityEngine;
@@ -57,14 +56,9 @@ public class GameScene : MonoBehaviour, ITouchable {
     };
 
     private bool _playerSide;
-
     private bool touch = true;
-
-
     private int currentRestart;
-
     private int indexSlide = 0;
-
     private int slideInCurrentTouch;
     private GameObject lastCompliteObject;
 
@@ -149,6 +143,10 @@ public class GameScene : MonoBehaviour, ITouchable {
         StartCoroutine( "ShowGameOverView" );
     }
 
+    private string GetAnimationName( string stateName ) {
+        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
+    }
+
     private void OnApplicationPause( bool pauseStatus ) {
         if ( _setting != null ) {
             Amazon.Instance()
@@ -201,6 +199,10 @@ public class GameScene : MonoBehaviour, ITouchable {
         //count_label.MTextMesh.text = CountScore.ToString();
     }
 
+    private void SetSide( string stateName ) {
+        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
+    }
+
     private IEnumerator ShowGameOverView() {
         yield return new WaitForSeconds( 1.7f );
         StartCoroutine( "ShowScore", 0.02f );
@@ -228,7 +230,8 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void ShowPlayer( int num, bool isSlide = false, string stateName = null ) {
-        if ( _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash == Animator.StringToHash("Base Layer.idle_"+ _playerSides[ _playerSide ? 1 : 0 ]) ) {
+        if ( _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
             string playState = stateName != null ? GetAnimationName( stateName ) : "slide" + currentShow + "_" + num;
 //            if ( isSlide ) {
 //                ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( num.ToString() );
@@ -244,20 +247,10 @@ public class GameScene : MonoBehaviour, ITouchable {
 //            }
 //            StopCoroutine( "StartAnimationPlay" );
 //            StartCoroutine( "StartAnimationPlay", 0.25f / _playerAnimator.speed );
-//            Debug.Log( playState );
-       // Debug.Log( playState );
             _playerAnimator.Play( playState );
-        SetSide( stateName );
+            SetSide( stateName );
             currentShow = num;
         }
-    }
-
-    private void SetSide( string stateName ) {
-        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
-    }
-
-    private string GetAnimationName( string stateName ) {
-        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
     }
 
     private IEnumerator ShowScore( float time ) {
@@ -306,13 +299,11 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
 //        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
 //        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
-
         PlayGame();
     }
 
     private IEnumerator StartAnimationPlay( float time ) {
-        animatorPlay = true;    
-
+        animatorPlay = true;
         yield return new WaitForSeconds( time );
         animatorPlay = false;
     }
@@ -571,11 +562,11 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
         float verticalSlideLenght = touchBegin.y - touchPoint.y;
         float horizontalSlideLenght = touchBegin.x - touchPoint.x;
-        bool vertical = Mathf.Abs(verticalSlideLenght) > Mathf.Abs(horizontalSlideLenght);
-        if ( ! vertical  &&
+        bool vertical = Mathf.Abs( verticalSlideLenght ) > Mathf.Abs( horizontalSlideLenght );
+        if ( ! vertical &&
              horizontalSlideLenght < -lenghtMoveTouch ) {
             ShowPlayer( arraySlideObject[ 1 ], false, "slide" ); //Slide
-        } else if ( vertical  && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
+        } else if ( vertical && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
 //			indexSlide--;
 //			if(indexSlide < 0){
 //				indexSlide = (allowCircleSlide)?arraySlideObject.Length - 1:0;
@@ -583,9 +574,9 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = 1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-                ShowPlayer( arraySlideObject[ 2 ], false, "transform" ); //Down
+            ShowPlayer( arraySlideObject[ 2 ], false, "transform" ); //Down
 //            }
-        } else if ( vertical  && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
+        } else if ( vertical && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
 //			indexSlide++;
 //			if(indexSlide >= arraySlideObject.Length){
 //				indexSlide = (allowCircleSlide)?0:arraySlideObject.Length - 1;
@@ -593,7 +584,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = -1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-                ShowPlayer( arraySlideObject[ 3 ], false, "transform" ); //Up
+            ShowPlayer( arraySlideObject[ 3 ], false, "transform" ); //Up
 //            }
         }
 //        if ( ( slideInCurrentTouch == 1 && verticalSlideLenght > 0 ) ||
