@@ -122,7 +122,7 @@ public class GameScene : MonoBehaviour, ITouchable {
                           true );
             DeviceInfo.CollectAndSaveInfo();
         }
-        initTutorial();
+//        initTutorial();
     }
 
     private void GameOver() {
@@ -130,7 +130,9 @@ public class GameScene : MonoBehaviour, ITouchable {
             AudioSource.PlayClipAtPoint( clipDestroy, Vector3.zero );
         }
         moveBackground.Pause = true;
-        moveBarrier.CurrentMoveObject().Pause = true;
+        if ( moveBarrier.CurrentMoveObject() != null ) {
+            moveBarrier.CurrentMoveObject().Pause = true;
+        }
         _player.Pause = true;
         Camera.main.animation.Play();
         _playerAnimator.speed = 1.0f;
@@ -176,6 +178,8 @@ public class GameScene : MonoBehaviour, ITouchable {
         touch = true;
         moveBackground.Pause = false;
         moveBarrier.Reset();
+//        Debug.Log(moveBarrier.ListMoveObject.Count);
+//        Debug.Log(moveBarrier.CurrentIndex);
         moveBarrier.CurrentMoveObject().Pause = false;
         if ( musicPlay ) {
             musicMenu.Stop();
@@ -291,25 +295,24 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        }
         Application.targetFrameRate = 60;
         TouchProcessor.Instance.AddListener( this, -1 );
-//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Restart", Restart );
-//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Home", GoHome );
-//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "GameCentr", GameCentr );
-//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_TWITTER", Twitter );
-//        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_FACEBOOK", Facebook );
-//        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
+        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_RESTART", Restart );
+        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Home", GoHome );
+        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "GameCentr", GameCentr );
+        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_TWITTER", Twitter );
+        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_FACEBOOK", Facebook );
+        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
 //        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
-//        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "Start", StartGame );
-//        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "GameCentr", GameCentr );
+        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_PLAY", StartGame );
+        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "GameCentr", GameCentr );
 //        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( DefineActionName.BTN_MUSIC.ToString(), ChangeMusic );
-//        moveBackground.Pause = false;
-//        ViewManager.Active.GetViewById( "ViewSpalshScreen" ).IsVisible = false;
-//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = true;
-//        ViewManager.Active.GetViewById( "ViewStart" );
-//        ViewManager.Active.GetViewById( "ViewStart" ).SetSingleAction( ButtonClick );
-//        ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
-//        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
-//        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
-        PlayGame();
+        moveBackground.Pause = false;
+        ViewManager.Active.GetViewById( "ViewSpalshScreen" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = true;
+        ViewManager.Active.GetViewById( "ViewStart" );
+        ViewManager.Active.GetViewById( "ViewStart" ).SetSingleAction( ButtonClick );
+        ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
+        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
+        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
     }
 
     private IEnumerator StartAnimationPlay( float time ) {

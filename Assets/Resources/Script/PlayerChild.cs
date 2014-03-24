@@ -4,7 +4,7 @@ using System;
 public class PlayerChild : MonoBehaviour {
 	private bool isCollision = false;
 	void OnTriggerEnter2D(Collider2D other) {
-		//Debug.Log("OnTriggerEnter2D");
+//		Debug.Log("OnTriggerEnter2D");
 		if(!isCollision && other.GetComponent<PlayerChild>() == null){
 			isCollision = true;
 		}
