@@ -33,7 +33,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     [SerializeField] private AudioClip clipChangeView = null;
     [SerializeField] private AudioClip clipScore = null;
 
-    [SerializeField] private float lenghtMoveTouch = 10.0f;
+    [SerializeField] private float lenghtMoveTouch = 20.0f;
     private Vector2 touchBegin = Vector2.zero;
 
     private Animator _playerAnimator;
@@ -230,7 +230,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void ShowPlayer( int num, bool isSlide = false, string stateName = null ) {
-        if ( _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+        if ( _playerAnimator != null && _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
              Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
             string playState = stateName != null ? GetAnimationName( stateName ) : "slide" + currentShow + "_" + num;
 //            if ( isSlide ) {
@@ -250,6 +250,16 @@ public class GameScene : MonoBehaviour, ITouchable {
             _playerAnimator.Play( playState );
             SetSide( stateName );
             currentShow = num;
+        }
+    }
+
+    private void ShowPlayer( string stateName ) {
+        if ( _playerAnimator != null &&
+             _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
+            string playState = GetAnimationName( stateName );
+            _playerAnimator.Play( playState );
+            SetSide( stateName );
         }
     }
 
@@ -471,7 +481,6 @@ public class GameScene : MonoBehaviour, ITouchable {
             Social.Facebook.Instance().GetUserDetails( result => { SaveFBUserDetail( result ); } );
             Social.Facebook.Instance().GoToPage( _setting.STIGOL_FACEBOOK_APPID );
         }
-        ;
     }
 
     private void GameCentr( ICall bb ) {
@@ -565,7 +574,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         bool vertical = Mathf.Abs( verticalSlideLenght ) > Mathf.Abs( horizontalSlideLenght );
         if ( ! vertical &&
              horizontalSlideLenght < -lenghtMoveTouch ) {
-            ShowPlayer( arraySlideObject[ 1 ], false, "slide" ); //Slide
+            ShowPlayer( "slide" ); //Slide
         } else if ( !_playerSide && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
 //			indexSlide--;
 //			if(indexSlide < 0){
@@ -574,7 +583,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = 1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-            ShowPlayer( arraySlideObject[ 2 ], false, "transform" ); //Down
+            ShowPlayer( "transform" ); //Down
 //            }
         } else if ( _playerSide && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
 //			indexSlide++;
@@ -584,7 +593,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = -1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-            ShowPlayer( arraySlideObject[ 3 ], false, "transform" ); //Up
+            ShowPlayer( "transform" ); //Up
 //            }
         }
 //        if ( ( slideInCurrentTouch == 1 && verticalSlideLenght > 0 ) ||
@@ -597,7 +606,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     public void TouchEnd( Vector2 touchPoint ) {
         float shift = Vector2.Distance( touchPoint, touchBegin );
         if ( shift <= _minEpsilon ) {
-            ShowPlayer( arraySlideObject[ 0 ], false, "jump" ); //Jump
+            ShowPlayer( "jump" ); //Jump
         }
 //        slideInCurrentTouch = 0;
     }
