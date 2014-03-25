@@ -2,6 +2,7 @@
 
 #if UNITY_EDITOR
 #endif
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -300,18 +301,22 @@ public class GameScene : MonoBehaviour, ITouchable {
         ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "GameCentr", GameCentr );
         ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_TWITTER", Twitter );
         ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_FACEBOOK", Facebook );
+        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_INFO", ShowInfo );
         ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
+        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "BTN_PAUSE", ShowPause );
+        Debug.Log( ViewManager.Active.GetViewById( "ViewPause" ) );
+//        ViewManager.Active.GetViewById( "ViewPause" ).SetDelegate( "BTN_SKIP", ShowGame );
 //        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
         ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_PLAY", StartGame );
         ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "GameCentr", GameCentr );
-//        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( DefineActionName.BTN_MUSIC.ToString(), ChangeMusic );
+        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
         moveBackground.Pause = false;
         ViewManager.Active.GetViewById( "ViewSpalshScreen" ).IsVisible = false;
         ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = true;
         ViewManager.Active.GetViewById( "ViewStart" );
         ViewManager.Active.GetViewById( "ViewStart" ).SetSingleAction( ButtonClick );
         ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
         ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
     }
 
@@ -462,6 +467,21 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
+    private void ShowGame( ICall iCall ) {
+//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "ViewPause" ).IsVisible = false;
+    }
+
+    private void ShowPause( ICall iCall ) {
+//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "ViewPause" ).IsVisible = true;
+    }
+
+    private void ShowInfo( ICall iCall ) {
+        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Info" ).IsVisible = true;
+    }
+
     private void ChangeMusic( ICall bb ) {
         musicPlay = !musicPlay;
         if ( musicPlay ) {
@@ -504,7 +524,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
         Debug.Log( moveBarrier.CurrentIndex );
         if ( moveBarrier.CurrentIndex == 0 ) {
-            initTutorial();
+//            initTutorial();
         }
     }
 
