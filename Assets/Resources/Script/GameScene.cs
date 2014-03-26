@@ -111,9 +111,9 @@ public class GameScene : MonoBehaviour, ITouchable {
         if ( _setting != null ) {
             Chartboost.Instance().Initialize( _setting.CHARTBOOST_APPID, _setting.CHARTBOOST_SIGNATURE );
             DeviceInfo.Initialize( _setting.STAT_FOLDER_NAME, _setting.STAT_APP_NAME, _setting.STAT_URL );
-            Social.Facebook.Instance().Initialize( _setting.STIGOL_FACEBOOK_APPID, _setting.FACEBOOK_PERMISSIONS );
-            Amazon.Instance().Initialize( _setting.AMAZON_ACCESS_KEY, _setting.AMAZON_SECRET_KEY );
-            Amazon.Instance()
+            Social.Facebook.Instance().Initialize( _setting.FACEBOOK_APPID, _setting.FACEBOOK_PERMISSIONS );
+            AmazonHelper.Instance().Initialize( _setting.AMAZON_ACCESS_KEY, _setting.AMAZON_SECRET_KEY );
+            AmazonHelper.Instance()
                   .UploadFiles(
                           Path.Combine( Finder.SandboxPath, _setting.STAT_FOLDER_NAME ),
                           _setting.AMAZON_STAT_BUCKET,
@@ -160,7 +160,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     private void OnApplicationPause( bool pauseStatus ) {
         if ( _setting != null ) {
-            Amazon.Instance()
+            AmazonHelper.Instance()
                   .UploadFiles(
                           Path.Combine( Finder.SandboxPath, _setting.STAT_FOLDER_NAME ),
                           _setting.AMAZON_STAT_BUCKET,
@@ -524,7 +524,7 @@ public class GameScene : MonoBehaviour, ITouchable {
                     } );
         } else {
             Social.Facebook.Instance().GetUserDetails( result => { SaveFBUserDetail( result ); } );
-            Social.Facebook.Instance().GoToPage( _setting.STIGOL_FACEBOOK_APPID );
+            Social.Facebook.Instance().GoToPage( _setting.FACEBOOK_APPID );
         }
     }
 
