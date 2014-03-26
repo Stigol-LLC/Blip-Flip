@@ -146,6 +146,14 @@ public class GameScene : MonoBehaviour, ITouchable {
         StartCoroutine( "ShowGameOverView" );
     }
 
+    private void PauseGame( bool key ) {
+        moveBackground.Pause = key;
+        if ( moveBarrier.CurrentMoveObject() != null ) {
+            moveBarrier.CurrentMoveObject().Pause = key;
+        }
+        _player.Pause = key;
+    }
+
     private string GetAnimationName( string stateName ) {
         return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
     }
@@ -192,16 +200,16 @@ public class GameScene : MonoBehaviour, ITouchable {
         StartCoroutine( "StartSoundPlay", 1.1f );
         _player.Pause = false;
         //if(isSlide){
-        ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( "1" );
-        bb.State = ButtonState.Focus;
+//        ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( "1" );
+//        bb.State = ButtonState.Focus;
         if ( ButtonBase.focusButton != null ) {
             ButtonBase.focusButton.State = ButtonState.Default;
         }
-        ButtonBase.focusButton = bb;
+//        ButtonBase.focusButton = bb;
         //}
         currentShow = 1;
         CountScore = 0;
-        //count_label.MTextMesh.text = CountScore.ToString();
+        count_label.MTextMesh.text = CountScore.ToString();
     }
 
     private void SetSide( string stateName ) {
@@ -210,7 +218,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     private IEnumerator ShowGameOverView() {
         yield return new WaitForSeconds( 1.7f );
-        StartCoroutine( "ShowScore", 0.02f );
+//        StartCoroutine( "ShowScore", 0.02f );
         int bestResult = Mathf.Max( CountScore, PlayerPrefs.GetInt( "bestResult" ) );
         UnityEngine.Social.ReportScore(
                 bestResult,
@@ -219,7 +227,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         PlayerPrefs.SetInt( "bestResult", bestResult );
         PlayerPrefs.Save();
         //Debug.Log(PlayerPrefs.GetInt("bestResult").ToString());
-        ViewManager.Active.GetViewById( "GameOver" ).IsVisible = true;
+        ViewManager.Active.GetViewById( "Over" ).IsVisible = true;
         VisualNode group = ViewManager.Active.GetViewById( "GameOver" ).GetChildById( "group" );
         if ( group.GetChildById( "result" ) is Label ) {
             ( group.GetChildById( "result" ) as Label ).MTextMesh.text = CountScore.ToString();
@@ -296,26 +304,25 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        }
         Application.targetFrameRate = 60;
         TouchProcessor.Instance.AddListener( this, -1 );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_RESTART", Restart );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "Home", GoHome );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "GameCentr", GameCentr );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_TWITTER", Twitter );
-        ViewManager.Active.GetViewById( "GameOver" ).SetDelegate( "BTN_FACEBOOK", Facebook );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_INFO", ShowInfo );
+        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_RESTART", Restart );
+        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "Home", GoHome );
+        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "GameCentr", GameCentr );
+        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_TWITTER", Twitter );
+        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_FACEBOOK", Facebook );
+        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_INFO", ShowInfo );
+        ViewManager.Active.GetViewById( "Info" ).SetDelegate( "BTN_BACK", ShowGame );
         ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
         ViewManager.Active.GetViewById( "Game" ).SetDelegate( "BTN_PAUSE", ShowPause );
-        Debug.Log( ViewManager.Active.GetViewById( "ViewPause" ) );
-//        ViewManager.Active.GetViewById( "ViewPause" ).SetDelegate( "BTN_SKIP", ShowGame );
-//        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_PLAY", StartGame );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "GameCentr", GameCentr );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
+        ViewManager.Active.GetViewById( "Pause" ).SetDelegate( "BTN_PLAY", ResumeGame );
+        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
+        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_PLAY", StartGame );
+        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "GameCentr", GameCentr );
+        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
         moveBackground.Pause = false;
-        ViewManager.Active.GetViewById( "ViewSpalshScreen" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = true;
-        ViewManager.Active.GetViewById( "ViewStart" );
-        ViewManager.Active.GetViewById( "ViewStart" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "GameOver" ).SetSingleAction( ButtonClick );
+        ViewManager.Active.GetViewById( "SplashScreen" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
+        ViewManager.Active.GetViewById( "Start" ).SetSingleAction( ButtonClick );
+        ViewManager.Active.GetViewById( "Over" ).SetSingleAction( ButtonClick );
 //        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
         ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
     }
@@ -334,18 +341,17 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Update() {
-//        AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
-//        List<GameObject> listGo = currMove.ListActiveObject;
-//        GameObject go = null;
-//        int indexLeft = -1;
-//        for ( int i = listGo.Count - 1; i >= 0; --i ) {
-//            if ( listGo[ i ].transform.position.x < _player.playerNode.transform.position.x ) {
-//                go = listGo[ i ];
-//                indexLeft = i;
-//                break;
-//            }
-//        }
-//        ;
+        AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
+        List<GameObject> listGo = currMove.ListActiveObject;
+        GameObject go = null;
+        int indexLeft = -1;
+        for ( int i = listGo.Count - 1; i >= 0; --i ) {
+            if ( listGo[ i ].transform.position.x < _player.playerNode.transform.position.x ) {
+                go = listGo[ i ];
+                indexLeft = i;
+                break;
+            }
+        }
 //        if ( isTutorial ) {
 //            bool setFast = false;
 //            int needShow = -1;
@@ -415,13 +421,13 @@ public class GameScene : MonoBehaviour, ITouchable {
 //                GreatJob.transform.parent = transform;
 //            }
 //        }
-//        if ( go != lastCompliteObject ) {
-//            lastCompliteObject = go;
-//            CountScore++;
-//            count_label.MTextMesh.text = CountScore.ToString();
-//            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
-//            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
-//        }
+        if ( go != lastCompliteObject ) {
+            lastCompliteObject = go;
+            CountScore++;
+            count_label.MTextMesh.text = CountScore.ToString();
+            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
+            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
+        }
     }
 
     private void initTutorial() {
@@ -467,18 +473,34 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
+    private void ResumeGame( ICall iCall ) {
+        ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = true;
+        StartCoroutine( "ShowGame" );
+    }
+
+
+    private IEnumerator ShowGame() {
+        yield return new WaitForSeconds( 1.0f );
+        ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
+        yield return new WaitForSeconds( 1.7f );
+        PauseGame( false );
+    }
+
     private void ShowGame( ICall iCall ) {
-//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "ViewPause" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
+        ViewManager.Active.GetViewById( "Info" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
     }
 
     private void ShowPause( ICall iCall ) {
 //        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "ViewPause" ).IsVisible = true;
+        PauseGame( true );
+        ViewManager.Active.GetViewById( "Pause" ).IsVisible = true;
     }
 
     private void ShowInfo( ICall iCall ) {
-        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
         ViewManager.Active.GetViewById( "Info" ).IsVisible = true;
     }
 
@@ -515,7 +537,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Restart( ICall bb ) {
-        ViewManager.Active.GetViewById( "GameOver" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Over" ).IsVisible = false;
         PlayGame();
         moveBackground.Pause = false;
         currentRestart++;
@@ -546,7 +568,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void StartGame( ICall bb ) {
-        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
         ViewManager.Active.GetViewById( "Game" ).IsVisible = true;
         PlayGame();
     }
@@ -584,7 +606,6 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
         touchBegin = touchPoint;
 //        _player.Up();
-//        Debug.Log( "TouchBegan" );
         return true;
     }
 
