@@ -17,6 +17,16 @@ using UnityEngine;
 public class GameScene : MonoBehaviour, ITouchable {
     #region Properties
 
+    private static GameScene _gameScene;
+    static public GameScene Active{
+			get{
+				if( _gameScene == null ){
+					_gameScene = FindObjectOfType<GameScene>();
+				}
+				return _gameScene;
+			}
+		}
+
     [SerializeField] private StackMoveObject moveBarrier = null;
     [SerializeField] private AutoMoveObject moveBackground = null;
     [SerializeField] private Player _player;
@@ -177,11 +187,21 @@ public class GameScene : MonoBehaviour, ITouchable {
         //Debug.Log("Destroy");
     }
 
-    private void PlayGame() {
+    private void Over() {
+        
+    }
+
+    private void Game() {
+        ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
+        if ( _player != null ) {
+            PauseGame( false );
+            return;
+        }
         GameObject go = Instantiate( Resources.Load( "PlayerUnite" ) ) as GameObject;
         _player = go.GetComponent<Player>();
         go.name = "PlayerUnite";
         go.transform.parent = transform;
+        _playerSide = false;
         _player.SetActionGameOver( GameOver );
         _playerAnimator = _player.GetComponent<Animator>();
         touch = true;
@@ -216,23 +236,26 @@ public class GameScene : MonoBehaviour, ITouchable {
         _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
     }
 
-    private IEnumerator ShowGameOverView() {
-        yield return new WaitForSeconds( 1.7f );
+    private void ShowGameOverView() {
+//        yield return new WaitForSeconds( 1.7f );
 //        StartCoroutine( "ShowScore", 0.02f );
-        int bestResult = Mathf.Max( CountScore, PlayerPrefs.GetInt( "bestResult" ) );
-        UnityEngine.Social.ReportScore(
-                bestResult,
-                "com.oleh.gates",
-                result => { Debug.Log( ( result ) ? "Complite send score" : "failed send score" ); } );
-        PlayerPrefs.SetInt( "bestResult", bestResult );
-        PlayerPrefs.Save();
+//        int bestResult = Mathf.Max( CountScore, PlayerPrefs.GetInt( "bestResult" ) );
+//        UnityEngine.Social.ReportScore(
+//                bestResult,
+//                "com.oleh.gates",
+//                result => { Debug.Log( ( result ) ? "Complite send score" : "failed send score" ); } );
+//        PlayerPrefs.SetInt( "bestResult", bestResult );
+//        PlayerPrefs.Save();
         //Debug.Log(PlayerPrefs.GetInt("bestResult").ToString());
-        ViewManager.Active.GetViewById( "Over" ).IsVisible = true;
-        VisualNode group = ViewManager.Active.GetViewById( "GameOver" ).GetChildById( "group" );
-        if ( group.GetChildById( "result" ) is Label ) {
-            ( group.GetChildById( "result" ) as Label ).MTextMesh.text = CountScore.ToString();
-            ( group.GetChildById( "bestResult" ) as Label ).MTextMesh.text = bestResult.ToString();
-        }
+        Button button = new Button();
+        button.ActionName = "BTN_END";
+        ViewManager.Active.GetViewById( "Game" ).RunAction( button );
+//        ViewManager.Active.GetViewById( "Over" ).IsVisible = true;
+//        VisualNode group = ViewManager.Active.GetViewById( "Over" ).GetChildById( "group" );
+//        if ( group.GetChildById( "result" ) is Label ) {
+//            ( group.GetChildById( "result" ) as Label ).MTextMesh.text = CountScore.ToString();
+//            ( group.GetChildById( "bestResult" ) as Label ).MTextMesh.text = bestResult.ToString();
+//        }
         if ( musicPlay ) {
             musicMenu.Play();
             musicGame.Stop();
@@ -240,11 +263,12 @@ public class GameScene : MonoBehaviour, ITouchable {
         moveBarrier.Reset();
         Destroy( tutorialSlide );
         Destroy( _player.gameObject );
+        _player = null;
     }
 
     private void ShowPlayer( int num, bool isSlide = false, string stateName = null ) {
-        if ( _playerAnimator != null && _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
-             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
+        if ( _playerAnimator != null/* && _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) */) {
             string playState = stateName != null ? GetAnimationName( stateName ) : "slide" + currentShow + "_" + num;
 //            if ( isSlide ) {
 //                ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( num.ToString() );
@@ -292,6 +316,18 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
+    private void Menu() {
+        ViewManager.Active.GetViewById( "Game" ).IsVisible = false;
+        if ( moveBarrier != null ) {
+            moveBarrier.Reset();
+            Destroy( tutorialSlide );
+        }
+        if ( _player != null ) {
+            Destroy( _player.gameObject );
+            _player = null;
+        }
+    }
+
     private void Start() {
 //        musicPlay = ( PlayerPrefs.GetInt( "music" ) != 0 );
 //        if ( musicPlay ) {
@@ -304,27 +340,27 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        }
         Application.targetFrameRate = 60;
         TouchProcessor.Instance.AddListener( this, -1 );
-        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_RESTART", Restart );
-        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "Home", GoHome );
-        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "GameCentr", GameCentr );
-        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_TWITTER", Twitter );
-        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_FACEBOOK", Facebook );
-        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_INFO", ShowInfo );
-        ViewManager.Active.GetViewById( "Info" ).SetDelegate( "BTN_BACK", ShowGame );
-        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
-        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "BTN_PAUSE", ShowPause );
-        ViewManager.Active.GetViewById( "Pause" ).SetDelegate( "BTN_PLAY", ResumeGame );
+//        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_RESTART", Restart );
+//        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "Home", GoHome );
+//        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "GameCentr", GameCentr );
+//        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_TWITTER", Twitter );
+//        ViewManager.Active.GetViewById( "Over" ).SetDelegate( "BTN_FACEBOOK", Facebook );
+//        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_INFO", ShowInfo );
+//        ViewManager.Active.GetViewById( "Info" ).SetDelegate( "BTN_BACK", ShowGame );
+//        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
+//        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "BTN_PAUSE", ShowPause );
+//        ViewManager.Active.GetViewById( "Pause" ).SetDelegate( "BTN_PLAY", ResumeGame );
         count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
-        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_PLAY", StartGame );
-        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "GameCentr", GameCentr );
-        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
+//        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_PLAY", StartGame );
+//        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "GameCentr", GameCentr );
+//        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
         moveBackground.Pause = false;
         ViewManager.Active.GetViewById( "SplashScreen" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
-        ViewManager.Active.GetViewById( "Start" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "Over" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
+//        ViewManager.Active.GetViewById( "Start" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "Over" ).SetSingleAction( ButtonClick );
 //        ViewManager.Active.GetViewById( "Game" ).SetSingleAction( ButtonClick );
-        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
+//        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
     }
 
     private IEnumerator StartAnimationPlay( float time ) {
@@ -473,12 +509,6 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
-    private void ResumeGame( ICall iCall ) {
-        ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = true;
-        StartCoroutine( "ShowGame" );
-    }
-
 
     private IEnumerator ShowGame() {
         yield return new WaitForSeconds( 1.0f );
@@ -493,15 +523,19 @@ public class GameScene : MonoBehaviour, ITouchable {
         ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
     }
 
-    private void ShowPause( ICall iCall ) {
-//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
-        PauseGame( true );
-        ViewManager.Active.GetViewById( "Pause" ).IsVisible = true;
+    private void PauseCounter() {
+//        PauseGame( false );
     }
 
-    private void ShowInfo( ICall iCall ) {
-        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "Info" ).IsVisible = true;
+    private void Pause() {
+//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        PauseGame( true );
+//        ViewManager.Active.GetViewById( "Pause" ).IsVisible = true;
+    }
+
+    private void Info() {
+//        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
+//        ViewManager.Active.GetViewById( "Info" ).IsVisible = true;
     }
 
     private void ChangeMusic( ICall bb ) {
@@ -537,14 +571,13 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Restart( ICall bb ) {
-        ViewManager.Active.GetViewById( "Over" ).IsVisible = false;
-        PlayGame();
+//        ViewManager.Active.GetViewById( "Over" ).IsVisible = false;
+        Game();
         moveBackground.Pause = false;
         currentRestart++;
         if ( PlayerPrefs.HasKey( "MoveBarrier" ) ) {
             moveBarrier.CurrentIndex = Mathf.Min( startMoveObject, PlayerPrefs.GetInt( "MoveBarrier" ) );
         }
-        Debug.Log( moveBarrier.CurrentIndex );
         if ( moveBarrier.CurrentIndex == 0 ) {
 //            initTutorial();
         }
@@ -567,11 +600,11 @@ public class GameScene : MonoBehaviour, ITouchable {
         ShowPlayer( num );
     }
 
-    private void StartGame( ICall bb ) {
-        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "Game" ).IsVisible = true;
-        PlayGame();
-    }
+//    private void StartGame( ICall bb ) {
+//        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
+//        ViewManager.Active.GetViewById( "Game" ).IsVisible = true;
+//        Game();
+//    }
 
     private void Twitter( ICall bb ) {
         Social.Twitter.Instance().Login();

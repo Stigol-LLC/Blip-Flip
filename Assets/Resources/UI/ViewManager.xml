@@ -1,4 +1,4 @@
-<?Meta date="14.03.26 18:06:56" ver="2" ?>
+<?Meta date="14.04.02 13:46:21" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -110,7 +110,7 @@
     <Property Name="tag">Untagged</Property>
     <Property Name="name">ViewManager</Property>
   </Component>
-  <GameObject Name="View_info" Id="5A1A33BA20406F7B31C156B0">
+  <GameObject Name="ViewInfo" Id="5A1A33BA20406F7B31C156B0">
     <Component Name="Transform">
       <Property Name="localPosition">(-854.0, 0.0, -3.1)</Property>
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
@@ -118,7 +118,7 @@
       <Property Name="hasChanged">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_info</Property>
+      <Property Name="name">ViewInfo</Property>
     </Component>
     <Component Name="View">
       <Property Name="MultiTouch">False</Property>
@@ -137,16 +137,15 @@
         <Value Key="show">GameOver_Come (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">GameOver_Come (UnityEngine.AnimationClip)</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_info</Property>
+      <Property Name="name">ViewInfo</Property>
     </Component>
     <Component Name="Animation">
       <Property Name="clip">GameOver_Come (UnityEngine.AnimationClip)</Property>
-      <Property Name="playAutomatically">False</Property>
+      <Property Name="playAutomatically">True</Property>
       <Property Name="wrapMode">Default</Property>
       <Property Name="animatePhysics">False</Property>
       <Property Name="animateOnlyIfVisible">False</Property>
@@ -155,7 +154,7 @@
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_info</Property>
+      <Property Name="name">ViewInfo</Property>
     </Component>
     <GameObject Name="btn_back" Id="71A155E7544B799822AF172E">
       <Component Name="Transform">
@@ -196,7 +195,7 @@
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName">BTN_BACK</Property>
+        <Property Name="ActionName">BTN_HOME</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -210,7 +209,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -251,7 +249,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -294,7 +291,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -361,7 +357,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -428,7 +423,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -495,7 +489,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -562,7 +555,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -572,7 +564,7 @@
     </GameObject>
     <GameObject Name="Text_Info" Id="146814405E436D157D344C17">
       <Component Name="Transform">
-        <Property Name="localPosition">(0.0, 228.0, -0.4)</Property>
+        <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
@@ -619,7 +611,7 @@
         <Property Name="DefaultLanguage">en</Property>
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(0.0, 0.6)</Property>
+        <Property Name="RelativePosition">(0.0, 0.0)</Property>
         <Property Name="Id" />
         <Property Name="Uid">146814405E436D157D344C17</Property>
         <Property Name="ZOrder">384</Property>
@@ -629,7 +621,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -696,7 +687,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -763,7 +753,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -805,7 +794,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -814,7 +802,7 @@
       </Component>
     </GameObject>
   </GameObject>
-  <GameObject Name="View_pause" Id="268E07A43256255A54C01A44">
+  <GameObject Name="ViewPause" Id="268E07A43256255A54C01A44">
     <Component Name="Transform">
       <Property Name="localPosition">(0.0, 0.0, -4.3)</Property>
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
@@ -822,7 +810,7 @@
       <Property Name="hasChanged">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_pause</Property>
+      <Property Name="name">ViewPause</Property>
     </Component>
     <Component Name="View">
       <Property Name="MultiTouch">False</Property>
@@ -835,22 +823,21 @@
       <Property Name="Id">Pause</Property>
       <Property Name="Uid">268E07A43256255A54C01A44</Property>
       <Property Name="ZOrder">2</Property>
-      <Property Name="IsVisible">True</Property>
+      <Property Name="IsVisible">False</Property>
       <Property Name="AllowAnimation">True</Property>
       <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
         <Value Key="show">GameOver_Come (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">GameOver_Come (UnityEngine.AnimationClip)</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_pause</Property>
+      <Property Name="name">ViewPause</Property>
     </Component>
     <Component Name="Animation">
       <Property Name="clip">GameOver_Come (UnityEngine.AnimationClip)</Property>
-      <Property Name="playAutomatically">False</Property>
+      <Property Name="playAutomatically">True</Property>
       <Property Name="wrapMode">Default</Property>
       <Property Name="animatePhysics">False</Property>
       <Property Name="animateOnlyIfVisible">False</Property>
@@ -859,7 +846,7 @@
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_pause</Property>
+      <Property Name="name">ViewPause</Property>
     </Component>
     <GameObject Name="btn_music_on" Id="67166F003DA72A0E46EF0003">
       <Component Name="Transform">
@@ -914,7 +901,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -955,7 +941,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -1003,7 +988,7 @@
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName" />
+        <Property Name="ActionName">BTN_HOME</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -1017,7 +1002,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1058,7 +1042,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -1120,7 +1103,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1161,7 +1143,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -1204,7 +1185,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1265,7 +1245,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1306,7 +1285,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -1374,7 +1352,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1416,7 +1393,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1425,7 +1401,7 @@
       </Component>
     </GameObject>
   </GameObject>
-  <GameObject Name="View_pause_counter" Id="268E07A43256255A54C01A44">
+  <GameObject Name="ViewPauseCounter" Id="268E07A43256255A54C01A44">
     <Component Name="Transform">
       <Property Name="localPosition">(0.0, 0.0, -2.5)</Property>
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
@@ -1433,7 +1409,7 @@
       <Property Name="hasChanged">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_pause_counter</Property>
+      <Property Name="name">ViewPauseCounter</Property>
     </Component>
     <Component Name="View">
       <Property Name="MultiTouch">False</Property>
@@ -1449,19 +1425,18 @@
       <Property Name="IsVisible">False</Property>
       <Property Name="AllowAnimation">True</Property>
       <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
-        <Value Key="show">null</Value>
+        <Value Key="show">PauseCounter (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">null</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_pause_counter</Property>
+      <Property Name="name">ViewPauseCounter</Property>
     </Component>
     <Component Name="Animation">
       <Property Name="clip">PauseCounter (UnityEngine.AnimationClip)</Property>
-      <Property Name="playAutomatically">False</Property>
+      <Property Name="playAutomatically">True</Property>
       <Property Name="wrapMode">Default</Property>
       <Property Name="animatePhysics">False</Property>
       <Property Name="animateOnlyIfVisible">False</Property>
@@ -1470,7 +1445,7 @@
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">View_pause_counter</Property>
+      <Property Name="name">ViewPauseCounter</Property>
     </Component>
     <GameObject Name="etalon_Blip_Flip_pause" Id="6ABC203B2D4C415B71B311E3">
       <Component Name="Transform">
@@ -1506,7 +1481,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1548,7 +1522,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1590,7 +1563,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1632,7 +1604,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1647,7 +1618,7 @@
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
       <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
       <Property Name="hasChanged">True</Property>
-      <Property Name="active">False</Property>
+      <Property Name="active">True</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewSplashScreen</Property>
     </Component>
@@ -1662,16 +1633,15 @@
       <Property Name="Id">SplashScreen</Property>
       <Property Name="Uid">27590CDD4B6537AD25F20461</Property>
       <Property Name="ZOrder">99</Property>
-      <Property Name="IsVisible">False</Property>
+      <Property Name="IsVisible">True</Property>
       <Property Name="AllowAnimation">True</Property>
       <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
-        <Value Key="show">null</Value>
+        <Value Key="show">SplashScreen_Go (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">SplashScreen_Go (UnityEngine.AnimationClip)</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">False</Property>
+      <Property Name="active">True</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewSplashScreen</Property>
     </Component>
@@ -1684,7 +1654,7 @@
       <Property Name="cullingType">AlwaysAnimate</Property>
       <Property Name="localBounds">Center: (0.0, 0.0, 0.0), Extents: (0.0, 0.0, 0.0)</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">False</Property>
+      <Property Name="active">True</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewSplashScreen</Property>
     </Component>
@@ -1694,7 +1664,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_blue</Property>
       </Component>
@@ -1708,7 +1678,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_blue</Property>
       </Component>
@@ -1722,21 +1692,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List">
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-        </Property>
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_blue</Property>
       </Component>
@@ -1747,7 +1705,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_black</Property>
       </Component>
@@ -1761,7 +1719,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_black</Property>
       </Component>
@@ -1775,35 +1733,23 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List">
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-          <Value>0</Value>
-        </Property>
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_black</Property>
       </Component>
     </GameObject>
   </GameObject>
-  <GameObject Name="ViewStart" Id="613073A634C41A750707463D">
+  <GameObject Name="ViewMenu" Id="613073A634C41A750707463D">
     <Component Name="Transform">
       <Property Name="localPosition">(0.0, 0.0, -5.5)</Property>
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
       <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
       <Property Name="hasChanged">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">ViewStart</Property>
+      <Property Name="name">ViewMenu</Property>
     </Component>
     <Component Name="View">
       <Property Name="MultiTouch">False</Property>
@@ -1813,34 +1759,33 @@
       <Property Name="IsRelativePosition">False</Property>
       <Property Name="ParentSize">(512.0, 384.0)</Property>
       <Property Name="RelativePosition">(0.0, 0.0)</Property>
-      <Property Name="Id">Start</Property>
+      <Property Name="Id">Menu</Property>
       <Property Name="Uid">613073A634C41A750707463D</Property>
       <Property Name="ZOrder">5</Property>
-      <Property Name="IsVisible">True</Property>
+      <Property Name="IsVisible">False</Property>
       <Property Name="AllowAnimation">True</Property>
       <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
         <Value Key="show">MainMenu_Come (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">MainMenu_Come (UnityEngine.AnimationClip)</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">ViewStart</Property>
+      <Property Name="name">ViewMenu</Property>
     </Component>
     <Component Name="Animation">
       <Property Name="clip">MainMenu_Come (UnityEngine.AnimationClip)</Property>
-      <Property Name="playAutomatically">False</Property>
+      <Property Name="playAutomatically">True</Property>
       <Property Name="wrapMode">Default</Property>
       <Property Name="animatePhysics">False</Property>
       <Property Name="animateOnlyIfVisible">False</Property>
       <Property Name="cullingType">AlwaysAnimate</Property>
       <Property Name="localBounds">Center: (0.0, 0.0, 0.0), Extents: (0.0, 0.0, 0.0)</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">ViewStart</Property>
+      <Property Name="name">ViewMenu</Property>
     </Component>
     <GameObject Name="Background" Id="71272A586D923FAB335F013F">
       <Component Name="Transform">
@@ -1883,7 +1828,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -1897,7 +1841,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_gamecentre</Property>
       </Component>
@@ -1911,7 +1855,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_gamecentre</Property>
       </Component>
@@ -1944,10 +1888,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_gamecentre</Property>
       </Component>
@@ -1957,7 +1900,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -1971,7 +1914,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -1985,10 +1928,9 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2000,7 +1942,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_info</Property>
       </Component>
@@ -2014,7 +1956,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_info</Property>
       </Component>
@@ -2047,10 +1989,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_info</Property>
       </Component>
@@ -2060,7 +2001,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2074,7 +2015,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2088,10 +2029,9 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2150,7 +2090,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -2191,7 +2130,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -2206,7 +2144,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_music_on</Property>
       </Component>
@@ -2220,7 +2158,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_music_on</Property>
       </Component>
@@ -2235,11 +2173,11 @@
           <Value Key="Default">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
           <Value Key="Pressed">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
         </Property>
-        <Property Name="CallExpression">Btn_Music_On_to_Off (UIEditor.Act.Expression)</Property>
+        <Property Name="CallExpression" />
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName" />
+        <Property Name="ActionName">BTN_MUSIC</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -2253,10 +2191,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_music_on</Property>
       </Component>
@@ -2266,7 +2203,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2280,7 +2217,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2294,10 +2231,9 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2309,7 +2245,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_play</Property>
       </Component>
@@ -2323,7 +2259,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_play</Property>
       </Component>
@@ -2356,10 +2292,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_play</Property>
       </Component>
@@ -2369,7 +2304,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2383,7 +2318,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2397,10 +2332,9 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2412,7 +2346,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(80.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">dovn_road</Property>
       </Component>
@@ -2426,7 +2360,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">dovn_road</Property>
       </Component>
@@ -2440,10 +2374,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">dovn_road</Property>
       </Component>
@@ -2454,7 +2387,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2466,7 +2399,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2483,7 +2416,7 @@
         <Property Name="tabSize">15.98</Property>
         <Property Name="richText">True</Property>
         <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2507,10 +2440,9 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2521,7 +2453,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2533,7 +2465,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2550,7 +2482,7 @@
         <Property Name="tabSize">15.98</Property>
         <Property Name="richText">True</Property>
         <Property Name="color">RGBA(0.000, 0.000, 0.000, 1.000)</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2574,10 +2506,9 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2588,7 +2519,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(80.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">up_road</Property>
       </Component>
@@ -2602,7 +2533,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">up_road</Property>
       </Component>
@@ -2616,10 +2547,9 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">up_road</Property>
       </Component>
@@ -2652,7 +2582,6 @@
         <Value Key="show">GameOver_Come (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">GameOver_Come (UnityEngine.AnimationClip)</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
@@ -2725,7 +2654,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -2766,7 +2694,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -2814,7 +2741,7 @@
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName" />
+        <Property Name="ActionName">BTN_HOME</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -2828,7 +2755,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -2869,7 +2795,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -2931,7 +2856,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -2972,7 +2896,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -3034,7 +2957,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3075,7 +2997,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -3118,7 +3039,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3179,7 +3099,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3220,7 +3139,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -3263,7 +3181,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3330,7 +3247,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3397,7 +3313,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3464,7 +3379,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3531,7 +3445,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3598,7 +3511,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3640,7 +3552,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3649,7 +3560,7 @@
       </Component>
     </GameObject>
   </GameObject>
-  <GameObject Name="GameView" Id="23B41ACD55F553A708BF0BDC">
+  <GameObject Name="ViewGame" Id="23B41ACD55F553A708BF0BDC">
     <Component Name="Transform">
       <Property Name="localPosition">(0.0, 0.0, 0.0)</Property>
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
@@ -3657,7 +3568,7 @@
       <Property Name="hasChanged">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">GameView</Property>
+      <Property Name="name">ViewGame</Property>
     </Component>
     <Component Name="View">
       <Property Name="MultiTouch">False</Property>
@@ -3676,12 +3587,11 @@
         <Value Key="show">GameScreen_Come (UnityEngine.AnimationClip)</Value>
         <Value Key="hide">GameScreen_Come (UnityEngine.AnimationClip)</Value>
       </Property>
-      <Property Name="AnimationsSpeed" Type="List" />
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">GameView</Property>
+      <Property Name="name">ViewGame</Property>
     </Component>
     <Component Name="Animation">
       <Property Name="clip">GameScreen_Come (UnityEngine.AnimationClip)</Property>
@@ -3694,7 +3604,7 @@
       <Property Name="enabled">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
-      <Property Name="name">GameView</Property>
+      <Property Name="name">ViewGame</Property>
     </Component>
     <GameObject Name="btn_pause" Id="68B7084436517C3C3A5231BB">
       <Component Name="Transform">
@@ -3749,7 +3659,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3803,7 +3712,6 @@
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
           <Property Name="AssociateAnimationClip" Type="Map" />
-          <Property Name="AnimationsSpeed" Type="List" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
           <Property Name="active">False</Property>
@@ -3846,7 +3754,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3913,7 +3820,6 @@
           <Value Key="show">null</Value>
           <Value Key="hide">null</Value>
         </Property>
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
@@ -3955,7 +3861,6 @@
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
-        <Property Name="AnimationsSpeed" Type="List" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
         <Property Name="active">False</Property>
