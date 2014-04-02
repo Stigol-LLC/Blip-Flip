@@ -266,29 +266,29 @@ public class GameScene : MonoBehaviour, ITouchable {
         _player = null;
     }
 
-    private void ShowPlayer( int num, bool isSlide = false, string stateName = null ) {
-        if ( _playerAnimator != null/* && _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
-             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) */) {
-            string playState = stateName != null ? GetAnimationName( stateName ) : "slide" + currentShow + "_" + num;
-//            if ( isSlide ) {
-//                ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( num.ToString() );
-//                bb.State = ButtonState.Focus;
-//                ButtonBase.focusButton.State = ButtonState.Default;
-//                ButtonBase.focusButton = bb;
-//            }
-//            if ( _playerAnimator != null ) {
-//                _playerAnimator.speed = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) * animationSpeedKoef;
-//            }
-//            if ( musicPlay ) {
-//                AudioSource.PlayClipAtPoint( clipSwapPlayer, Vector3.zero );
-//            }
-//            StopCoroutine( "StartAnimationPlay" );
-//            StartCoroutine( "StartAnimationPlay", 0.25f / _playerAnimator.speed );
-            _playerAnimator.Play( playState );
-            SetSide( stateName );
-            currentShow = num;
-        }
-    }
+//    private void ShowPlayer( int num, bool isSlide = false, string stateName = null ) {
+//        if ( _playerAnimator != null/* && _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+//             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) */) {
+//            string playState = stateName != null ? GetAnimationName( stateName ) : "slide" + currentShow + "_" + num;
+////            if ( isSlide ) {
+////                ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( num.ToString() );
+////                bb.State = ButtonState.Focus;
+////                ButtonBase.focusButton.State = ButtonState.Default;
+////                ButtonBase.focusButton = bb;
+////            }
+////            if ( _playerAnimator != null ) {
+////                _playerAnimator.speed = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) * animationSpeedKoef;
+////            }
+////            if ( musicPlay ) {
+////                AudioSource.PlayClipAtPoint( clipSwapPlayer, Vector3.zero );
+////            }
+////            StopCoroutine( "StartAnimationPlay" );
+////            StartCoroutine( "StartAnimationPlay", 0.25f / _playerAnimator.speed );
+//            _playerAnimator.Play( playState );
+//            SetSide( stateName );
+//            currentShow = num;
+//        }
+//    }
 
     private void ShowPlayer( string stateName ) {
         if ( _playerAnimator != null &&
@@ -492,36 +492,36 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     #region Action
 
-    private void ButtonClick( ICall bb ) {
-        Debug.Log( "bb" + bb.ActionIdWithStore );
-        if ( musicPlay ) {
-            VisualNode vn = bb as VisualNode;
-            if ( vn != null &&
-                 vn.Id.CompareTo( "View" ) == 0 ) {
-                if ( clipChangeView != null ) {
-                    AudioSource.PlayClipAtPoint( clipChangeView, Vector3.zero );
-                }
-            } else {
-                if ( clipButtonClick != null ) {
-                    AudioSource.PlayClipAtPoint( clipButtonClick, Vector3.zero );
-                }
-            }
-        }
-    }
+//    private void ButtonClick( ICall bb ) {
+//        Debug.Log( "bb" + bb.ActionIdWithStore );
+//        if ( musicPlay ) {
+//            VisualNode vn = bb as VisualNode;
+//            if ( vn != null &&
+//                 vn.Id.CompareTo( "View" ) == 0 ) {
+//                if ( clipChangeView != null ) {
+//                    AudioSource.PlayClipAtPoint( clipChangeView, Vector3.zero );
+//                }
+//            } else {
+//                if ( clipButtonClick != null ) {
+//                    AudioSource.PlayClipAtPoint( clipButtonClick, Vector3.zero );
+//                }
+//            }
+//        }
+//    }
 
 
-    private IEnumerator ShowGame() {
-        yield return new WaitForSeconds( 1.0f );
-        ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
-        yield return new WaitForSeconds( 1.7f );
-        PauseGame( false );
-    }
-
-    private void ShowGame( ICall iCall ) {
-        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
-        ViewManager.Active.GetViewById( "Info" ).IsVisible = false;
-        ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
-    }
+//    private IEnumerator ShowGame() {
+//        yield return new WaitForSeconds( 1.0f );
+//        ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
+//        yield return new WaitForSeconds( 1.7f );
+//        PauseGame( false );
+//    }
+//
+//    private void ShowGame( ICall iCall ) {
+//        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
+//        ViewManager.Active.GetViewById( "Info" ).IsVisible = false;
+//        ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
+//    }
 
     private void PauseCounter() {
 //        PauseGame( false );
@@ -592,13 +592,13 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
-    private void ShowPlayer( ICall bb ) {
-        if ( musicPlay && clipButtonClick != null ) {
-            AudioSource.PlayClipAtPoint( clipButtonClick, Vector3.zero );
-        }
-        int num = int.Parse( bb.ActionValue );
-        ShowPlayer( num );
-    }
+//    private void ShowPlayer( ICall bb ) {
+//        if ( musicPlay && clipButtonClick != null ) {
+//            AudioSource.PlayClipAtPoint( clipButtonClick, Vector3.zero );
+//        }
+//        int num = int.Parse( bb.ActionValue );
+//        ShowPlayer( num );
+//    }
 
 //    private void StartGame( ICall bb ) {
 //        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
