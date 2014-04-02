@@ -1,4 +1,4 @@
-<?Meta date="14.04.02 17:11:02" ver="2" ?>
+<?Meta date="14.04.02 17:43:13" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
