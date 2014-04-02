@@ -44,7 +44,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     [SerializeField] private AudioClip clipChangeView = null;
     [SerializeField] private AudioClip clipScore = null;
 
-    [SerializeField] private float lenghtMoveTouch = 20.0f;
+    [SerializeField] private float lenghtMoveTouch = 10.0f;
     private Vector2 touchBegin = Vector2.zero;
 
     private Animator _playerAnimator;
@@ -89,7 +89,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     private GameObject tutorialFindObject;
     public int CountScore { get; set; }
-    private const float _minEpsilon = 1.0f;
+    private const float _minEpsilon = 5.0f;
 
     #endregion
 
@@ -164,10 +164,6 @@ public class GameScene : MonoBehaviour, ITouchable {
         _player.Pause = key;
     }
 
-    private string GetAnimationName( string stateName ) {
-        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
-    }
-
     private void OnApplicationPause( bool pauseStatus ) {
         if ( _setting != null ) {
             AmazonHelper.Instance()
@@ -232,13 +228,9 @@ public class GameScene : MonoBehaviour, ITouchable {
         count_label.MTextMesh.text = CountScore.ToString();
     }
 
-    private void SetSide( string stateName ) {
-        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
-    }
-
     private void ShowGameOverView() {
 //        yield return new WaitForSeconds( 1.7f );
-//        StartCoroutine( "ShowScore", 0.02f );
+        StartCoroutine( "ShowScore", 0.02f );
 //        int bestResult = Mathf.Max( CountScore, PlayerPrefs.GetInt( "bestResult" ) );
 //        UnityEngine.Social.ReportScore(
 //                bestResult,
@@ -300,13 +292,21 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
+    private string GetAnimationName( string stateName ) {
+        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
+    }
+
+    private void SetSide( string stateName ) {
+        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
+    }
+
     private IEnumerator ShowScore( float time ) {
-        if ( musicPlay ) {
-            AudioSource.PlayClipAtPoint( clipScore, Vector3.zero );
-        }
+//        if ( musicPlay ) {
+//            AudioSource.PlayClipAtPoint( clipScore, Vector3.zero );
+//        }
         int current = 0;
-        VisualNode group = ViewManager.Active.GetViewById( "GameOver" ).GetChildById( "group" );
-        while ( current < CountScore ) {
+        VisualNode group = ViewManager.Active.GetViewById( "Over" ).GetChildById( "group" );
+        while ( current <= CountScore ) {
             current++;
             if ( group.GetChildById( "result" ) is Label ) {
                 ( group.GetChildById( "result" ) as Label ).MTextMesh.text = current.ToString();
@@ -650,9 +650,9 @@ public class GameScene : MonoBehaviour, ITouchable {
         float horizontalSlideLenght = touchBegin.x - touchPoint.x;
         bool vertical = Mathf.Abs( verticalSlideLenght ) > Mathf.Abs( horizontalSlideLenght );
         if ( ! vertical &&
-             horizontalSlideLenght < -lenghtMoveTouch ) {
+             ( horizontalSlideLenght < -lenghtMoveTouch || horizontalSlideLenght > lenghtMoveTouch) ) {
             ShowPlayer( "slide" ); //Slide
-        } else if ( !_playerSide && verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
+        } else if ( verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
 //			indexSlide--;
 //			if(indexSlide < 0){
 //				indexSlide = (allowCircleSlide)?arraySlideObject.Length - 1:0;
@@ -660,9 +660,9 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = 1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-            ShowPlayer( "transform" ); //Down
+            ShowPlayer( _playerSide ? "jump" : "transform" ); //Down
 //            }
-        } else if ( _playerSide && verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
+        } else if ( verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
 //			indexSlide++;
 //			if(indexSlide >= arraySlideObject.Length){
 //				indexSlide = (allowCircleSlide)?0:arraySlideObject.Length - 1;
@@ -670,7 +670,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = -1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-            ShowPlayer( "transform" ); //Up
+            ShowPlayer( ! _playerSide ? "jump"  : "transform" ); //Up
 //            }
         }
 //        if ( ( slideInCurrentTouch == 1 && verticalSlideLenght > 0 ) ||
@@ -681,10 +681,10 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     public void TouchEnd( Vector2 touchPoint ) {
-        float shift = Vector2.Distance( touchPoint, touchBegin );
-        if ( shift <= _minEpsilon ) {
-            ShowPlayer( "jump" ); //Jump
-        }
+//        float shift = Vector2.Distance( touchPoint, touchBegin );
+//        if ( shift <= _minEpsilon ) {
+//            ShowPlayer( "jump" ); //Jump
+//        }
 //        slideInCurrentTouch = 0;
     }
 

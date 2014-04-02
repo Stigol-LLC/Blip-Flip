@@ -1,4 +1,4 @@
-<?Meta date="14.04.02 14:04:12" ver="2" ?>
+<?Meta date="14.04.02 17:11:02" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -3004,6 +3004,72 @@
           <Property Name="name">Icon</Property>
         </Component>
       </GameObject>
+      <GameObject Name="Text_GameOver" Id="69FC46C84962152338E52250">
+        <Component Name="Transform">
+          <Property Name="localPosition">(-242.0, 406.0, -0.5)</Property>
+          <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+          <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+          <Property Name="hasChanged">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_GameOver</Property>
+        </Component>
+        <Component Name="MeshRenderer">
+          <Property Name="enabled">True</Property>
+          <Property Name="castShadows">True</Property>
+          <Property Name="receiveShadows">True</Property>
+          <Property Name="lightProbeAnchor" />
+          <Property Name="sortingLayerName" />
+          <Property Name="sortingLayerID">0</Property>
+          <Property Name="sortingOrder">0</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_GameOver</Property>
+        </Component>
+        <Component Name="TextMesh">
+          <Property Name="text">game over</Property>
+          <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
+          <Property Name="fontSize">42</Property>
+          <Property Name="fontStyle">Normal</Property>
+          <Property Name="offsetZ">0</Property>
+          <Property Name="alignment">Center</Property>
+          <Property Name="anchor">MiddleCenter</Property>
+          <Property Name="characterSize">10.82</Property>
+          <Property Name="lineSpacing">0.9</Property>
+          <Property Name="tabSize">15.98</Property>
+          <Property Name="richText">True</Property>
+          <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_GameOver</Property>
+        </Component>
+        <Component Name="Label">
+          <Property Name="MFont">null</Property>
+          <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+          <Property Name="MTextMesh">Text_GameOver (UnityEngine.TextMesh)</Property>
+          <Property Name="Caption">game over</Property>
+          <Property Name="AllowMultiLanguage">False</Property>
+          <Property Name="LanguageKey" />
+          <Property Name="DefaultLanguage">en</Property>
+          <Property Name="IsRelativePosition">False</Property>
+          <Property Name="ParentSize">(512.0, 384.0)</Property>
+          <Property Name="RelativePosition">(-0.5, 1.1)</Property>
+          <Property Name="Id" />
+          <Property Name="Uid">69FC46C84962152338E52250</Property>
+          <Property Name="ZOrder">384</Property>
+          <Property Name="IsVisible">True</Property>
+          <Property Name="AllowAnimation">False</Property>
+          <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
+            <Value Key="show">null</Value>
+            <Value Key="hide">null</Value>
+          </Property>
+          <Property Name="IsFloatSize">True</Property>
+          <Property Name="enabled">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_GameOver</Property>
+        </Component>
+      </GameObject>
     </GameObject>
     <GameObject Name="etalon_Blip_Flip_pause" Id="04BA3AD37B501B4E1B7D22F3">
       <Component Name="Transform">
@@ -3147,6 +3213,165 @@
         </Component>
       </GameObject>
     </GameObject>
+    <GameObject Name="group" Id="462A5FB6627A27697F9B4CF0">
+      <Component Name="Transform">
+        <Property Name="localPosition">(-22.7, -1.3, 8.5)</Property>
+        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+        <Property Name="hasChanged">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">group</Property>
+      </Component>
+      <Component Name="VisualNode">
+        <Property Name="IsRelativePosition">False</Property>
+        <Property Name="ParentSize">(0.0, 0.0)</Property>
+        <Property Name="RelativePosition">(0.0, 0.0)</Property>
+        <Property Name="Id">group</Property>
+        <Property Name="Uid">462A5FB6627A27697F9B4CF0</Property>
+        <Property Name="ZOrder">0</Property>
+        <Property Name="IsVisible">True</Property>
+        <Property Name="AllowAnimation">False</Property>
+        <Property Name="AssociateAnimationClip" Type="Map" />
+        <Property Name="IsFloatSize">True</Property>
+        <Property Name="enabled">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">group</Property>
+      </Component>
+      <GameObject Name="Text_BestResultDigit" Id="7467704007DB176440C613F5">
+        <Component Name="Transform">
+          <Property Name="localPosition">(218.7, 55.3, -9.9)</Property>
+          <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+          <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+          <Property Name="hasChanged">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_BestResultDigit</Property>
+        </Component>
+        <Component Name="MeshRenderer">
+          <Property Name="enabled">True</Property>
+          <Property Name="castShadows">True</Property>
+          <Property Name="receiveShadows">True</Property>
+          <Property Name="lightProbeAnchor" />
+          <Property Name="sortingLayerName" />
+          <Property Name="sortingLayerID">0</Property>
+          <Property Name="sortingOrder">0</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_BestResultDigit</Property>
+        </Component>
+        <Component Name="TextMesh">
+          <Property Name="text">123</Property>
+          <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
+          <Property Name="fontSize">28</Property>
+          <Property Name="fontStyle">Normal</Property>
+          <Property Name="offsetZ">0</Property>
+          <Property Name="alignment">Right</Property>
+          <Property Name="anchor">MiddleRight</Property>
+          <Property Name="characterSize">10.82</Property>
+          <Property Name="lineSpacing">0.9</Property>
+          <Property Name="tabSize">15.98</Property>
+          <Property Name="richText">True</Property>
+          <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_BestResultDigit</Property>
+        </Component>
+        <Component Name="Label">
+          <Property Name="MFont">null</Property>
+          <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+          <Property Name="MTextMesh">Text_BestResultDigit (UnityEngine.TextMesh)</Property>
+          <Property Name="Caption">123</Property>
+          <Property Name="AllowMultiLanguage">False</Property>
+          <Property Name="LanguageKey" />
+          <Property Name="DefaultLanguage">en</Property>
+          <Property Name="IsRelativePosition">False</Property>
+          <Property Name="ParentSize">(512.0, 384.0)</Property>
+          <Property Name="RelativePosition">(0.4, 0.1)</Property>
+          <Property Name="Id" />
+          <Property Name="Uid">7467704007DB176440C613F5</Property>
+          <Property Name="ZOrder">384</Property>
+          <Property Name="IsVisible">True</Property>
+          <Property Name="AllowAnimation">False</Property>
+          <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
+            <Value Key="show">null</Value>
+            <Value Key="hide">null</Value>
+          </Property>
+          <Property Name="IsFloatSize">True</Property>
+          <Property Name="enabled">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_BestResultDigit</Property>
+        </Component>
+      </GameObject>
+      <GameObject Name="Text_ResultDigit" Id="4F2404F62DFA5FB2323121D9">
+        <Component Name="Transform">
+          <Property Name="localPosition">(218.7, 114.3, -10.0)</Property>
+          <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+          <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+          <Property Name="hasChanged">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_ResultDigit</Property>
+        </Component>
+        <Component Name="MeshRenderer">
+          <Property Name="enabled">True</Property>
+          <Property Name="castShadows">True</Property>
+          <Property Name="receiveShadows">True</Property>
+          <Property Name="lightProbeAnchor" />
+          <Property Name="sortingLayerName" />
+          <Property Name="sortingLayerID">0</Property>
+          <Property Name="sortingOrder">0</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_ResultDigit</Property>
+        </Component>
+        <Component Name="TextMesh">
+          <Property Name="text">123</Property>
+          <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
+          <Property Name="fontSize">28</Property>
+          <Property Name="fontStyle">Normal</Property>
+          <Property Name="offsetZ">0</Property>
+          <Property Name="alignment">Right</Property>
+          <Property Name="anchor">MiddleRight</Property>
+          <Property Name="characterSize">10.82</Property>
+          <Property Name="lineSpacing">0.9</Property>
+          <Property Name="tabSize">15.98</Property>
+          <Property Name="richText">True</Property>
+          <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_ResultDigit</Property>
+        </Component>
+        <Component Name="Label">
+          <Property Name="MFont">null</Property>
+          <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+          <Property Name="MTextMesh">Text_ResultDigit (UnityEngine.TextMesh)</Property>
+          <Property Name="Caption">123</Property>
+          <Property Name="AllowMultiLanguage">False</Property>
+          <Property Name="LanguageKey" />
+          <Property Name="DefaultLanguage">en</Property>
+          <Property Name="IsRelativePosition">False</Property>
+          <Property Name="ParentSize">(512.0, 384.0)</Property>
+          <Property Name="RelativePosition">(0.4, 0.3)</Property>
+          <Property Name="Id">result</Property>
+          <Property Name="Uid">4F2404F62DFA5FB2323121D9</Property>
+          <Property Name="ZOrder">384</Property>
+          <Property Name="IsVisible">True</Property>
+          <Property Name="AllowAnimation">False</Property>
+          <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
+            <Value Key="show">null</Value>
+            <Value Key="hide">null</Value>
+          </Property>
+          <Property Name="IsFloatSize">True</Property>
+          <Property Name="enabled">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Text_ResultDigit</Property>
+        </Component>
+      </GameObject>
+    </GameObject>
     <GameObject Name="replay_back" Id="29FD15F3199234BF7DF46974">
       <Component Name="Transform">
         <Property Name="localPosition">(0.0, -196.0, 0.1)</Property>
@@ -3186,270 +3411,6 @@
         <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">replay_back</Property>
-      </Component>
-    </GameObject>
-    <GameObject Name="Text_BestResultDigit" Id="7467704007DB176440C613F5">
-      <Component Name="Transform">
-        <Property Name="localPosition">(196.0, 54.0, -1.4)</Property>
-        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
-        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
-        <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_BestResultDigit</Property>
-      </Component>
-      <Component Name="MeshRenderer">
-        <Property Name="enabled">True</Property>
-        <Property Name="castShadows">True</Property>
-        <Property Name="receiveShadows">True</Property>
-        <Property Name="lightProbeAnchor" />
-        <Property Name="sortingLayerName" />
-        <Property Name="sortingLayerID">0</Property>
-        <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_BestResultDigit</Property>
-      </Component>
-      <Component Name="TextMesh">
-        <Property Name="text">123</Property>
-        <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
-        <Property Name="fontSize">28</Property>
-        <Property Name="fontStyle">Normal</Property>
-        <Property Name="offsetZ">0</Property>
-        <Property Name="alignment">Right</Property>
-        <Property Name="anchor">MiddleRight</Property>
-        <Property Name="characterSize">10.82</Property>
-        <Property Name="lineSpacing">0.9</Property>
-        <Property Name="tabSize">15.98</Property>
-        <Property Name="richText">True</Property>
-        <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_BestResultDigit</Property>
-      </Component>
-      <Component Name="Label">
-        <Property Name="MFont">null</Property>
-        <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="MTextMesh">Text_BestResultDigit (UnityEngine.TextMesh)</Property>
-        <Property Name="Caption">123</Property>
-        <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
-        <Property Name="IsRelativePosition">False</Property>
-        <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(0.4, 0.1)</Property>
-        <Property Name="Id" />
-        <Property Name="Uid">7467704007DB176440C613F5</Property>
-        <Property Name="ZOrder">384</Property>
-        <Property Name="IsVisible">True</Property>
-        <Property Name="AllowAnimation">False</Property>
-        <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
-          <Value Key="show">null</Value>
-          <Value Key="hide">null</Value>
-        </Property>
-        <Property Name="IsFloatSize">True</Property>
-        <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_BestResultDigit</Property>
-      </Component>
-    </GameObject>
-    <GameObject Name="Text_ResultDigit" Id="4F2404F62DFA5FB2323121D9">
-      <Component Name="Transform">
-        <Property Name="localPosition">(196.0, 113.0, -1.5)</Property>
-        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
-        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
-        <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_ResultDigit</Property>
-      </Component>
-      <Component Name="MeshRenderer">
-        <Property Name="enabled">True</Property>
-        <Property Name="castShadows">True</Property>
-        <Property Name="receiveShadows">True</Property>
-        <Property Name="lightProbeAnchor" />
-        <Property Name="sortingLayerName" />
-        <Property Name="sortingLayerID">0</Property>
-        <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_ResultDigit</Property>
-      </Component>
-      <Component Name="TextMesh">
-        <Property Name="text">123</Property>
-        <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
-        <Property Name="fontSize">28</Property>
-        <Property Name="fontStyle">Normal</Property>
-        <Property Name="offsetZ">0</Property>
-        <Property Name="alignment">Right</Property>
-        <Property Name="anchor">MiddleRight</Property>
-        <Property Name="characterSize">10.82</Property>
-        <Property Name="lineSpacing">0.9</Property>
-        <Property Name="tabSize">15.98</Property>
-        <Property Name="richText">True</Property>
-        <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_ResultDigit</Property>
-      </Component>
-      <Component Name="Label">
-        <Property Name="MFont">null</Property>
-        <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="MTextMesh">Text_ResultDigit (UnityEngine.TextMesh)</Property>
-        <Property Name="Caption">123</Property>
-        <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
-        <Property Name="IsRelativePosition">False</Property>
-        <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(0.4, 0.3)</Property>
-        <Property Name="Id" />
-        <Property Name="Uid">4F2404F62DFA5FB2323121D9</Property>
-        <Property Name="ZOrder">384</Property>
-        <Property Name="IsVisible">True</Property>
-        <Property Name="AllowAnimation">False</Property>
-        <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
-          <Value Key="show">null</Value>
-          <Value Key="hide">null</Value>
-        </Property>
-        <Property Name="IsFloatSize">True</Property>
-        <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_ResultDigit</Property>
-      </Component>
-    </GameObject>
-    <GameObject Name="Text_GameOver" Id="69FC46C84962152338E52250">
-      <Component Name="Transform">
-        <Property Name="localPosition">(0.0, 228.0, -1.3)</Property>
-        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
-        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
-        <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_GameOver</Property>
-      </Component>
-      <Component Name="MeshRenderer">
-        <Property Name="enabled">True</Property>
-        <Property Name="castShadows">True</Property>
-        <Property Name="receiveShadows">True</Property>
-        <Property Name="lightProbeAnchor" />
-        <Property Name="sortingLayerName" />
-        <Property Name="sortingLayerID">0</Property>
-        <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_GameOver</Property>
-      </Component>
-      <Component Name="TextMesh">
-        <Property Name="text">game over</Property>
-        <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
-        <Property Name="fontSize">42</Property>
-        <Property Name="fontStyle">Normal</Property>
-        <Property Name="offsetZ">0</Property>
-        <Property Name="alignment">Center</Property>
-        <Property Name="anchor">MiddleCenter</Property>
-        <Property Name="characterSize">10.82</Property>
-        <Property Name="lineSpacing">0.9</Property>
-        <Property Name="tabSize">15.98</Property>
-        <Property Name="richText">True</Property>
-        <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_GameOver</Property>
-      </Component>
-      <Component Name="Label">
-        <Property Name="MFont">null</Property>
-        <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="MTextMesh">Text_GameOver (UnityEngine.TextMesh)</Property>
-        <Property Name="Caption">game over</Property>
-        <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
-        <Property Name="IsRelativePosition">False</Property>
-        <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(0.0, 0.6)</Property>
-        <Property Name="Id" />
-        <Property Name="Uid">69FC46C84962152338E52250</Property>
-        <Property Name="ZOrder">384</Property>
-        <Property Name="IsVisible">True</Property>
-        <Property Name="AllowAnimation">False</Property>
-        <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
-          <Value Key="show">null</Value>
-          <Value Key="hide">null</Value>
-        </Property>
-        <Property Name="IsFloatSize">True</Property>
-        <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_GameOver</Property>
-      </Component>
-    </GameObject>
-    <GameObject Name="Text_Result" Id="2E7D3BCA48BD613921F857A5">
-      <Component Name="Transform">
-        <Property Name="localPosition">(-196.0, 113.0, -1.2)</Property>
-        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
-        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
-        <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_Result</Property>
-      </Component>
-      <Component Name="MeshRenderer">
-        <Property Name="enabled">True</Property>
-        <Property Name="castShadows">True</Property>
-        <Property Name="receiveShadows">True</Property>
-        <Property Name="lightProbeAnchor" />
-        <Property Name="sortingLayerName" />
-        <Property Name="sortingLayerID">0</Property>
-        <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_Result</Property>
-      </Component>
-      <Component Name="TextMesh">
-        <Property Name="text">result</Property>
-        <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
-        <Property Name="fontSize">28</Property>
-        <Property Name="fontStyle">Normal</Property>
-        <Property Name="offsetZ">0</Property>
-        <Property Name="alignment">Left</Property>
-        <Property Name="anchor">MiddleLeft</Property>
-        <Property Name="characterSize">10.82</Property>
-        <Property Name="lineSpacing">0.9</Property>
-        <Property Name="tabSize">15.98</Property>
-        <Property Name="richText">True</Property>
-        <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_Result</Property>
-      </Component>
-      <Component Name="Label">
-        <Property Name="MFont">null</Property>
-        <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="MTextMesh">Text_Result (UnityEngine.TextMesh)</Property>
-        <Property Name="Caption">result</Property>
-        <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
-        <Property Name="IsRelativePosition">False</Property>
-        <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(-0.4, 0.3)</Property>
-        <Property Name="Id" />
-        <Property Name="Uid">2E7D3BCA48BD613921F857A5</Property>
-        <Property Name="ZOrder">384</Property>
-        <Property Name="IsVisible">True</Property>
-        <Property Name="AllowAnimation">False</Property>
-        <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
-          <Value Key="show">null</Value>
-          <Value Key="hide">null</Value>
-        </Property>
-        <Property Name="IsFloatSize">True</Property>
-        <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
-        <Property Name="tag">Untagged</Property>
-        <Property Name="name">Text_Result</Property>
       </Component>
     </GameObject>
     <GameObject Name="Text_BestResult" Id="2D49213278D81CF419DC3962">
@@ -3516,6 +3477,72 @@
         <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_BestResult</Property>
+      </Component>
+    </GameObject>
+    <GameObject Name="Text_Result" Id="2E7D3BCA48BD613921F857A5">
+      <Component Name="Transform">
+        <Property Name="localPosition">(-196.0, 113.0, -1.2)</Property>
+        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+        <Property Name="hasChanged">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Result</Property>
+      </Component>
+      <Component Name="MeshRenderer">
+        <Property Name="enabled">True</Property>
+        <Property Name="castShadows">True</Property>
+        <Property Name="receiveShadows">True</Property>
+        <Property Name="lightProbeAnchor" />
+        <Property Name="sortingLayerName" />
+        <Property Name="sortingLayerID">0</Property>
+        <Property Name="sortingOrder">0</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Result</Property>
+      </Component>
+      <Component Name="TextMesh">
+        <Property Name="text">result</Property>
+        <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
+        <Property Name="fontSize">28</Property>
+        <Property Name="fontStyle">Normal</Property>
+        <Property Name="offsetZ">0</Property>
+        <Property Name="alignment">Left</Property>
+        <Property Name="anchor">MiddleLeft</Property>
+        <Property Name="characterSize">10.82</Property>
+        <Property Name="lineSpacing">0.9</Property>
+        <Property Name="tabSize">15.98</Property>
+        <Property Name="richText">True</Property>
+        <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Result</Property>
+      </Component>
+      <Component Name="Label">
+        <Property Name="MFont">null</Property>
+        <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+        <Property Name="MTextMesh">Text_Result (UnityEngine.TextMesh)</Property>
+        <Property Name="Caption">result</Property>
+        <Property Name="AllowMultiLanguage">False</Property>
+        <Property Name="LanguageKey" />
+        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="IsRelativePosition">False</Property>
+        <Property Name="ParentSize">(512.0, 384.0)</Property>
+        <Property Name="RelativePosition">(-0.4, 0.3)</Property>
+        <Property Name="Id" />
+        <Property Name="Uid">2E7D3BCA48BD613921F857A5</Property>
+        <Property Name="ZOrder">384</Property>
+        <Property Name="IsVisible">True</Property>
+        <Property Name="AllowAnimation">False</Property>
+        <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
+          <Value Key="show">null</Value>
+          <Value Key="hide">null</Value>
+        </Property>
+        <Property Name="IsFloatSize">True</Property>
+        <Property Name="enabled">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Result</Property>
       </Component>
     </GameObject>
     <GameObject Name="Underlay_black" Id="19CE743B3F38420B3BE911D9">
