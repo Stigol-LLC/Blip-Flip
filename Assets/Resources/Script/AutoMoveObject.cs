@@ -1,6 +1,7 @@
 ﻿#region Usings
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 #endregion
@@ -25,6 +26,7 @@ public class AutoMoveObject : MonoBehaviour {
     [SerializeField] private bool useOriginalYPosition = true;
     [SerializeField] private Rect randomOffset = new Rect( 0, 0, 0, 0 );
     [SerializeField] private int countCreateObject = -1;
+    [SerializeField] private float _obstacleGap = 100.0f;
 
     private bool isDone;
     [SerializeField] private ObjectPool _objectPool = null;
@@ -79,6 +81,40 @@ public class AutoMoveObject : MonoBehaviour {
         }
     }
 
+    private Bounds _currentObstacleBounds;
+    public Vector2 CurrentObstacleBounds {
+        get {
+            if ( listGo.Count > 0 ) {
+                GameObject _currentObstacle = listGo.Last();
+                if ( _currentObstacle != null ) {
+                    Bounds bounds = GetChildrenBounds( _currentObstacle );
+                    return new Vector2( bounds.min.x, bounds.max.x );
+                }
+            }
+            return Vector2.one;
+        }
+    }
+
+    private Bounds GetChildrenBounds( GameObject parent ) {
+        Vector3 center = Vector3.zero;
+        Renderer renderer;
+        foreach (Transform child in parent.transform) {
+            renderer = child.GetComponent<Renderer>();
+            if ( renderer != null ) {
+                center += renderer.bounds.center;
+            }
+        }
+        center /= parent.transform.childCount;
+        Bounds bounds = new Bounds( center,Vector3.zero ); 
+        foreach (Transform child in parent.transform) {
+            renderer = child.GetComponent<Renderer>();
+            if ( renderer != null ) {
+                bounds.Encapsulate( renderer.bounds );
+            }
+        }
+        return bounds;
+    }
+
     #endregion
 
     #region Methods
@@ -96,12 +132,16 @@ public class AutoMoveObject : MonoBehaviour {
             isDone = true;
             return;
         }
-        GameObject ret = _objectPool.GetObject();
+        GameObject ret = null;
+        if ( _objectPool != null ) {
+         ret = _objectPool.GetObject();   
+        }
         if ( ret != null ) {
             CountGeneratedObject++;
             GameObject go = Instantiate( ret ) as GameObject;
             float z = go.transform.localPosition.z;
-            go.transform.position = new Vector3( objectCreatePostion.x, useOriginalYPosition ? go.transform.position.y : objectCreatePostion.y, go.transform.position.z );
+            float headPosition = objectCreatePostion.x + GetChildrenBounds( go ).extents.x;
+            go.transform.position = new Vector3( headPosition, useOriginalYPosition ? go.transform.position.y : objectCreatePostion.y, go.transform.position.z );
             go.transform.parent = transform;
             go.transform.localPosition = new Vector3( go.transform.localPosition.x, go.transform.localPosition.y, z );
             go.transform.Translate(
@@ -111,6 +151,7 @@ public class AutoMoveObject : MonoBehaviour {
             go.transform.localScale = ret.transform.localScale;
             go.name = ret.name;
             listGo.Add( go );
+//            Debug.Log( CurrentObstacleBounds );
         }
     }
 
@@ -129,8 +170,7 @@ public class AutoMoveObject : MonoBehaviour {
 
     private void RemoveBorder() {
         foreach ( var go in listGo ) {
-            if ( Mathf.Abs( go.transform.position.x ) > limitPosition.x ||
-                 Mathf.Abs( go.transform.position.y ) > limitPosition.y ) {
+            if ( GetChildrenBounds( go ).max.x < limitPosition.x ) {
                 listGo.Remove( go );
                 Destroy( go );
                 break;
@@ -153,11 +193,15 @@ public class AutoMoveObject : MonoBehaviour {
             return;
         }
         transform.Translate( speed.x, speed.y, 0, Space.Self );
-        currentPosition += Mathf.Abs( speed.x ) + Mathf.Abs( speed.y );
-        if ( currentPosition >= createNewObject ) {
-            UpdateNewObjectAppear();
+//        currentPosition += Mathf.Abs( speed.x ) + Mathf.Abs( speed.y );
+        if ( CurrentObstacleBounds.y + _obstacleGap <= objectCreatePostion.x ) {
             CreateObject();
         }
+
+//        if ( currentPosition >= createNewObject ) {
+//            UpdateNewObjectAppear();
+//            CreateObject();
+//        }
         if ( isLimitedPosition ) {
             RemoveBorder();
         }

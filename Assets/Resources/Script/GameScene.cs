@@ -117,6 +117,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Awake() {
+        ViewManager.Active.GameManager = this;
         UnityEngine.Social.localUser.Authenticate( result => { } );
         if ( _setting != null ) {
             Chartboost.Instance().Initialize( _setting.CHARTBOOST_APPID, _setting.CHARTBOOST_SIGNATURE );
