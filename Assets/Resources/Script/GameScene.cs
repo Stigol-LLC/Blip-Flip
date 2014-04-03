@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Social;
 using UIEditor.Core;
 using UIEditor.Node;
@@ -31,7 +32,8 @@ public class GameScene : MonoBehaviour, ITouchable {
     [SerializeField] private AutoMoveObject moveBackground = null;
     [SerializeField] private Player _player;
 
-    private Label count_label;
+    private Label _countlabel;
+    private Label _obstaclelabel;
     private int currentShow = 1;
     [SerializeField] private AudioSource musicMenu = null;
     [SerializeField] private AudioSource musicGame = null;
@@ -48,7 +50,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     private Vector2 touchBegin = Vector2.zero;
 
     private Animator _playerAnimator;
-    [SerializeField] private float animationSpeedKoef = 1.0f;
+    [SerializeField, HideInInspector] private float animationSpeedKoef = 1.0f;
     [SerializeField] private float speedUpTimeMult = 1.0f;
     [SerializeField] private float speedUpTimeAdd = 0.0f;
 
@@ -89,7 +91,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     private GameObject tutorialFindObject;
     public int CountScore { get; set; }
-    private const float _minEpsilon = 5.0f;
+    private float _startTime;
 
     #endregion
 
@@ -226,7 +228,9 @@ public class GameScene : MonoBehaviour, ITouchable {
         //}
         currentShow = 1;
         CountScore = 0;
-        count_label.MTextMesh.text = CountScore.ToString();
+        _countlabel.MTextMesh.text = CountScore.ToString();
+        _startTime = Time.time;
+        animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / 5.0f;
     }
 
     private void ShowGameOverView() {
@@ -288,8 +292,17 @@ public class GameScene : MonoBehaviour, ITouchable {
              _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
              Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
             string playState = GetAnimationName( stateName );
+            _playerAnimator.speed = /*Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) **/ animationSpeedKoef;
             _playerAnimator.Play( playState );
             SetSide( stateName );
+        }
+    }
+
+    private void SkipIdleSpeed() {
+        if ( _playerAnimator != null && _playerAnimator.speed > 1.0f &&
+             _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
+            _playerAnimator.speed = 1.0f;
         }
     }
 
@@ -351,7 +364,8 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "ShowPlayer", ShowPlayer );
 //        ViewManager.Active.GetViewById( "Game" ).SetDelegate( "BTN_PAUSE", ShowPause );
 //        ViewManager.Active.GetViewById( "Pause" ).SetDelegate( "BTN_PLAY", ResumeGame );
-        count_label = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
+        _countlabel = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "count" );
+        _obstaclelabel = (Label) ViewManager.Active.GetViewById( "Game" ).GetChildById( "obstacle" );
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_PLAY", StartGame );
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "GameCentr", GameCentr );
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
@@ -378,6 +392,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Update() {
+        SkipIdleSpeed();
         AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
         List<GameObject> listGo = currMove.ListActiveObject;
         GameObject go = null;
@@ -460,11 +475,22 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        }
         if ( go != lastCompliteObject ) {
             lastCompliteObject = go;
-            CountScore++;
-            count_label.MTextMesh.text = CountScore.ToString();
+//            CountScore++;
+//            count_label.MTextMesh.text = CountScore.ToString();
             moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
             moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
+//            animationSpeedKoef = moveBarrier.CurrentMoveObject().speed.x / 5.0f;
         }
+        UpdateScore();
+    }
+
+    private void UpdateScore() {
+        List<GameObject> moveObjects = moveBarrier.CurrentMoveObject().ListActiveObject;
+        if ( moveObjects.Count > 0 ) {
+            _obstaclelabel.MTextMesh.text = moveObjects.Last().name;
+        }
+        CountScore = ( int ) ( Time.time - _startTime );
+        _countlabel.MTextMesh.text = CountScore.ToString();
     }
 
     private void initTutorial() {

@@ -170,10 +170,18 @@ public class AutoMoveObject : MonoBehaviour {
 
     private void RemoveBorder() {
         foreach ( var go in listGo ) {
-            if ( GetChildrenBounds( go ).max.x < limitPosition.x ) {
-                listGo.Remove( go );
+            int childCount = 0;
+            foreach ( Transform child in go.transform ) {
+                if ( child.renderer.bounds.max.x < limitPosition.x ) {
+                    Destroy( child.gameObject );
+                    return;
+                }
+                childCount++;
+            }
+            if ( childCount == 0 ) {
                 Destroy( go );
-                break;
+                listGo.Remove( go );
+                return;
             }
         }
     }

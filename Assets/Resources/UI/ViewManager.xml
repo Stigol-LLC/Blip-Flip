@@ -1,4 +1,4 @@
-<?Meta date="14.04.03 15:08:21" ver="2" ?>
+<?Meta date="14.04.03 18:25:50" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -1619,7 +1619,7 @@
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
       <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
       <Property Name="hasChanged">True</Property>
-      <Property Name="active">False</Property>
+      <Property Name="active">True</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewSplashScreen</Property>
     </Component>
@@ -1642,7 +1642,7 @@
       </Property>
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">False</Property>
+      <Property Name="active">True</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewSplashScreen</Property>
     </Component>
@@ -1655,7 +1655,7 @@
       <Property Name="cullingType">AlwaysAnimate</Property>
       <Property Name="localBounds">Center: (0.0, 0.0, 0.0), Extents: (0.0, 0.0, 0.0)</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">False</Property>
+      <Property Name="active">True</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewSplashScreen</Property>
     </Component>
@@ -1665,7 +1665,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_blue</Property>
       </Component>
@@ -1679,7 +1679,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_blue</Property>
       </Component>
@@ -1695,7 +1695,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_blue</Property>
       </Component>
@@ -1706,7 +1706,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_black</Property>
       </Component>
@@ -1720,7 +1720,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_black</Property>
       </Component>
@@ -1736,7 +1736,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">False</Property>
+        <Property Name="active">True</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">character_black</Property>
       </Component>
@@ -1748,7 +1748,7 @@
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
       <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
       <Property Name="hasChanged">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewMenu</Property>
     </Component>
@@ -1771,7 +1771,7 @@
       </Property>
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewMenu</Property>
     </Component>
@@ -1784,7 +1784,7 @@
       <Property Name="cullingType">AlwaysAnimate</Property>
       <Property Name="localBounds">Center: (0.0, 0.0, 0.0), Extents: (0.0, 0.0, 0.0)</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewMenu</Property>
     </Component>
@@ -1842,7 +1842,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_gamecentre</Property>
       </Component>
@@ -1856,7 +1856,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_gamecentre</Property>
       </Component>
@@ -1891,7 +1891,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_gamecentre</Property>
       </Component>
@@ -1901,7 +1901,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -1915,7 +1915,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -1931,7 +1931,7 @@
           <Property Name="AssociateAnimationClip" Type="Map" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -1943,7 +1943,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_info</Property>
       </Component>
@@ -1957,7 +1957,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_info</Property>
       </Component>
@@ -1992,7 +1992,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_info</Property>
       </Component>
@@ -2002,7 +2002,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2016,7 +2016,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2032,7 +2032,7 @@
           <Property Name="AssociateAnimationClip" Type="Map" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2145,7 +2145,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_music_on</Property>
       </Component>
@@ -2159,7 +2159,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_music_on</Property>
       </Component>
@@ -2194,7 +2194,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_music_on</Property>
       </Component>
@@ -2204,7 +2204,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2218,7 +2218,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2234,7 +2234,7 @@
           <Property Name="AssociateAnimationClip" Type="Map" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2246,7 +2246,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_play</Property>
       </Component>
@@ -2260,7 +2260,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_play</Property>
       </Component>
@@ -2295,7 +2295,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">btn_play</Property>
       </Component>
@@ -2305,7 +2305,7 @@
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
           <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
           <Property Name="hasChanged">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2319,7 +2319,7 @@
           <Property Name="sortingLayerName" />
           <Property Name="sortingLayerID">0</Property>
           <Property Name="sortingOrder">0</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2335,7 +2335,7 @@
           <Property Name="AssociateAnimationClip" Type="Map" />
           <Property Name="IsFloatSize">True</Property>
           <Property Name="enabled">True</Property>
-          <Property Name="active">True</Property>
+          <Property Name="active">False</Property>
           <Property Name="tag">Untagged</Property>
           <Property Name="name">Icon</Property>
         </Component>
@@ -2347,7 +2347,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(80.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">dovn_road</Property>
       </Component>
@@ -2361,7 +2361,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">dovn_road</Property>
       </Component>
@@ -2377,7 +2377,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">dovn_road</Property>
       </Component>
@@ -2388,7 +2388,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2400,7 +2400,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2417,7 +2417,7 @@
         <Property Name="tabSize">15.98</Property>
         <Property Name="richText">True</Property>
         <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2443,7 +2443,7 @@
         </Property>
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Blip</Property>
       </Component>
@@ -2454,7 +2454,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2466,7 +2466,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2483,7 +2483,7 @@
         <Property Name="tabSize">15.98</Property>
         <Property Name="richText">True</Property>
         <Property Name="color">RGBA(0.000, 0.000, 0.000, 1.000)</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2509,7 +2509,7 @@
         </Property>
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Flip</Property>
       </Component>
@@ -2520,7 +2520,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(80.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">up_road</Property>
       </Component>
@@ -2534,7 +2534,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">up_road</Property>
       </Component>
@@ -2550,7 +2550,7 @@
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">up_road</Property>
       </Component>
@@ -3853,6 +3853,72 @@
         <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_Result</Property>
+      </Component>
+    </GameObject>
+    <GameObject Name="Text_Obstacle" Id="028949022ECA0D54634A7CE2">
+      <Component Name="Transform">
+        <Property Name="localPosition">(380.0, -354.0, -0.5)</Property>
+        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+        <Property Name="hasChanged">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Obstacle</Property>
+      </Component>
+      <Component Name="MeshRenderer">
+        <Property Name="enabled">True</Property>
+        <Property Name="castShadows">True</Property>
+        <Property Name="receiveShadows">True</Property>
+        <Property Name="lightProbeAnchor" />
+        <Property Name="sortingLayerName" />
+        <Property Name="sortingLayerID">0</Property>
+        <Property Name="sortingOrder">0</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Obstacle</Property>
+      </Component>
+      <Component Name="TextMesh">
+        <Property Name="text">1234</Property>
+        <Property Name="font">Minercraftory (UnityEngine.Font)</Property>
+        <Property Name="fontSize">28</Property>
+        <Property Name="fontStyle">Normal</Property>
+        <Property Name="offsetZ">0</Property>
+        <Property Name="alignment">Left</Property>
+        <Property Name="anchor">MiddleLeft</Property>
+        <Property Name="characterSize">10.82</Property>
+        <Property Name="lineSpacing">0.9</Property>
+        <Property Name="tabSize">15.98</Property>
+        <Property Name="richText">True</Property>
+        <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Obstacle</Property>
+      </Component>
+      <Component Name="Label">
+        <Property Name="MFont">null</Property>
+        <Property Name="FontColor">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
+        <Property Name="MTextMesh">Text_Obstacle (UnityEngine.TextMesh)</Property>
+        <Property Name="Caption">1234</Property>
+        <Property Name="AllowMultiLanguage">False</Property>
+        <Property Name="LanguageKey" />
+        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="IsRelativePosition">False</Property>
+        <Property Name="ParentSize">(512.0, 384.0)</Property>
+        <Property Name="RelativePosition">(0.7, -0.9)</Property>
+        <Property Name="Id">obstacle</Property>
+        <Property Name="Uid">028949022ECA0D54634A7CE2</Property>
+        <Property Name="ZOrder">384</Property>
+        <Property Name="IsVisible">True</Property>
+        <Property Name="AllowAnimation">False</Property>
+        <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
+          <Value Key="show">null</Value>
+          <Value Key="hide">null</Value>
+        </Property>
+        <Property Name="IsFloatSize">True</Property>
+        <Property Name="enabled">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_Obstacle</Property>
       </Component>
     </GameObject>
     <GameObject Name="up_road" Id="656021717CA42765692A0417">
