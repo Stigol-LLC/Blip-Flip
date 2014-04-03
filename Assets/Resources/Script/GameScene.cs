@@ -92,6 +92,10 @@ public class GameScene : MonoBehaviour, ITouchable {
     private GameObject tutorialFindObject;
     public int CountScore { get; set; }
     private float _startTime;
+	private float _setTime;
+	[SerializeField] private float _baseSpeed = 5.0f;
+	[SerializeField] private float _accelerationTimeInterval = 30.0f;
+
 
     #endregion
 
@@ -230,7 +234,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         CountScore = 0;
         _countlabel.MTextMesh.text = CountScore.ToString();
         _startTime = Time.time;
-        animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / 5.0f;
+        animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / _baseSpeed;
     }
 
     private void ShowGameOverView() {
@@ -477,11 +481,19 @@ public class GameScene : MonoBehaviour, ITouchable {
             lastCompliteObject = go;
 //            CountScore++;
 //            count_label.MTextMesh.text = CountScore.ToString();
-            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
-            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
+//            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
+//            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
 //            animationSpeedKoef = moveBarrier.CurrentMoveObject().speed.x / 5.0f;
         }
-        UpdateScore();
+
+		int time = (int)Time.time;
+		if ( _setTime != time && time > 0 && time % _accelerationTimeInterval == 0 ) {
+			_setTime = time;
+						moveBarrier.CurrentMoveObject ().speed.x *= speedUpTimeMult;
+						moveBarrier.CurrentMoveObject ().speed.x += speedUpTimeAdd;
+			animationSpeedKoef = Math.Abs (moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
+				}
+		UpdateScore();
     }
 
     private void UpdateScore() {
