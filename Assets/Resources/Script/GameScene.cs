@@ -50,7 +50,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     private Vector2 touchBegin = Vector2.zero;
 
     private Animator _playerAnimator;
-    [SerializeField, HideInInspector] private float animationSpeedKoef = 1.0f;
+    [SerializeField, HideInInspector] private float _animationSpeedKoef = 1.0f;
     [SerializeField] private float speedUpTimeMult = 1.0f;
     [SerializeField] private float speedUpTimeAdd = 0.0f;
 
@@ -200,6 +200,7 @@ public class GameScene : MonoBehaviour, ITouchable {
             PauseGame( false );
             return;
         }
+        ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;
         GameObject go = Instantiate( Resources.Load( "PlayerUnite" ) ) as GameObject;
         _player = go.GetComponent<Player>();
         go.name = "PlayerUnite";
@@ -234,7 +235,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         CountScore = 0;
         _countlabel.MTextMesh.text = CountScore.ToString();
         _startTime = Time.time;
-        animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / _baseSpeed;
+        _animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / _baseSpeed;
     }
 
     private void ShowGameOverView() {
@@ -296,7 +297,7 @@ public class GameScene : MonoBehaviour, ITouchable {
              _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
              Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
             string playState = GetAnimationName( stateName );
-            _playerAnimator.speed = /*Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) **/ animationSpeedKoef;
+            _playerAnimator.speed = /*Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) **/ _animationSpeedKoef;
             _playerAnimator.Play( playState );
             SetSide( stateName );
         }
@@ -491,7 +492,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 			_setTime = time;
 						moveBarrier.CurrentMoveObject ().speed.x *= speedUpTimeMult;
 						moveBarrier.CurrentMoveObject ().speed.x += speedUpTimeAdd;
-			animationSpeedKoef = Math.Abs (moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
+			_animationSpeedKoef = Math.Abs (moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
 				}
 		UpdateScore();
     }
@@ -501,7 +502,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         if ( moveObjects.Count > 0 ) {
             _obstaclelabel.MTextMesh.text = moveObjects.Last().name;
         }
-        CountScore = ( int ) ( Time.time - _startTime );
+        CountScore = ( int ) ( ( Time.time - _startTime ) * _animationSpeedKoef );
         _countlabel.MTextMesh.text = CountScore.ToString();
     }
 
