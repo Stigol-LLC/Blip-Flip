@@ -1,4 +1,4 @@
-<?Meta date="14.04.04 12:03:54" ver="2" ?>
+<?Meta date="14.04.04 15:34:11" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -117,7 +117,7 @@
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
       <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
       <Property Name="hasChanged">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewTutorial</Property>
     </Component>
@@ -129,39 +129,31 @@
       <Property Name="IsRelativePosition">False</Property>
       <Property Name="ParentSize">(0.0, 0.0)</Property>
       <Property Name="RelativePosition">(0.0, 0.0)</Property>
-      <Property Name="Id" />
+      <Property Name="Id">Tutorial</Property>
       <Property Name="Uid">048A60EA7CD77E2118B3375F</Property>
       <Property Name="ZOrder">0</Property>
-      <Property Name="IsVisible">True</Property>
-      <Property Name="AllowAnimation">False</Property>
-      <Property Name="AssociateAnimationClip" Type="Map" />
+      <Property Name="IsVisible">False</Property>
+      <Property Name="AllowAnimation">True</Property>
+      <Property Name="AssociateAnimationClip" Type="Map" ValueType="UnityEngine.AnimationClip" KeyType="System.String">
+        <Value Key="show">Tutorial_Appear (UnityEngine.AnimationClip)</Value>
+        <Value Key="hide">Tutorial_Appear (UnityEngine.AnimationClip)</Value>
+      </Property>
       <Property Name="IsFloatSize">True</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewTutorial</Property>
     </Component>
-    <Component Name="Animator">
-      <Property Name="rootPosition">(0.0, 0.0, -10.0)</Property>
-      <Property Name="rootRotation">(0.0, 0.0, 0.0, 1.0)</Property>
-      <Property Name="applyRootMotion">True</Property>
+    <Component Name="Animation">
+      <Property Name="clip">Tutorial_Appear (UnityEngine.AnimationClip)</Property>
+      <Property Name="playAutomatically">True</Property>
+      <Property Name="wrapMode">Default</Property>
       <Property Name="animatePhysics">False</Property>
-      <Property Name="bodyPosition">(0.0, 0.0, 0.0)</Property>
-      <Property Name="bodyRotation">(0.0, 0.0, 0.0, 0.0)</Property>
-      <Property Name="stabilizeFeet">False</Property>
-      <Property Name="feetPivotActive">1</Property>
-      <Property Name="speed">1</Property>
-      <Property Name="cullingMode">AlwaysAnimate</Property>
-      <Property Name="playbackTime">-1</Property>
-      <Property Name="recorderStartTime">-1</Property>
-      <Property Name="recorderStopTime">-1</Property>
-      <Property Name="runtimeAnimatorController">ViewTutorial (UnityEngine.AnimatorController)</Property>
-      <Property Name="avatar" />
-      <Property Name="layersAffectMassCenter">False</Property>
-      <Property Name="logWarnings">True</Property>
-      <Property Name="fireEvents">True</Property>
+      <Property Name="animateOnlyIfVisible">False</Property>
+      <Property Name="cullingType">AlwaysAnimate</Property>
+      <Property Name="localBounds">Center: (0.0, 0.0, 0.0), Extents: (0.0, 0.0, 0.0)</Property>
       <Property Name="enabled">True</Property>
-      <Property Name="active">True</Property>
+      <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
       <Property Name="name">ViewTutorial</Property>
     </Component>
@@ -171,7 +163,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_TapToStart</Property>
       </Component>
@@ -183,7 +175,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_TapToStart</Property>
       </Component>
@@ -200,7 +192,7 @@
         <Property Name="tabSize">15.98</Property>
         <Property Name="richText">True</Property>
         <Property Name="color">RGBA(0.000, 0.922, 0.996, 1.000)</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_TapToStart</Property>
       </Component>
@@ -226,7 +218,31 @@
         </Property>
         <Property Name="IsFloatSize">True</Property>
         <Property Name="enabled">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">Text_TapToStart</Property>
+      </Component>
+      <Component Name="Animator">
+        <Property Name="rootPosition">(0.0, 0.0, 0.0)</Property>
+        <Property Name="rootRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+        <Property Name="applyRootMotion">True</Property>
+        <Property Name="animatePhysics">False</Property>
+        <Property Name="bodyPosition">(0.0, 0.0, 0.0)</Property>
+        <Property Name="bodyRotation">(0.0, 0.0, 0.0, 0.0)</Property>
+        <Property Name="stabilizeFeet">False</Property>
+        <Property Name="feetPivotActive">0</Property>
+        <Property Name="speed">1</Property>
+        <Property Name="cullingMode">AlwaysAnimate</Property>
+        <Property Name="playbackTime">-1</Property>
+        <Property Name="recorderStartTime">-1</Property>
+        <Property Name="recorderStopTime">-1</Property>
+        <Property Name="runtimeAnimatorController">ViewTutorial (UnityEngine.AnimatorController)</Property>
+        <Property Name="avatar" />
+        <Property Name="layersAffectMassCenter">False</Property>
+        <Property Name="logWarnings">True</Property>
+        <Property Name="fireEvents">True</Property>
+        <Property Name="enabled">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Text_TapToStart</Property>
       </Component>
@@ -237,7 +253,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(0.5, 0.5, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Tut1</Property>
       </Component>
@@ -251,7 +267,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Tut1</Property>
       </Component>
@@ -262,7 +278,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(0.5, 0.5, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Tut2</Property>
       </Component>
@@ -276,7 +292,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Tut2</Property>
       </Component>
@@ -287,7 +303,7 @@
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(0.5, 0.5, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Tut3</Property>
       </Component>
@@ -301,7 +317,7 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">Tut3</Property>
       </Component>
@@ -312,12 +328,12 @@
         <Property Name="localRotation">(0.0, 0.0, -0.7, 0.7)</Property>
         <Property Name="localScale">(18.0, 44.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">fon</Property>
       </Component>
       <Component Name="SpriteRenderer">
-        <Property Name="sprite" />
+        <Property Name="sprite">Sprites/BLIPFLIP/batons/fon1</Property>
         <Property Name="color">RGBA(0.706, 0.706, 0.706, 0.710)</Property>
         <Property Name="enabled">True</Property>
         <Property Name="castShadows">False</Property>
@@ -326,10 +342,111 @@
         <Property Name="sortingLayerName" />
         <Property Name="sortingLayerID">0</Property>
         <Property Name="sortingOrder">0</Property>
-        <Property Name="active">True</Property>
+        <Property Name="active">False</Property>
         <Property Name="tag">Untagged</Property>
         <Property Name="name">fon</Property>
       </Component>
+    </GameObject>
+    <GameObject Name="BtnStart" Id="4D216A52543E42F355D61919">
+      <Component Name="Transform">
+        <Property Name="localPosition">(0.0, 0.0, -0.1)</Property>
+        <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+        <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+        <Property Name="hasChanged">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">BtnStart</Property>
+      </Component>
+      <Component Name="SpriteRenderer">
+        <Property Name="sprite" />
+        <Property Name="color">RGBA(1.000, 1.000, 1.000, 1.000)</Property>
+        <Property Name="enabled">True</Property>
+        <Property Name="castShadows">False</Property>
+        <Property Name="receiveShadows">False</Property>
+        <Property Name="lightProbeAnchor" />
+        <Property Name="sortingLayerName" />
+        <Property Name="sortingLayerID">0</Property>
+        <Property Name="sortingOrder">0</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">BtnStart</Property>
+      </Component>
+      <Component Name="IconButton">
+        <Property Name="IconSprite" />
+        <Property Name="MapBodySprite" Type="Map" ValueType="UnityEngine.Sprite" KeyType="UIEditor.Node.ButtonState">
+          <Value Key="Default" />
+          <Value Key="Pressed" />
+        </Property>
+        <Property Name="ActionTouchEvent">OnEnd</Property>
+        <Property Name="BoundTouchMap" Type="Map" ValueType="UnityEngine.Rect" KeyType="UIEditor.Node.ButtonState">
+          <Value Key="Default">(x:0.00, y:0.00, width:1024.00, height:768.00)</Value>
+          <Value Key="Pressed">(x:0.00, y:0.00, width:114.00, height:108.00)</Value>
+        </Property>
+        <Property Name="CallExpression" />
+        <Property Name="EventHandler" />
+        <Property Name="ActionIdWithStore" />
+        <Property Name="AllowActionStore">False</Property>
+        <Property Name="ActionName">BTN_PLAY</Property>
+        <Property Name="ActionValue" />
+        <Property Name="CustomBoundRect">True</Property>
+        <Property Name="State">Default</Property>
+        <Property Name="IsTouchable">True</Property>
+        <Property Name="IsRelativePosition">False</Property>
+        <Property Name="ParentSize">(0.0, 0.0)</Property>
+        <Property Name="RelativePosition">(0.0, 0.0)</Property>
+        <Property Name="Id" />
+        <Property Name="Uid">4D216A52543E42F355D61919</Property>
+        <Property Name="ZOrder">2</Property>
+        <Property Name="IsVisible">True</Property>
+        <Property Name="AllowAnimation">False</Property>
+        <Property Name="AssociateAnimationClip" Type="Map" />
+        <Property Name="IsFloatSize">True</Property>
+        <Property Name="enabled">True</Property>
+        <Property Name="active">False</Property>
+        <Property Name="tag">Untagged</Property>
+        <Property Name="name">BtnStart</Property>
+      </Component>
+      <GameObject Name="Icon" Id="25D605954FE929915DD95D0B">
+        <Component Name="Transform">
+          <Property Name="localPosition">(3.0, 5.0, -0.1)</Property>
+          <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
+          <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+          <Property Name="hasChanged">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Icon</Property>
+        </Component>
+        <Component Name="SpriteRenderer">
+          <Property Name="sprite" />
+          <Property Name="color">RGBA(1.000, 1.000, 1.000, 1.000)</Property>
+          <Property Name="enabled">True</Property>
+          <Property Name="castShadows">False</Property>
+          <Property Name="receiveShadows">False</Property>
+          <Property Name="lightProbeAnchor" />
+          <Property Name="sortingLayerName" />
+          <Property Name="sortingLayerID">0</Property>
+          <Property Name="sortingOrder">0</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Icon</Property>
+        </Component>
+        <Component Name="VisualNode">
+          <Property Name="IsRelativePosition">False</Property>
+          <Property Name="ParentSize">(0.0, 0.0)</Property>
+          <Property Name="RelativePosition">(0.0, 0.0)</Property>
+          <Property Name="Id" />
+          <Property Name="Uid">25D605954FE929915DD95D0B</Property>
+          <Property Name="ZOrder">0</Property>
+          <Property Name="IsVisible">False</Property>
+          <Property Name="AllowAnimation">False</Property>
+          <Property Name="AssociateAnimationClip" Type="Map" />
+          <Property Name="IsFloatSize">True</Property>
+          <Property Name="enabled">True</Property>
+          <Property Name="active">False</Property>
+          <Property Name="tag">Untagged</Property>
+          <Property Name="name">Icon</Property>
+        </Component>
+      </GameObject>
     </GameObject>
   </GameObject>
   <GameObject Name="ViewInfo" Id="5A1A33BA20406F7B31C156B0">
