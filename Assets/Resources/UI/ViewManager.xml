@@ -1,4 +1,4 @@
-<?Meta date="14.04.04 17:34:55" ver="2" ?>
+<?Meta date="14.04.04 17:44:44" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -228,7 +228,7 @@
         <Property Name="applyRootMotion">True</Property>
         <Property Name="animatePhysics">False</Property>
         <Property Name="bodyPosition">(0.0, 0.0, 0.0)</Property>
-        <Property Name="bodyRotation">(0.0, -2.0, 0.0, -2.0)</Property>
+        <Property Name="bodyRotation">(0.0, 5631558000.0, 1023294000000000000000000000.0, 0.0)</Property>
         <Property Name="stabilizeFeet">False</Property>
         <Property Name="feetPivotActive">0</Property>
         <Property Name="speed">1</Property>

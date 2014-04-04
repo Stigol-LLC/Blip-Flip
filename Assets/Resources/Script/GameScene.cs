@@ -167,7 +167,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void PauseGame( bool key ) {
-        moveBackground.Pause = key;
+//        moveBackground.Pause = key;
         if ( moveBarrier.CurrentMoveObject() != null ) {
             moveBarrier.CurrentMoveObject().Pause = key;
         }
@@ -202,7 +202,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
         if ( _player == null && ! ViewManager.Active.GetViewById( "Tutorial" ).IsVisible ) {
             ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;
-        } else if ( ! moveBackground.Pause ) {
+        } else if ( ! _player.Pause ) {
             moveBarrier.Reset();
             moveBarrier.CurrentMoveObject().Pause = false;
             _startTime = Time.time;
@@ -585,7 +585,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void Pause() {
-//        ViewManager.Active.GetViewById( "ViewStart" ).IsVisible = false;
+        ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = false;
         PauseGame( true );
 //        ViewManager.Active.GetViewById( "Pause" ).IsVisible = true;
     }
