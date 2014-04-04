@@ -1,4 +1,4 @@
-<?Meta date="14.04.04 16:09:44" ver="2" ?>
+<?Meta date="14.04.04 17:34:55" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -203,7 +203,7 @@
         <Property Name="Caption">tap to start</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.0, -0.5)</Property>
@@ -228,7 +228,7 @@
         <Property Name="applyRootMotion">True</Property>
         <Property Name="animatePhysics">False</Property>
         <Property Name="bodyPosition">(0.0, 0.0, 0.0)</Property>
-        <Property Name="bodyRotation">(0.0, 0.0, 0.0, 0.0)</Property>
+        <Property Name="bodyRotation">(0.0, -2.0, 0.0, -2.0)</Property>
         <Property Name="stabilizeFeet">False</Property>
         <Property Name="feetPivotActive">0</Property>
         <Property Name="speed">1</Property>
@@ -236,7 +236,7 @@
         <Property Name="playbackTime">-1</Property>
         <Property Name="recorderStartTime">-1</Property>
         <Property Name="recorderStopTime">-1</Property>
-        <Property Name="runtimeAnimatorController">ViewTutorial (UnityEngine.AnimatorController)</Property>
+        <Property Name="runtimeAnimatorController">TutorialPulse (UnityEngine.AnimatorController)</Property>
         <Property Name="avatar" />
         <Property Name="layersAffectMassCenter">False</Property>
         <Property Name="logWarnings">True</Property>
@@ -347,7 +347,7 @@
         <Property Name="name">fon</Property>
       </Component>
     </GameObject>
-    <GameObject Name="BtnStart" Id="76D4700D06BF7BBF14D2373D">
+    <GameObject Name="BtnStart" Id="0F500BBC75685ED056BA2383">
       <Component Name="Transform">
         <Property Name="localPosition">(0.0, 0.0, -0.1)</Property>
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
@@ -395,7 +395,7 @@
         <Property Name="ParentSize">(0.0, 0.0)</Property>
         <Property Name="RelativePosition">(0.0, 0.0)</Property>
         <Property Name="Id" />
-        <Property Name="Uid">76D4700D06BF7BBF14D2373D</Property>
+        <Property Name="Uid">0F500BBC75685ED056BA2383</Property>
         <Property Name="ZOrder">2</Property>
         <Property Name="IsVisible">True</Property>
         <Property Name="AllowAnimation">False</Property>
@@ -406,7 +406,7 @@
         <Property Name="tag">Untagged</Property>
         <Property Name="name">BtnStart</Property>
       </Component>
-      <GameObject Name="Icon" Id="678D19E35DD774EA53DD4E19">
+      <GameObject Name="Icon" Id="427B1EB3685F1E907E1F16E3">
         <Component Name="Transform">
           <Property Name="localPosition">(3.0, 5.0, -0.1)</Property>
           <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
@@ -435,7 +435,7 @@
           <Property Name="ParentSize">(0.0, 0.0)</Property>
           <Property Name="RelativePosition">(0.0, 0.0)</Property>
           <Property Name="Id" />
-          <Property Name="Uid">678D19E35DD774EA53DD4E19</Property>
+          <Property Name="Uid">427B1EB3685F1E907E1F16E3</Property>
           <Property Name="ZOrder">0</Property>
           <Property Name="IsVisible">False</Property>
           <Property Name="AllowAnimation">False</Property>
@@ -683,7 +683,7 @@
         <Property Name="Caption">Code     Vlad Furdynsky</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.5, 0.1)</Property>
@@ -749,7 +749,7 @@
         <Property Name="Caption">Music           Jakita Gus</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.5, -0.4)</Property>
@@ -815,7 +815,7 @@
         <Property Name="Caption">Art  Viola Sshchkyalyeva</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.5, 0.0)</Property>
@@ -881,7 +881,7 @@
         <Property Name="Caption">Animation  Ostap Dovbush</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.5, -0.2)</Property>
@@ -947,7 +947,7 @@
         <Property Name="Caption">Info</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.0, 0.6)</Property>
@@ -1013,7 +1013,7 @@
         <Property Name="Caption">Idea      Pavlo Senyshyn</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.5, 0.3)</Property>
@@ -1612,7 +1612,7 @@
         <Property Name="Caption">Pause</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.0, 0.4)</Property>
@@ -2700,7 +2700,7 @@
         <Property Name="Caption">BLIP</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.0, 0.0)</Property>
@@ -2766,7 +2766,7 @@
         <Property Name="Caption">FLIP</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.0, 0.1)</Property>
@@ -3323,7 +3323,7 @@
           <Property Name="Caption">game over</Property>
           <Property Name="AllowMultiLanguage">False</Property>
           <Property Name="LanguageKey" />
-          <Property Name="DefaultLanguage">en</Property>
+          <Property Name="LanguageText" />
           <Property Name="IsRelativePosition">False</Property>
           <Property Name="ParentSize">(512.0, 384.0)</Property>
           <Property Name="RelativePosition">(-0.5, 1.1)</Property>
@@ -3516,12 +3516,12 @@
           <Property Name="MTextMesh">Text_BestResultDigit (UnityEngine.TextMesh)</Property>
           <Property Name="Caption">123</Property>
           <Property Name="AllowMultiLanguage">False</Property>
-          <Property Name="LanguageKey" />
-          <Property Name="DefaultLanguage">en</Property>
+          <Property Name="LanguageKey">123</Property>
+          <Property Name="LanguageText" />
           <Property Name="IsRelativePosition">False</Property>
           <Property Name="ParentSize">(512.0, 384.0)</Property>
           <Property Name="RelativePosition">(0.4, 0.1)</Property>
-          <Property Name="Id" />
+          <Property Name="Id">bestResult</Property>
           <Property Name="Uid">7467704007DB176440C613F5</Property>
           <Property Name="ZOrder">384</Property>
           <Property Name="IsVisible">True</Property>
@@ -3583,7 +3583,7 @@
           <Property Name="Caption">123</Property>
           <Property Name="AllowMultiLanguage">False</Property>
           <Property Name="LanguageKey" />
-          <Property Name="DefaultLanguage">en</Property>
+          <Property Name="LanguageText" />
           <Property Name="IsRelativePosition">False</Property>
           <Property Name="ParentSize">(512.0, 384.0)</Property>
           <Property Name="RelativePosition">(0.4, 0.3)</Property>
@@ -3690,12 +3690,12 @@
         <Property Name="MTextMesh">Text_BestResult (UnityEngine.TextMesh)</Property>
         <Property Name="Caption">best result</Property>
         <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageKey">best result</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.4, 0.1)</Property>
-        <Property Name="Id" />
+        <Property Name="Id">bestResult</Property>
         <Property Name="Uid">2D49213278D81CF419DC3962</Property>
         <Property Name="ZOrder">841</Property>
         <Property Name="IsVisible">True</Property>
@@ -3757,7 +3757,7 @@
         <Property Name="Caption">result</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(-0.4, 0.3)</Property>
@@ -3823,7 +3823,7 @@
     <Component Name="Transform">
       <Property Name="localPosition">(0.0, 0.0, 0.0)</Property>
       <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
-      <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
+      <Property Name="localScale">(0.0, 0.0, 1.0)</Property>
       <Property Name="hasChanged">True</Property>
       <Property Name="active">False</Property>
       <Property Name="tag">Untagged</Property>
@@ -4025,7 +4025,7 @@
         <Property Name="Caption">1234</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.8, 0.9)</Property>
@@ -4091,7 +4091,7 @@
         <Property Name="Caption">1234</Property>
         <Property Name="AllowMultiLanguage">False</Property>
         <Property Name="LanguageKey" />
-        <Property Name="DefaultLanguage">en</Property>
+        <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
         <Property Name="RelativePosition">(0.7, -0.9)</Property>
