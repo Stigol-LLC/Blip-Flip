@@ -35,6 +35,8 @@ public class GameScene : MonoBehaviour, ITouchable {
     private Label _countlabel;
     private Label _obstaclelabel;
     private int currentShow = 1;
+    private int bestResult = 0;
+
     [SerializeField] private AudioSource musicMenu = null;
     [SerializeField] private AudioSource musicGame = null;
     [SerializeField] private AudioClip clipDestroy = null;
@@ -147,7 +149,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         if ( musicPlay && clipDestroy != null ) {
             AudioSource.PlayClipAtPoint( clipDestroy, Vector3.zero );
         }
-        moveBackground.Pause = true;
+//        moveBackground.Pause = true;
         if ( moveBarrier.CurrentMoveObject() != null ) {
             moveBarrier.CurrentMoveObject().Pause = true;
         }
@@ -160,6 +162,7 @@ public class GameScene : MonoBehaviour, ITouchable {
             //Debug.Log("Show Chartboost");
             Chartboost.Instance().CacheMoreApps( null );
         }
+        _startTime = 0.0f;
         StartCoroutine( "ShowGameOverView" );
     }
 
@@ -169,6 +172,7 @@ public class GameScene : MonoBehaviour, ITouchable {
             moveBarrier.CurrentMoveObject().Pause = key;
         }
         _player.Pause = key;
+        touch = ! key;
     }
 
     private void OnApplicationPause( bool pauseStatus ) {
@@ -196,11 +200,17 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     private void Game() {
         ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
+        if ( _player == null && ! ViewManager.Active.GetViewById( "Tutorial" ).IsVisible ) {
+            ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;
+        } else if ( ! moveBackground.Pause ) {
+            moveBarrier.Reset();
+            moveBarrier.CurrentMoveObject().Pause = false;
+            _startTime = Time.time;
+        }
         if ( _player != null ) {
             PauseGame( false );
             return;
         }
-        ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;
         GameObject go = Instantiate( Resources.Load( "PlayerUnite" ) ) as GameObject;
         _player = go.GetComponent<Player>();
         go.name = "PlayerUnite";
@@ -210,10 +220,6 @@ public class GameScene : MonoBehaviour, ITouchable {
         _playerAnimator = _player.GetComponent<Animator>();
         touch = true;
         moveBackground.Pause = false;
-        moveBarrier.Reset();
-//        Debug.Log(moveBarrier.ListMoveObject.Count);
-//        Debug.Log(moveBarrier.CurrentIndex);
-        moveBarrier.CurrentMoveObject().Pause = false;
         if ( musicPlay ) {
             musicMenu.Stop();
             musicGame.Play();
@@ -234,7 +240,6 @@ public class GameScene : MonoBehaviour, ITouchable {
         currentShow = 1;
         CountScore = 0;
         _countlabel.MTextMesh.text = CountScore.ToString();
-        _startTime = Time.time;
         _animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / _baseSpeed;
     }
 
@@ -325,11 +330,14 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        }
         int current = 0;
         VisualNode group = ViewManager.Active.GetViewById( "Over" ).GetChildById( "group" );
-        while ( current <= CountScore ) {
+        if ( CountScore > bestResult ) {
+            bestResult = CountScore;
+        }
+        while ( current < CountScore ) {
             current++;
             if ( group.GetChildById( "result" ) is Label ) {
                 ( group.GetChildById( "result" ) as Label ).MTextMesh.text = current.ToString();
-                //(group.GetChildById("bestResult") as Label).MTextMesh.text = bestResult.ToString();
+                ( group.GetChildById("bestResult") as Label).MTextMesh.text = bestResult.ToString();
             }
             yield return new WaitForSeconds( time );
         }
@@ -398,17 +406,17 @@ public class GameScene : MonoBehaviour, ITouchable {
 
     private void Update() {
         SkipIdleSpeed();
-        AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
-        List<GameObject> listGo = currMove.ListActiveObject;
-        GameObject go = null;
-        int indexLeft = -1;
-        for ( int i = listGo.Count - 1; i >= 0; --i ) {
-            if ( listGo[ i ].transform.position.x < _player.playerNode.transform.position.x ) {
-                go = listGo[ i ];
-                indexLeft = i;
-                break;
-            }
-        }
+//        AutoMoveObject currMove = moveBarrier.CurrentMoveObject();
+//        List<GameObject> listGo = currMove.ListActiveObject;
+//        GameObject go = null;
+//        int indexLeft = -1;
+//        for ( int i = listGo.Count - 1; i >= 0; --i ) {
+//            if ( listGo[ i ].transform.position.x < _player.playerNode.transform.position.x ) {
+//                go = listGo[ i ];
+//                indexLeft = i;
+//                break;
+//            }
+//        }
 //        if ( isTutorial ) {
 //            bool setFast = false;
 //            int needShow = -1;
@@ -478,23 +486,30 @@ public class GameScene : MonoBehaviour, ITouchable {
 //                GreatJob.transform.parent = transform;
 //            }
 //        }
-        if ( go != lastCompliteObject ) {
-            lastCompliteObject = go;
-//            CountScore++;
-//            count_label.MTextMesh.text = CountScore.ToString();
-//            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
-//            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
-//            animationSpeedKoef = moveBarrier.CurrentMoveObject().speed.x / 5.0f;
-        }
+//        if ( go != lastCompliteObject ) {
+//            lastCompliteObject = go;
+////            CountScore++;
+////            count_label.MTextMesh.text = CountScore.ToString();
+////            moveBarrier.CurrentMoveObject().speed.x *= speedUpTimeMult;
+////            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
+////            animationSpeedKoef = moveBarrier.CurrentMoveObject().speed.x / 5.0f;
+//        }
 
-		int time = (int)Time.time;
+		UpdateSpeed();
+		UpdateScore();
+    }
+
+    private void UpdateSpeed() {
+        if ( _startTime <= 0 ) {
+            return;
+        }
+        int time = (int)Time.time;
 		if ( _setTime != time && time > 0 && time % _accelerationTimeInterval == 0 ) {
 			_setTime = time;
 						moveBarrier.CurrentMoveObject ().speed.x *= speedUpTimeMult;
 						moveBarrier.CurrentMoveObject ().speed.x += speedUpTimeAdd;
 			_animationSpeedKoef = Math.Abs (moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
-				}
-		UpdateScore();
+        }
     }
 
     private void UpdateScore() {
@@ -502,8 +517,10 @@ public class GameScene : MonoBehaviour, ITouchable {
         if ( moveObjects.Count > 0 ) {
             _obstaclelabel.MTextMesh.text = moveObjects.Last().name;
         }
-        CountScore = ( int ) ( ( Time.time - _startTime ) * _animationSpeedKoef );
-        _countlabel.MTextMesh.text = CountScore.ToString();
+        if ( _startTime > 0 ) {
+            CountScore = (int) ( ( Time.time - _startTime ) * _animationSpeedKoef );
+            _countlabel.MTextMesh.text = CountScore.ToString();
+        }
     }
 
     private void initTutorial() {
