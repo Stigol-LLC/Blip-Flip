@@ -562,14 +562,44 @@ public class GameScene : MonoBehaviour, ITouchable {
             Social.Facebook.Instance().Login(
                     result => {
                         if ( !string.IsNullOrEmpty( result ) ) {
-                            Social.Facebook.Instance().GetUserDetails( r => { SaveFBUserDetail( r ); } );
+                            Social.Facebook.Instance().GetUserDetails( SettingProject.Instance.FACEBOOK_PERMISSIONS.ToString(), r => { SaveFBUserDetail( r ); } );
                         }
                     } );
         } else {
-            Social.Facebook.Instance().GetUserDetails( result => { SaveFBUserDetail( result ); } );
+            Social.Facebook.Instance().GetUserDetails( SettingProject.Instance.FACEBOOK_PERMISSIONS.ToString(), result => { SaveFBUserDetail( result ); } );
             Social.Facebook.Instance().GoToPage( _setting.FACEBOOK_APPID );
         }
     }
+
+    void SaveFBUserDetail(JSONObject result){
+        JSONObject anyData = new JSONObject();
+        anyData.AddField("Facebook",result);
+        Debug.Log("Facebook = " + anyData.ToString());
+        Social.DeviceInfo.CollectAndSaveInfo(anyData);
+    }
+    void FacebookGetUserData(){
+        Social.Facebook.Instance().GetUserDetails(string.Join(",",_setting.FACEBOOK_PERMISSIONS),(res)=>{
+            if(res != null){
+                SaveFBUserDetail(res);
+            }
+        });
+    }
+
+    void FacebookCall(ICall bb){
+        if(Social.Facebook.Instance().IsOpenSession){
+            FacebookGetUserData();
+            Social.Facebook.Instance().GoToPage(_setting.STIGOL_FACEBOOK_ID);
+        }else{
+            Social.Facebook.Instance().Login((s)=>{
+                if(!string.IsNullOrEmpty(s)){
+                    FacebookGetUserData();
+                }else{
+                    Social.Facebook.Instance().GoToPage(_setting.STIGOL_FACEBOOK_ID);
+                };
+                Social.Facebook.Instance().GoToPage(_setting.STIGOL_FACEBOOK_ID);
+            });
+        };
+    }
 
     private void GameCentr( ICall bb ) {
         UnityEngine.Social.ShowLeaderboardUI();
