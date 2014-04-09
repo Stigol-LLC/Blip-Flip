@@ -6,7 +6,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Social;
 using UIEditor.Core;
 using UIEditor.Node;
@@ -19,51 +18,44 @@ public class GameScene : MonoBehaviour, ITouchable {
     #region Properties
 
     private static GameScene _gameScene;
-    static public GameScene Active{
-			get{
-				if( _gameScene == null ){
-					_gameScene = FindObjectOfType<GameScene>();
-				}
-				return _gameScene;
-			}
-		}
+    public static GameScene Active {
+        get {
+            if ( _gameScene == null ) {
+                _gameScene = FindObjectOfType<GameScene>();
+            }
+            return _gameScene;
+        }
+    }
 
-    [SerializeField] private StackMoveObject moveBarrier = null;
-    [SerializeField] private AutoMoveObject moveBackground = null;
+    [SerializeField] private StackMoveObject _moveBarrier = null;
+    [SerializeField] private AutoMoveObject _moveBackground = null;
     [SerializeField] private Player _player;
 
     private Label _countlabel;
     private Label _obstaclelabel;
-    private int currentShow = 1;
-    private int bestResult = 0;
+    private int _bestResult;
 
-    [SerializeField] private AudioSource musicMenu = null;
-    [SerializeField] private AudioSource musicGame = null;
-    [SerializeField] private AudioClip clipDestroy = null;
+    [SerializeField] private AudioSource _musicMenu = null;
+    [SerializeField] private AudioSource _musicGame = null;
+    [SerializeField] private AudioClip _clipDestroy = null;
 
-    [SerializeField] private AudioClip clipStart = null;
-    [SerializeField] private AudioClip clipButtonClick = null;
-    [SerializeField] private AudioClip clipSwapPlayer = null;
+    [SerializeField] private AudioClip _clipStart = null;
+    [SerializeField] private AudioClip _clipButtonClick = null;
+    [SerializeField] private AudioClip _clipSwapPlayer = null;
 
-    [SerializeField] private AudioClip clipChangeView = null;
-    [SerializeField] private AudioClip clipScore = null;
+    [SerializeField] private AudioClip _clipChangeView = null;
+    [SerializeField] private AudioClip _clipScore = null;
 
-    [SerializeField] private float lenghtMoveTouch = 10.0f;
-    private Vector2 touchBegin = Vector2.zero;
+    [SerializeField] private float _lenghtMoveTouch = 10.0f;
+    private Vector2 _touchBegin = Vector2.zero;
 
     private Animator _playerAnimator;
     [SerializeField, HideInInspector] private float _animationSpeedKoef = 1.0f;
-    [SerializeField] private float speedUpTimeMult = 1.0f;
-    [SerializeField] private float speedUpTimeAdd = 0.0f;
+    [SerializeField] private float _speedUpTimeMult = 1.0f;
+    [SerializeField] private float _speedUpTimeAdd = 0.0f;
 
-    [SerializeField] private bool musicPlay = true;
-    [SerializeField] private int[] arraySlideObject = {
-        1,
-        2,
-        3,
-        4
-    };
-    [SerializeField] private bool allowCircleSlide = true;
+    [SerializeField] private bool _musicPlay = true;
+    [SerializeField] private bool _allowCircleSlide = true;
 
     private string[] _playerSides = {
         "up",
@@ -71,33 +63,30 @@ public class GameScene : MonoBehaviour, ITouchable {
     };
 
     private bool _playerSide;
-    private bool touch = true;
-    private int currentRestart;
-    private int indexSlide = 0;
-    private int slideInCurrentTouch;
-    private GameObject lastCompliteObject;
+    private bool _touch = true;
+    private int _currentRestart;
+    private int _indexSlide = 0;
+    private int _slideInCurrentTouch;
+    private GameObject _lastCompliteObject;
 
     [SerializeField] private SettingProject _setting = null;
 
-    [SerializeField] private GameObject tutorialSlide;
-    private bool isTutorial = true;
-    private float tutorialBaseSpeed = -1.5f;
+    [SerializeField] private GameObject _tutorialSlide;
+    private bool _isTutorial = true;
+    private float _tutorialBaseSpeed = -1.5f;
 
-    [SerializeField] private float tutorialSpeedKoef = 16.0f;
-    [SerializeField] private float tutorialMotionDump = 0.97f;
+    [SerializeField] private float _tutorialSpeedKoef = 16.0f;
+    [SerializeField] private float _tutorialMotionDump = 0.97f;
 
-    private int lastMoveBarrier = 0;
-    [SerializeField] private int startMoveObject = 0;
+    private int _lastMoveBarrier = 0;
+    [SerializeField] private int _startMoveObject = 0;
 
-    private bool animatorPlay;
-
-    private GameObject tutorialFindObject;
+    private GameObject _tutorialFindObject;
     public int CountScore { get; set; }
     private float _startTime;
-	private float _setTime;
-	[SerializeField] private float _baseSpeed = 5.0f;
-	[SerializeField] private float _accelerationTimeInterval = 30.0f;
-
+    private float _setTime;
+    [SerializeField] private float _baseSpeed = 5.0f;
+    [SerializeField] private float _accelerationTimeInterval = 30.0f;
 
     #endregion
 
@@ -133,78 +122,26 @@ public class GameScene : MonoBehaviour, ITouchable {
             Social.Facebook.Instance().Initialize( _setting.FACEBOOK_APPID, _setting.FACEBOOK_PERMISSIONS );
             AmazonHelper.Instance().Initialize( _setting.AMAZON_ACCESS_KEY, _setting.AMAZON_SECRET_KEY );
             AmazonHelper.Instance()
-                  .UploadFiles(
-                          Path.Combine( Finder.SandboxPath, _setting.STAT_FOLDER_NAME ),
-                          _setting.AMAZON_STAT_BUCKET,
-                          new[] {
-                              "txt"
-                          },
-                          true );
+                        .UploadFiles(
+                                Path.Combine( Finder.SandboxPath, _setting.STAT_FOLDER_NAME ),
+                                _setting.AMAZON_STAT_BUCKET,
+                                new[] {
+                                    "txt"
+                                },
+                                true );
             DeviceInfo.CollectAndSaveInfo();
         }
 //        initTutorial();
     }
 
-    private void GameOver() {
-        if ( musicPlay && clipDestroy != null ) {
-            AudioSource.PlayClipAtPoint( clipDestroy, Vector3.zero );
-        }
-//        moveBackground.Pause = true;
-        if ( moveBarrier.CurrentMoveObject() != null ) {
-            moveBarrier.CurrentMoveObject().Pause = true;
-        }
-        _player.Pause = true;
-        Camera.main.animation.Play();
-        _playerAnimator.speed = 1.0f;
-        _playerAnimator.Play( "death_" + _playerSides[ _playerSide ? 1 : 0 ] );
-        PlayerPrefs.SetInt( "MoveBarrier", moveBarrier.CurrentIndex );
-        if ( ( currentRestart % 5 ) == 0 ) {
-            //Debug.Log("Show Chartboost");
-            Chartboost.Instance().CacheMoreApps( null );
-        }
-        _startTime = 0.0f;
-        StartCoroutine( "ShowGameOverView" );
-    }
-
-    private void PauseGame( bool key ) {
-//        moveBackground.Pause = key;
-        if ( moveBarrier.CurrentMoveObject() != null ) {
-            moveBarrier.CurrentMoveObject().Pause = key;
-        }
-        _player.Pause = key;
-        touch = ! key;
-    }
-
-    private void OnApplicationPause( bool pauseStatus ) {
-        if ( _setting != null ) {
-            AmazonHelper.Instance()
-                  .UploadFiles(
-                          Path.Combine( Finder.SandboxPath, _setting.STAT_FOLDER_NAME ),
-                          _setting.AMAZON_STAT_BUCKET,
-                          new[] {
-                              "txt"
-                          },
-                          true );
-        }
-    }
-
-    // Use this for initialization
-
-    private void OnDestroy() {
-        //Debug.Log("Destroy");
-    }
-
-    private void Over() {
-        
-    }
-
     private void Game() {
         ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
-        if ( _player == null && ! ViewManager.Active.GetViewById( "Tutorial" ).IsVisible ) {
+        if ( _player == null &&
+             ! ViewManager.Active.GetViewById( "Tutorial" ).IsVisible ) {
             ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;
         } else if ( ! _player.Pause ) {
-            moveBarrier.Reset();
-            moveBarrier.CurrentMoveObject().Pause = false;
+//            _moveBarrier.Reset();
+            _moveBarrier.CurrentMoveObject().Pause = false;
             _startTime = Time.time;
         }
         if ( _player != null ) {
@@ -218,11 +155,11 @@ public class GameScene : MonoBehaviour, ITouchable {
         _playerSide = false;
         _player.SetActionGameOver( GameOver );
         _playerAnimator = _player.GetComponent<Animator>();
-        touch = true;
-        moveBackground.Pause = false;
-        if ( musicPlay ) {
-            musicMenu.Stop();
-            musicGame.Play();
+        _touch = true;
+        _moveBackground.Pause = false;
+        if ( _musicPlay ) {
+            _musicMenu.Stop();
+            _musicGame.Play();
         }
         _player.GetComponent<VisualNode>().IsVisible = true;
         go.SetActive( true );
@@ -237,10 +174,81 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
 //        ButtonBase.focusButton = bb;
         //}
-        currentShow = 1;
         CountScore = 0;
         _countlabel.MTextMesh.text = CountScore.ToString();
-        _animationSpeedKoef = Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) / _baseSpeed;
+        _animationSpeedKoef = Mathf.Abs( _moveBarrier.CurrentMoveObject().speed.x ) / _baseSpeed;
+    }
+
+    private void GameOver() {
+        if ( _musicPlay && _clipDestroy != null ) {
+            AudioSource.PlayClipAtPoint( _clipDestroy, Vector3.zero );
+        }
+//        moveBackground.Pause = true;
+        if ( _moveBarrier.CurrentMoveObject() != null ) {
+            _moveBarrier.CurrentMoveObject().Pause = true;
+        }
+        _player.Pause = true;
+//        Camera.main.animation.Play();
+        _playerAnimator.speed = 1.0f;
+        _playerAnimator.Play( "death_" + _playerSides[ _playerSide ? 1 : 0 ] );
+        PlayerPrefs.SetInt( "MoveBarrier", _moveBarrier.CurrentIndex );
+        if ( ( _currentRestart % 5 ) == 0 ) {
+            //Debug.Log("Show Chartboost");
+            Chartboost.Instance().CacheMoreApps( null );
+        }
+        _startTime = 0.0f;
+        StartCoroutine( "ShowGameOverView" );
+    }
+
+    private string GetAnimationName( string stateName ) {
+        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
+    }
+
+    private void Menu() {
+        ViewManager.Active.GetViewById( "Game" ).IsVisible = false;
+//        if ( _moveBarrier != null ) {
+//            _moveBarrier.Reset();
+//            Destroy( _tutorialSlide );
+//        }
+        if ( _player != null ) {
+            Destroy( _player.gameObject );
+            _player = null;
+        }
+    }
+
+    private void OnApplicationPause( bool pauseStatus ) {
+        if ( _setting != null ) {
+            AmazonHelper.Instance()
+                        .UploadFiles(
+                                Path.Combine( Finder.SandboxPath, _setting.STAT_FOLDER_NAME ),
+                                _setting.AMAZON_STAT_BUCKET,
+                                new[] {
+                                    "txt"
+                                },
+                                true );
+        }
+    }
+
+    // Use this for initialization
+
+    private void OnDestroy() {
+        //Debug.Log("Destroy");
+    }
+
+    private void Over() {
+    }
+
+    private void PauseGame( bool key ) {
+//        moveBackground.Pause = key;
+        if ( _moveBarrier.CurrentMoveObject() != null ) {
+            _moveBarrier.CurrentMoveObject().Pause = key;
+        }
+        _player.Pause = key;
+        _touch = ! key;
+    }
+
+    private void SetSide( string stateName ) {
+        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
     }
 
     private void ShowGameOverView() {
@@ -263,12 +271,12 @@ public class GameScene : MonoBehaviour, ITouchable {
 //            ( group.GetChildById( "result" ) as Label ).MTextMesh.text = CountScore.ToString();
 //            ( group.GetChildById( "bestResult" ) as Label ).MTextMesh.text = bestResult.ToString();
 //        }
-        if ( musicPlay ) {
-            musicMenu.Play();
-            musicGame.Stop();
+        if ( _musicPlay ) {
+            _musicMenu.Play();
+            _musicGame.Stop();
         }
-        moveBarrier.Reset();
-        Destroy( tutorialSlide );
+        _moveBarrier.Reset();
+        Destroy( _tutorialSlide );
         Destroy( _player.gameObject );
         _player = null;
     }
@@ -298,30 +306,20 @@ public class GameScene : MonoBehaviour, ITouchable {
 //    }
 
     private void ShowPlayer( string stateName ) {
-        if ( _playerAnimator != null &&
-             _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
-             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
+        if ( _playerAnimator == null ) {
+            return;
+        }
+        int currentStateHash = _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash;
+        int IdleStateHash = Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] );
+        int SlideStateHash = Animator.StringToHash( "Base Layer.slide_" + _playerSides[ _playerSide ? 1 : 0 ] );
+        if ( currentStateHash == IdleStateHash ||
+             ( currentStateHash == SlideStateHash && stateName == "jump" ) ||
+             ( currentStateHash == SlideStateHash && stateName == "transform" ) ) {
             string playState = GetAnimationName( stateName );
             _playerAnimator.speed = /*Mathf.Abs( moveBarrier.CurrentMoveObject().speed.x ) **/ _animationSpeedKoef;
             _playerAnimator.Play( playState );
             SetSide( stateName );
         }
-    }
-
-    private void SkipIdleSpeed() {
-        if ( _playerAnimator != null && _playerAnimator.speed > 1.0f &&
-             _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
-             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
-            _playerAnimator.speed = 1.0f;
-        }
-    }
-
-    private string GetAnimationName( string stateName ) {
-        return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
-    }
-
-    private void SetSide( string stateName ) {
-        _playerSide = stateName == "transform" ? ! _playerSide : _playerSide;
     }
 
     private IEnumerator ShowScore( float time ) {
@@ -330,28 +328,25 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        }
         int current = 0;
         VisualNode group = ViewManager.Active.GetViewById( "Over" ).GetChildById( "group" );
-        if ( CountScore > bestResult ) {
-            bestResult = CountScore;
+        if ( CountScore > _bestResult ) {
+            _bestResult = CountScore;
         }
         while ( current < CountScore ) {
             current++;
             if ( group.GetChildById( "result" ) is Label ) {
                 ( group.GetChildById( "result" ) as Label ).MTextMesh.text = current.ToString();
-                ( group.GetChildById("bestResult") as Label).MTextMesh.text = bestResult.ToString();
+                ( group.GetChildById( "bestResult" ) as Label ).MTextMesh.text = _bestResult.ToString();
             }
             yield return new WaitForSeconds( time );
         }
     }
 
-    private void Menu() {
-        ViewManager.Active.GetViewById( "Game" ).IsVisible = false;
-        if ( moveBarrier != null ) {
-            moveBarrier.Reset();
-            Destroy( tutorialSlide );
-        }
-        if ( _player != null ) {
-            Destroy( _player.gameObject );
-            _player = null;
+    private void SkipIdleSpeed() {
+        if ( _playerAnimator != null &&
+             _playerAnimator.speed > 1.0f &&
+             _playerAnimator.GetCurrentAnimatorStateInfo( 0 ).nameHash ==
+             Animator.StringToHash( "Base Layer.idle_" + _playerSides[ _playerSide ? 1 : 0 ] ) ) {
+            _playerAnimator.speed = 1.0f;
         }
     }
 
@@ -382,7 +377,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_PLAY", StartGame );
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "GameCentr", GameCentr );
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
-        moveBackground.Pause = false;
+//        _moveBackground.Pause = false;
         ViewManager.Active.GetViewById( "SplashScreen" ).IsVisible = false;
 //        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
 //        ViewManager.Active.GetViewById( "Start" ).SetSingleAction( ButtonClick );
@@ -391,16 +386,10 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        ViewManager.Active.GetViewById( "Info" ).SetSingleAction( ButtonClick );
     }
 
-    private IEnumerator StartAnimationPlay( float time ) {
-        animatorPlay = true;
-        yield return new WaitForSeconds( time );
-        animatorPlay = false;
-    }
-
     private IEnumerator StartSoundPlay( float time ) {
         yield return new WaitForSeconds( time );
-        if ( musicPlay && clipStart != null ) {
-            AudioSource.PlayClipAtPoint( clipStart, Vector3.zero );
+        if ( _musicPlay && _clipStart != null ) {
+            AudioSource.PlayClipAtPoint( _clipStart, Vector3.zero );
         }
     }
 
@@ -494,28 +483,13 @@ public class GameScene : MonoBehaviour, ITouchable {
 ////            moveBarrier.CurrentMoveObject().speed.x += speedUpTimeAdd;
 ////            animationSpeedKoef = moveBarrier.CurrentMoveObject().speed.x / 5.0f;
 //        }
-
-		UpdateSpeed();
-		UpdateScore();
-    }
-
-    private void UpdateSpeed() {
-        if ( _startTime <= 0 ) {
-            return;
-        }
-        int time = (int)Time.time;
-		if ( _setTime != time && time > 0 && time % _accelerationTimeInterval == 0 ) {
-			_setTime = time;
-						moveBarrier.CurrentMoveObject ().speed.x *= speedUpTimeMult;
-						moveBarrier.CurrentMoveObject ().speed.x += speedUpTimeAdd;
-			_animationSpeedKoef = Math.Abs (moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
-        }
+        UpdateSpeed();
+        UpdateScore();
     }
 
     private void UpdateScore() {
-        List<GameObject> moveObjects = moveBarrier.CurrentMoveObject().ListActiveObject;
-        if ( moveObjects.Count > 0 ) {
-            _obstaclelabel.MTextMesh.text = moveObjects.Last().name;
+        if ( _moveBarrier.CurrentMoveObject().CurrentObstacle != null ) {
+            _obstaclelabel.MTextMesh.text = _moveBarrier.CurrentMoveObject().CurrentObstacle.name;
         }
         if ( _startTime > 0 ) {
             CountScore = (int) ( ( Time.time - _startTime ) * _animationSpeedKoef );
@@ -523,26 +497,19 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
     }
 
-    private void initTutorial() {
-        AudioClip ac = null;
-        if ( PlayerPrefs.HasKey( "MoveBarrier" ) ) {
-            moveBarrier.CurrentIndex = Mathf.Min( startMoveObject, PlayerPrefs.GetInt( "MoveBarrier" ) );
+    private void UpdateSpeed() {
+        if ( _startTime <= 0 ) {
+            return;
         }
-        isTutorial = true;
-        if ( PlayerPrefs.HasKey( "ShowTutorial" ) ) {
-            int showTutorial = PlayerPrefs.GetInt( "ShowTutorial" );
-            if ( showTutorial == 0 ) {
-                isTutorial = false;
-            }
-        } else {
-            PlayerPrefs.SetInt( "ShowTutorial", 1 );
+        float time = Time.time;
+        if ( !( time > 0 ) ||
+             !( ( time - _setTime ) >= _accelerationTimeInterval ) ) {
+            return;
         }
-        if ( isTutorial ) {
-            tutorialSlide = Instantiate( Resources.Load( "TutorialSlide" ) ) as GameObject;
-            tutorialSlide.SetActive( false );
-            tutorialBaseSpeed = moveBarrier.CurrentMoveObject().speed.x;
-            Debug.Log( tutorialBaseSpeed.ToString() );
-        }
+        _setTime = time;
+        _moveBarrier.CurrentMoveObject().speed.x *= _speedUpTimeMult;
+        _moveBarrier.CurrentMoveObject().speed.x += _speedUpTimeAdd;
+        _animationSpeedKoef = Math.Abs( _moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
     }
 
     #endregion
@@ -580,29 +547,14 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        ViewManager.Active.GetViewById( "Pause" ).IsVisible = false;
 //    }
 
-    private void PauseCounter() {
-//        PauseGame( false );
-    }
-
-    private void Pause() {
-        ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = false;
-        PauseGame( true );
-//        ViewManager.Active.GetViewById( "Pause" ).IsVisible = true;
-    }
-
-    private void Info() {
-//        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
-//        ViewManager.Active.GetViewById( "Info" ).IsVisible = true;
-    }
-
     private void ChangeMusic( ICall bb ) {
-        musicPlay = !musicPlay;
-        if ( musicPlay ) {
-            musicMenu.Play();
+        _musicPlay = !_musicPlay;
+        if ( _musicPlay ) {
+            _musicMenu.Play();
         } else {
-            musicMenu.Stop();
+            _musicMenu.Stop();
         }
-        PlayerPrefs.SetInt( "music", ( musicPlay ) ? 1 : 0 );
+        PlayerPrefs.SetInt( "music", ( _musicPlay ) ? 1 : 0 );
     }
 
     private void Facebook( ICall bb ) {
@@ -624,18 +576,33 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void GoHome( ICall bb ) {
-        moveBackground.Pause = false;
+        _moveBackground.Pause = false;
+    }
+
+    private void Info() {
+//        ViewManager.Active.GetViewById( "Start" ).IsVisible = false;
+//        ViewManager.Active.GetViewById( "Info" ).IsVisible = true;
+    }
+
+    private void Pause() {
+        ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = false;
+        PauseGame( true );
+//        ViewManager.Active.GetViewById( "Pause" ).IsVisible = true;
+    }
+
+    private void PauseCounter() {
+//        PauseGame( false );
     }
 
     private void Restart( ICall bb ) {
 //        ViewManager.Active.GetViewById( "Over" ).IsVisible = false;
         Game();
-        moveBackground.Pause = false;
-        currentRestart++;
+        _moveBackground.Pause = false;
+        _currentRestart++;
         if ( PlayerPrefs.HasKey( "MoveBarrier" ) ) {
-            moveBarrier.CurrentIndex = Mathf.Min( startMoveObject, PlayerPrefs.GetInt( "MoveBarrier" ) );
+            _moveBarrier.CurrentIndex = Mathf.Min( _startMoveObject, PlayerPrefs.GetInt( "MoveBarrier" ) );
         }
-        if ( moveBarrier.CurrentIndex == 0 ) {
+        if ( _moveBarrier.CurrentIndex == 0 ) {
 //            initTutorial();
         }
     }
@@ -691,25 +658,25 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     public bool TouchBegan( Vector2 touchPoint ) {
-        if ( !touch ) {
+        if ( !_touch ) {
             return false;
         }
-        touchBegin = touchPoint;
+        _touchBegin = touchPoint;
 //        _player.Up();
         return true;
     }
 
     public bool TouchMove( Vector2 touchPoint ) {
-        if ( !touch ) {
+        if ( !_touch ) {
             return false;
         }
-        float verticalSlideLenght = touchBegin.y - touchPoint.y;
-        float horizontalSlideLenght = touchBegin.x - touchPoint.x;
+        float verticalSlideLenght = _touchBegin.y - touchPoint.y;
+        float horizontalSlideLenght = _touchBegin.x - touchPoint.x;
         bool vertical = Mathf.Abs( verticalSlideLenght ) > Mathf.Abs( horizontalSlideLenght );
         if ( ! vertical &&
-             ( horizontalSlideLenght < -lenghtMoveTouch || horizontalSlideLenght > lenghtMoveTouch) ) {
+             ( horizontalSlideLenght < -_lenghtMoveTouch || horizontalSlideLenght > _lenghtMoveTouch ) ) {
             ShowPlayer( "slide" ); //Slide
-        } else if ( verticalSlideLenght > lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
+        } else if ( verticalSlideLenght > _lenghtMoveTouch /* && slideInCurrentTouch != 1*/ ) {
 //			indexSlide--;
 //			if(indexSlide < 0){
 //				indexSlide = (allowCircleSlide)?arraySlideObject.Length - 1:0;
@@ -719,7 +686,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //                 arraySlideObject.Length > indexSlide ) {
             ShowPlayer( _playerSide ? "jump" : "transform" ); //Down
 //            }
-        } else if ( verticalSlideLenght < -lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
+        } else if ( verticalSlideLenght < -_lenghtMoveTouch /* && slideInCurrentTouch != -1*/ ) {
 //			indexSlide++;
 //			if(indexSlide >= arraySlideObject.Length){
 //				indexSlide = (allowCircleSlide)?0:arraySlideObject.Length - 1;
@@ -727,7 +694,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //			slideInCurrentTouch = -1;
 //            if ( indexSlide >= 0 &&
 //                 arraySlideObject.Length > indexSlide ) {
-            ShowPlayer( ! _playerSide ? "jump"  : "transform" ); //Up
+            ShowPlayer( ! _playerSide ? "jump" : "transform" ); //Up
 //            }
         }
 //        if ( ( slideInCurrentTouch == 1 && verticalSlideLenght > 0 ) ||
@@ -750,4 +717,26 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     #endregion
+
+//    private void initTutorial() {
+//        AudioClip ac = null;
+//        if ( PlayerPrefs.HasKey( "MoveBarrier" ) ) {
+//            _moveBarrier.CurrentIndex = Mathf.Min( _startMoveObject, PlayerPrefs.GetInt( "MoveBarrier" ) );
+//        }
+//        _isTutorial = true;
+//        if ( PlayerPrefs.HasKey( "ShowTutorial" ) ) {
+//            int showTutorial = PlayerPrefs.GetInt( "ShowTutorial" );
+//            if ( showTutorial == 0 ) {
+//                _isTutorial = false;
+//            }
+//        } else {
+//            PlayerPrefs.SetInt( "ShowTutorial", 1 );
+//        }
+//        if ( _isTutorial ) {
+//            _tutorialSlide = Instantiate( Resources.Load( "TutorialSlide" ) ) as GameObject;
+//            _tutorialSlide.SetActive( false );
+//            _tutorialBaseSpeed = _moveBarrier.CurrentMoveObject().speed.x;
+//            Debug.Log( _tutorialBaseSpeed.ToString() );
+//        }
+//    }
 }

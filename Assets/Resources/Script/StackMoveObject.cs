@@ -1,57 +1,65 @@
-﻿using UnityEngine;
+﻿#region Usings
+
 using System.Collections.Generic;
+using UnityEngine;
+
+#endregion
 
 public class StackMoveObject : MonoBehaviour {
+    #region Properties
 
-	[SerializeField]
-	List<AutoMoveObject> listMoveObject = new List<AutoMoveObject>();
-	int currentIndex = 0;
-	int countCreate = 0;
+    [SerializeField] private List<AutoMoveObject> listMoveObject = new List<AutoMoveObject>();
+    private int currentIndex;
+    private int countCreate;
 
-	public List<AutoMoveObject> ListMoveObject{
-		get{
-			return listMoveObject;
-		}
-	}
-	public void Reset(){
-		countCreate  = 0;
-		foreach(var o in listMoveObject){
-			o.Reset();
-		}
-	}
-	public int CurrentIndex{
-		set{
-			currentIndex = value;
-		}
-		get{
-			return currentIndex;
-		}
-	}
-	void Start() {
-		foreach(var l in listMoveObject){
-			l.SetCallBackCount(CountDelegate);
-		}
-	}
-	public int CountCreateInStack{
-		get{
-			return countCreate;
-		}
-	}
-	void CountDelegate(int c){
-		countCreate++;
-	}
-	// Update is called once per frame
-	void Update () {
-		if(listMoveObject.Count > currentIndex && listMoveObject[currentIndex].IsDone){
-			currentIndex++;
-			listMoveObject[currentIndex].Pause = false;
-		}
-	}
-	public AutoMoveObject CurrentMoveObject(){
-		if(listMoveObject.Count > currentIndex)
-			return listMoveObject[currentIndex];
-		else
-			return null;
-	}
+    public List<AutoMoveObject> ListMoveObject {
+        get { return listMoveObject; }
+    }
 
+    public int CurrentIndex {
+        set { currentIndex = value; }
+        get { return currentIndex; }
+    }
+
+    public int CountCreateInStack {
+        get { return countCreate; }
+    }
+
+    #endregion
+
+    #region Methods
+
+    public AutoMoveObject CurrentMoveObject() {
+        if ( listMoveObject.Count > currentIndex ) {
+            return listMoveObject[ currentIndex ];
+        }
+        return null;
+    }
+
+    public void Reset() {
+        countCreate = 0;
+        foreach ( var o in listMoveObject ) {
+            o.Reset();
+        }
+    }
+
+    private void CountDelegate( int c ) {
+        countCreate++;
+    }
+
+    private void Start() {
+        foreach ( var l in listMoveObject ) {
+            l.SetCallBackCount( CountDelegate );
+        }
+    }
+
+    private void Update() {
+        if ( listMoveObject.Count > currentIndex &&
+             listMoveObject[ currentIndex ].IsDone ) {
+            currentIndex++;
+            listMoveObject[ currentIndex ].Pause = false;
+        }
+    }
+
+    #endregion
 }

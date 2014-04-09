@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using UIEditor.Util;
 using UnityEngine;
 
 #endregion
@@ -16,7 +17,6 @@ public class AutoMoveObject : MonoBehaviour {
     #region Properties
 
     [SerializeField] public Vector2 speed = Vector2.zero;
-
     private Vector2 startSpeed = Vector2.zero;
 
     [SerializeField] private float currentPosition;
@@ -25,7 +25,6 @@ public class AutoMoveObject : MonoBehaviour {
     [SerializeField] private Vector2 objectCreatePostion = Vector2.zero;
     [SerializeField] private bool useOriginalYPosition = true;
     [SerializeField] private Rect randomOffset = new Rect( 0, 0, 0, 0 );
-    [SerializeField] private int countCreateObject = -1;
     [SerializeField] private float _obstacleGap = 100.0f;
 
     private bool isDone;
@@ -38,15 +37,23 @@ public class AutoMoveObject : MonoBehaviour {
 
     [SerializeField] private bool _pause = true;
 
-    private List<GameObject> listGo = new List<GameObject>();
-    private int _countGen;
+    private Dictionary<GameObject, Vector2> _obstacles = new Dictionary<GameObject, Vector2>();
+    [SerializeField] private int countToCreateObstacles = -1;
+    private int _countOfCreatedObstacles;
+    public int CountOfCreatedObstacles {
+        get { return _countOfCreatedObstacles; }
+        set {
+            _countOfCreatedObstacles = value;
+            if ( _callbackCount != null ) {
+                _callbackCount( _countOfCreatedObstacles );
+            }
+        }
+    }
 
     private callbackCount _callbackCount;
 
-    // Use this for initialization
-
     public int CountActiveObject {
-        get { return listGo.Count; }
+        get { return _obstacles.Count; }
     }
     public Vector2 LimitPosition {
         set { limitPosition = value; }
@@ -64,49 +71,75 @@ public class AutoMoveObject : MonoBehaviour {
         set { _pause = value; }
         get { return _pause; }
     }
-    public List<GameObject> ListActiveObject {
-        get { return listGo; }
+    public List<GameObject> IdleObstacles {
+        get { return ( from Transform obstacle in ObstaclesPool.transform select obstacle.gameObject ).ToList(); }
     }
 
     public bool IsDone {
         get { return isDone; }
     }
-    public int CountGeneratedObject {
-        get { return _countGen; }
-        set {
-            _countGen = value;
-            if ( _callbackCount != null ) {
-                _callbackCount( _countGen );
+
+    private GameObject _currentObstacle;
+    public GameObject CurrentObstacle {
+        get { return _currentObstacle; }
+    }
+    private GameObject _obstaclesPool;
+    public GameObject ObstaclesPool {
+        get { return _obstaclesPool; }
+    }
+    private Bounds _currentObstacleBounds;
+    public Bounds CurrentObstacleBounds {
+        get {
+            if ( _currentObstacle != null ) {
+                return GetChildrenBounds( _currentObstacle );
             }
+            return new Bounds();
         }
     }
 
-    private Bounds _currentObstacleBounds;
-    public Vector2 CurrentObstacleBounds {
-        get {
-            if ( listGo.Count > 0 ) {
-                GameObject _currentObstacle = listGo.Last();
-                if ( _currentObstacle != null ) {
-                    Bounds bounds = GetChildrenBounds( _currentObstacle );
-                    return new Vector2( bounds.min.x, bounds.max.x );
-                }
-            }
-            return Vector2.one;
+    #endregion
+
+    #region Methods
+
+    public void Reset() {
+        Debug.Log( "Reset : " + name );
+        speed = startSpeed;
+        Vector2 obstaclesPosition = ObstaclesPool.transform.position;
+        transform.position = new Vector3( obstaclesPosition.x, obstaclesPosition.y, transform.position.z );
+        foreach ( Transform obstacle in transform ) {
+            obstacle.parent = ObstaclesPool.transform;
+            obstacle.gameObject.SetActive( false );
+        }
+        GetNewObstacle();
+        isDone = false;
+        Pause = true;
+        _countOfCreatedObstacles = 0;
+        _objectPool.Reset();
+    }
+
+    public void SetCallBackCount( callbackCount _delegate ) {
+        _callbackCount = _delegate;
+    }
+
+    protected void OnDrawGizmosSelected() {
+        if ( CurrentObstacle != null ) {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube( CurrentObstacleBounds.center, CurrentObstacleBounds.size );
         }
     }
 
     private Bounds GetChildrenBounds( GameObject parent ) {
         Vector3 center = Vector3.zero;
         Renderer renderer;
-        foreach (Transform child in parent.transform) {
+        foreach ( Transform child in parent.transform ) {
             renderer = child.GetComponent<Renderer>();
             if ( renderer != null ) {
                 center += renderer.bounds.center;
             }
         }
         center /= parent.transform.childCount;
-        Bounds bounds = new Bounds( center,Vector3.zero ); 
-        foreach (Transform child in parent.transform) {
+        Bounds bounds = new Bounds( center, Vector3.zero );
+        foreach ( Transform child in parent.transform ) {
             renderer = child.GetComponent<Renderer>();
             if ( renderer != null ) {
                 bounds.Encapsulate( renderer.bounds );
@@ -115,107 +148,105 @@ public class AutoMoveObject : MonoBehaviour {
         return bounds;
     }
 
-    #endregion
-
-    #region Methods
-
-    public void Clear() {
-        foreach ( var go in listGo ) {
-            Destroy( go );
-        }
-        listGo.Clear();
-    }
-
-    public void CreateObject() {
-        if ( countCreateObject != -1 &&
-             _countGen >= countCreateObject ) {
+    private void GetNewObstacle() {
+        if ( countToCreateObstacles != -1 &&
+             CountOfCreatedObstacles >= countToCreateObstacles ) {
             isDone = true;
             return;
         }
-        GameObject ret = null;
-        if ( _objectPool != null ) {
-         ret = _objectPool.GetObject();   
+        _currentObstacle = IdleObstacles[ Random.Range( 0, _obstaclesPool.transform.childCount ) ];
+        CurrentObstacle.transform.parent = transform;
+        CurrentObstacle.transform.localPosition = new Vector3(
+                CurrentObstacle.transform.localPosition.x,
+                CurrentObstacle.transform.localPosition.y,
+                0.0f );
+        CurrentObstacle.Enable( true );
+        CountOfCreatedObstacles++;
+//        if ( name == "MoveBlipFlip" ) {
+//            Debug.Log( _currentObstacle + " : " + _currentObstacle.transform.position );
+//        }
+    }
+
+    private void InstantiateAllObstacles() {
+        if ( _objectPool == null ) {
+            return;
         }
-        if ( ret != null ) {
-            CountGeneratedObject++;
-            GameObject go = Instantiate( ret ) as GameObject;
-            float z = go.transform.localPosition.z;
-            float headPosition = objectCreatePostion.x + GetChildrenBounds( go ).extents.x;
-            go.transform.position = new Vector3( headPosition, useOriginalYPosition ? go.transform.position.y : objectCreatePostion.y, go.transform.position.z );
-            go.transform.parent = transform;
-            go.transform.localPosition = new Vector3( go.transform.localPosition.x, go.transform.localPosition.y, z );
-            go.transform.Translate(
-                    Random.Range( randomOffset.x, randomOffset.width ),
-                    Random.Range( randomOffset.y, randomOffset.height ),
-                    0 );
-            go.transform.localScale = ret.transform.localScale;
-            go.name = ret.name;
-            listGo.Add( go );
-//            Debug.Log( CurrentObstacleBounds );
+        _obstaclesPool = new GameObject {
+            name = "ObstaclesPool_" + name,
+        };
+        ObstaclesPool.transform.parent = GameScene.Active.transform;
+        ObstaclesPool.gameObject.SetActive( false );
+        Vector2 obstaclesPosition = ObstaclesPool.transform.position;
+        transform.position = new Vector3( obstaclesPosition.x, obstaclesPosition.y, transform.position.z );
+        foreach ( GameObject obstacle in _objectPool.genListObject ) {
+            InstantiateObstacle( obstacle, ObstaclesPool.transform );
         }
     }
 
-    public void Reset() {
-        speed = startSpeed;
-        Clear();
-        transform.position = new Vector3( 0, 0, transform.position.z );
-        isDone = false;
-        _countGen = 0;
-        _objectPool.Reset();
-    }
-
-    public void SetCallBackCount( callbackCount _delegate ) {
-        _callbackCount = _delegate;
-    }
-
-    private void RemoveBorder() {
-        foreach ( var go in listGo ) {
-            int childCount = 0;
-            foreach ( Transform child in go.transform ) {
-                if ( child.renderer.bounds.max.x < limitPosition.x ) {
-                    Destroy( child.gameObject );
-                    return;
-                }
-                childCount++;
-            }
-            if ( childCount == 0 ) {
-                Destroy( go );
-                listGo.Remove( go );
-                return;
-            }
+    private void InstantiateObstacle( GameObject obstacle, Transform parent ) {
+        if ( obstacle == null ) {
+            return;
         }
+        GameObject go = Instantiate( obstacle ) as GameObject;
+        float z = go.transform.localPosition.z;
+        Bounds bounds = GetChildrenBounds( go );
+        float centerDiff = ( go.transform.position - bounds.center ).x;
+        float headPosition = objectCreatePostion.x + bounds.extents.x + centerDiff;
+        go.transform.parent = parent;
+        go.transform.position = new Vector3(
+                headPosition,
+                useOriginalYPosition ? go.transform.position.y : objectCreatePostion.y,
+                go.transform.position.z );
+//        go.transform.localPosition = new Vector3( go.transform.localPosition.x, go.transform.localPosition.y, z );
+        go.transform.Translate(
+                Random.Range( randomOffset.x, randomOffset.width ),
+                Random.Range( randomOffset.y, randomOffset.height ),
+                0 );
+        go.transform.localScale = obstacle.transform.localScale;
+        go.name = obstacle.name;
+        go.SetActive( false );
+        _obstacles[ go ] = go.transform.position;
     }
 
     private void Start() {
         startSpeed = speed;
+        InstantiateAllObstacles();
+        GetNewObstacle();
         //listGo = UIEditor.Node.NodeContainer.GetAllChildren(transform);
     }
 
-    private void UpdateNewObjectAppear() {
-        currentPosition -= createNewObject;
-        createNewObject = Random.Range( newObjectCreationBorders.x, newObjectCreationBorders.y );
+    private void TakeObstacleToOrigin() {
+        foreach ( Transform obstacle in transform ) {
+            foreach ( Transform child in
+                    obstacle.transform.Cast<Transform>()
+                            .Where(
+                                    child =>
+                                    child.gameObject.activeInHierarchy && child.renderer.bounds.max.x < limitPosition.x )
+                    ) {
+                child.gameObject.SetActive( false );
+            }
+            if ( ! obstacle.gameObject.HasActiveChilds() ) {
+                obstacle.transform.parent = ObstaclesPool.transform;
+                obstacle.transform.position = _obstacles[ obstacle.gameObject ];
+                obstacle.gameObject.SetActive( false );
+//                if ( isDone ) {
+////                    Debug.Log( "Done : " + name );
+//                    _pause = true;
+//                }
+            }
+        }
     }
 
     private void Update() {
-        if ( _pause ) {
+        if ( _pause || CurrentObstacle == null ) {
             return;
         }
         transform.Translate( speed.x, speed.y, 0, Space.Self );
-//        currentPosition += Mathf.Abs( speed.x ) + Mathf.Abs( speed.y );
-        if ( CurrentObstacleBounds.y + _obstacleGap <= objectCreatePostion.x ) {
-            CreateObject();
+        if ( CurrentObstacleBounds.max.x + _obstacleGap < objectCreatePostion.x ) {
+            GetNewObstacle();
         }
-
-//        if ( currentPosition >= createNewObject ) {
-//            UpdateNewObjectAppear();
-//            CreateObject();
-//        }
         if ( isLimitedPosition ) {
-            RemoveBorder();
-        }
-        if ( isDone ) {
-            Debug.Log( listGo.Count );
-            _pause = true;
+            TakeObstacleToOrigin();
         }
     }
 
