@@ -138,7 +138,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         ViewManager.Active.GetViewById( "PauseCounter" ).IsVisible = false;
         if ( _player == null &&
              ! ViewManager.Active.GetViewById( "Tutorial" ).IsVisible ) {
-            ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;
+            ViewManager.Active.GetViewById( "Tutorial" ).IsVisible = true;//-183.7192
         } else if ( ! _player.Pause ) {
 //            _moveBarrier.Reset();
             _moveBarrier.CurrentMoveObject().Pause = false;
@@ -148,13 +148,14 @@ public class GameScene : MonoBehaviour, ITouchable {
             PauseGame( false );
             return;
         }
-        GameObject go = Instantiate( Resources.Load( "PlayerUnite" ) ) as GameObject;
-        _player = go.GetComponent<Player>();
-        go.name = "PlayerUnite";
-        go.transform.parent = transform;
+//        GameObject go = Instantiate( Resources.Load( "PlayerUnite" ) ) as GameObject;
+        _player = FindObjectOfType<Player>();
+//        go.name = "PlayerUnite";
+//        go.transform.parent = transform;
         _playerSide = false;
         _player.SetActionGameOver( GameOver );
-        _playerAnimator = _player.GetComponent<Animator>();
+        _playerAnimator = _player.Animator;
+        _playerAnimator.Play( "start_up" );
         _touch = true;
         _moveBackground.Pause = false;
         if ( _musicPlay ) {
@@ -162,16 +163,16 @@ public class GameScene : MonoBehaviour, ITouchable {
             _musicGame.Play();
         }
         _player.GetComponent<VisualNode>().IsVisible = true;
-        go.SetActive( true );
+//        go.SetActive( true );
 //        _playerAnimator.Play( "start" );
         StartCoroutine( "StartSoundPlay", 1.1f );
         _player.Pause = false;
         //if(isSlide){
 //        ButtonBase bb = (ButtonBase) ViewManager.Active.GetViewById( "Game" ).GetChildById( "1" );
 //        bb.State = ButtonState.Focus;
-        if ( ButtonBase.focusButton != null ) {
-            ButtonBase.focusButton.State = ButtonState.Default;
-        }
+//        if ( ButtonBase.focusButton != null ) {
+//            ButtonBase.focusButton.State = ButtonState.Default;
+//        }
 //        ButtonBase.focusButton = bb;
         //}
         CountScore = 0;
@@ -188,6 +189,7 @@ public class GameScene : MonoBehaviour, ITouchable {
             _moveBarrier.CurrentMoveObject().Pause = true;
         }
         _player.Pause = true;
+        _player.Reset();
 //        Camera.main.animation.Play();
         _playerAnimator.speed = 1.0f;
         _playerAnimator.Play( "death_" + _playerSides[ _playerSide ? 1 : 0 ] );
@@ -204,14 +206,26 @@ public class GameScene : MonoBehaviour, ITouchable {
         return stateName + "_" + _playerSides[ _playerSide ? 1 : 0 ];
     }
 
+    private void InstantiatePlayer() {
+        GameObject go = Instantiate( Resources.Load( "PlayerUnite" ) ) as GameObject;
+        _player = go.GetComponent<Player>();
+        go.name = "PlayerUnite";
+        go.transform.parent = transform;
+        go.SetActive( true );
+    }
+
     private void Menu() {
         ViewManager.Active.GetViewById( "Game" ).IsVisible = false;
-//        if ( _moveBarrier != null ) {
-//            _moveBarrier.Reset();
-//            Destroy( _tutorialSlide );
-//        }
+        if ( _moveBarrier != null ) {
+            _moveBarrier.Reset();
+            Destroy( _tutorialSlide );
+        }
         if ( _player != null ) {
-            Destroy( _player.gameObject );
+            if ( _playerAnimator != null ) {
+                _playerAnimator.Play( "appear" );
+            }
+            _player.Pause = true;
+            _player.Reset();
             _player = null;
         }
     }
@@ -252,7 +266,7 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void ShowGameOverView() {
-//        yield return new WaitForSeconds( 1.7f );
+//        yield return new WaitForSeconds( time );
         StartCoroutine( "ShowScore", 0.02f );
 //        int bestResult = Mathf.Max( CountScore, PlayerPrefs.GetInt( "bestResult" ) );
 //        UnityEngine.Social.ReportScore(
@@ -262,9 +276,9 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        PlayerPrefs.SetInt( "bestResult", bestResult );
 //        PlayerPrefs.Save();
         //Debug.Log(PlayerPrefs.GetInt("bestResult").ToString());
-        Button button = new Button();
-        button.ActionName = "BTN_END";
-        ViewManager.Active.GetViewById( "Game" ).RunAction( button );
+//        Button button = new Button();
+//        button.ActionName = "BTN_END";
+//        ViewManager.Active.GetViewById( "Game" ).RunAction( button );
 //        ViewManager.Active.GetViewById( "Over" ).IsVisible = true;
 //        VisualNode group = ViewManager.Active.GetViewById( "Over" ).GetChildById( "group" );
 //        if ( group.GetChildById( "result" ) is Label ) {
@@ -277,7 +291,7 @@ public class GameScene : MonoBehaviour, ITouchable {
         }
         _moveBarrier.Reset();
         Destroy( _tutorialSlide );
-        Destroy( _player.gameObject );
+//        Destroy( _player.gameObject );
         _player = null;
     }
 
@@ -379,6 +393,7 @@ public class GameScene : MonoBehaviour, ITouchable {
 //        ViewManager.Active.GetViewById( "Start" ).SetDelegate( "BTN_MUSIC", ChangeMusic );
 //        _moveBackground.Pause = false;
         ViewManager.Active.GetViewById( "SplashScreen" ).IsVisible = false;
+        InstantiatePlayer();
 //        ViewManager.Active.GetViewById( "Start" ).IsVisible = true;
 //        ViewManager.Active.GetViewById( "Start" ).SetSingleAction( ButtonClick );
 //        ViewManager.Active.GetViewById( "Over" ).SetSingleAction( ButtonClick );
@@ -488,7 +503,9 @@ public class GameScene : MonoBehaviour, ITouchable {
     }
 
     private void UpdateScore() {
-        if ( _moveBarrier.CurrentMoveObject().CurrentObstacle != null ) {
+        AutoMoveObject currentMove = _moveBarrier.CurrentMoveObject();
+        if ( currentMove != null &&
+             currentMove.CurrentObstacle != null ) {
             _obstaclelabel.MTextMesh.text = _moveBarrier.CurrentMoveObject().CurrentObstacle.name;
         }
         if ( _startTime > 0 ) {
@@ -506,10 +523,14 @@ public class GameScene : MonoBehaviour, ITouchable {
              !( ( time - _setTime ) >= _accelerationTimeInterval ) ) {
             return;
         }
+        AutoMoveObject currentMove = _moveBarrier.CurrentMoveObject();
+        if ( currentMove == null ) {
+            return;
+        }
         _setTime = time;
-        _moveBarrier.CurrentMoveObject().speed.x *= _speedUpTimeMult;
-        _moveBarrier.CurrentMoveObject().speed.x += _speedUpTimeAdd;
-        _animationSpeedKoef = Math.Abs( _moveBarrier.CurrentMoveObject().speed.x / _baseSpeed );
+        currentMove.speed.x *= _speedUpTimeMult;
+        currentMove.speed.x += _speedUpTimeAdd;
+        _animationSpeedKoef = Math.Abs( currentMove.speed.x / _baseSpeed );
     }
 
     #endregion
@@ -562,44 +583,48 @@ public class GameScene : MonoBehaviour, ITouchable {
             Social.Facebook.Instance().Login(
                     result => {
                         if ( !string.IsNullOrEmpty( result ) ) {
-                            Social.Facebook.Instance().GetUserDetails( SettingProject.Instance.FACEBOOK_PERMISSIONS.ToString(), r => { SaveFBUserDetail( r ); } );
+                            Social.Facebook.Instance()
+                                  .GetUserDetails(
+                                          SettingProject.Instance.FACEBOOK_PERMISSIONS.ToString(),
+                                          r => { SaveFBUserDetail( r ); } );
                         }
                     } );
         } else {
-            Social.Facebook.Instance().GetUserDetails( SettingProject.Instance.FACEBOOK_PERMISSIONS.ToString(), result => { SaveFBUserDetail( result ); } );
+            Social.Facebook.Instance()
+                  .GetUserDetails(
+                          SettingProject.Instance.FACEBOOK_PERMISSIONS.ToString(),
+                          result => { SaveFBUserDetail( result ); } );
             Social.Facebook.Instance().GoToPage( _setting.FACEBOOK_APPID );
         }
     }
 
-    void SaveFBUserDetail(JSONObject result){
-        JSONObject anyData = new JSONObject();
-        anyData.AddField("Facebook",result);
-        Debug.Log("Facebook = " + anyData.ToString());
-        Social.DeviceInfo.CollectAndSaveInfo(anyData);
-    }
-    void FacebookGetUserData(){
-        Social.Facebook.Instance().GetUserDetails(string.Join(",",_setting.FACEBOOK_PERMISSIONS),(res)=>{
-            if(res != null){
-                SaveFBUserDetail(res);
-            }
-        });
-    }
+    private void FacebookCall( ICall bb ) {
+        if ( Social.Facebook.Instance().IsOpenSession ) {
+            FacebookGetUserData();
+            Social.Facebook.Instance().GoToPage( _setting.STIGOL_FACEBOOK_ID );
+        } else {
+            Social.Facebook.Instance().Login(
+                    s => {
+                        if ( !string.IsNullOrEmpty( s ) ) {
+                            FacebookGetUserData();
+                        } else {
+                            Social.Facebook.Instance().GoToPage( _setting.STIGOL_FACEBOOK_ID );
+                        }
+                        Social.Facebook.Instance().GoToPage( _setting.STIGOL_FACEBOOK_ID );
+                    } );
+        }
+        ;
+    }
 
-    void FacebookCall(ICall bb){
-        if(Social.Facebook.Instance().IsOpenSession){
-            FacebookGetUserData();
-            Social.Facebook.Instance().GoToPage(_setting.STIGOL_FACEBOOK_ID);
-        }else{
-            Social.Facebook.Instance().Login((s)=>{
-                if(!string.IsNullOrEmpty(s)){
-                    FacebookGetUserData();
-                }else{
-                    Social.Facebook.Instance().GoToPage(_setting.STIGOL_FACEBOOK_ID);
-                };
-                Social.Facebook.Instance().GoToPage(_setting.STIGOL_FACEBOOK_ID);
-            });
-        };
-    }
+    private void FacebookGetUserData() {
+        Social.Facebook.Instance().GetUserDetails(
+                string.Join( ",", _setting.FACEBOOK_PERMISSIONS ),
+                res => {
+                    if ( res != null ) {
+                        SaveFBUserDetail( res );
+                    }
+                } );
+    }
 
     private void GameCentr( ICall bb ) {
         UnityEngine.Social.ShowLeaderboardUI();
@@ -635,6 +660,13 @@ public class GameScene : MonoBehaviour, ITouchable {
         if ( _moveBarrier.CurrentIndex == 0 ) {
 //            initTutorial();
         }
+    }
+
+    private void SaveFBUserDetail( JSONObject result ) {
+        JSONObject anyData = new JSONObject();
+        anyData.AddField( "Facebook", result );
+        Debug.Log( "Facebook = " + anyData );
+        DeviceInfo.CollectAndSaveInfo( anyData );
     }
 
     private void SaveFBUserDetail( string result ) {

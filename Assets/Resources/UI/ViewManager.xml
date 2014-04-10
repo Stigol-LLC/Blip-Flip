@@ -1,4 +1,4 @@
-<?Meta date="14.04.07 11:51:03" ver="2" ?>
+<?Meta date="14.04.10 18:06:14" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -159,7 +159,7 @@
     </Component>
     <GameObject Name="Text_TapToStart" Id="4B9E16FB1C50297B4884383B">
       <Component Name="Transform">
-        <Property Name="localPosition">(0.0, -183.7, -3.6)</Property>
+        <Property Name="localPosition">(0.0, 0.0, -3.6)</Property>
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
@@ -202,12 +202,12 @@
         <Property Name="MTextMesh">Text_TapToStart (UnityEngine.TextMesh)</Property>
         <Property Name="Caption">tap to start</Property>
         <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
+        <Property Name="LanguageKey">tap to start</Property>
         <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(0.0, -0.5)</Property>
-        <Property Name="Id" />
+        <Property Name="RelativePosition">(0.0, 0.0)</Property>
+        <Property Name="Id">Tap</Property>
         <Property Name="Uid">4B9E16FB1C50297B4884383B</Property>
         <Property Name="ZOrder">384</Property>
         <Property Name="IsVisible">True</Property>
@@ -228,7 +228,7 @@
         <Property Name="applyRootMotion">True</Property>
         <Property Name="animatePhysics">False</Property>
         <Property Name="bodyPosition">(0.0, 0.0, 0.0)</Property>
-        <Property Name="bodyRotation">(0.0, -2.0, 0.0, -2.0)</Property>
+        <Property Name="bodyRotation">(0.0, 0.0, 22708690000000000.0, 0.0)</Property>
         <Property Name="stabilizeFeet">False</Property>
         <Property Name="feetPivotActive">0</Property>
         <Property Name="speed">1</Property>
@@ -4024,7 +4024,7 @@
         <Property Name="MTextMesh">Text_Result (UnityEngine.TextMesh)</Property>
         <Property Name="Caption">1234</Property>
         <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
+        <Property Name="LanguageKey">1234</Property>
         <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
@@ -4047,7 +4047,7 @@
     </GameObject>
     <GameObject Name="Text_Obstacle" Id="028949022ECA0D54634A7CE2">
       <Component Name="Transform">
-        <Property Name="localPosition">(380.0, -354.0, -0.5)</Property>
+        <Property Name="localPosition">(-512.0, -354.0, -0.5)</Property>
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
@@ -4090,11 +4090,11 @@
         <Property Name="MTextMesh">Text_Obstacle (UnityEngine.TextMesh)</Property>
         <Property Name="Caption">1234</Property>
         <Property Name="AllowMultiLanguage">False</Property>
-        <Property Name="LanguageKey" />
+        <Property Name="LanguageKey">1234</Property>
         <Property Name="LanguageText" />
         <Property Name="IsRelativePosition">False</Property>
         <Property Name="ParentSize">(512.0, 384.0)</Property>
-        <Property Name="RelativePosition">(0.7, -0.9)</Property>
+        <Property Name="RelativePosition">(-1.0, -0.9)</Property>
         <Property Name="Id">obstacle</Property>
         <Property Name="Uid">028949022ECA0D54634A7CE2</Property>
         <Property Name="ZOrder">384</Property>

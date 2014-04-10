@@ -57,7 +57,9 @@ public class StackMoveObject : MonoBehaviour {
         if ( listMoveObject.Count > currentIndex &&
              listMoveObject[ currentIndex ].IsDone ) {
             currentIndex++;
-            listMoveObject[ currentIndex ].Pause = false;
+            if ( listMoveObject.Count >= currentIndex ) {
+                listMoveObject[ currentIndex ].Pause = false;
+            }
         }
     }
 
