@@ -44,6 +44,10 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public AudioClip PlayClip {
+        set { SoundManager.Active.PlayClip( value ); }
+    }
+
     public bool Pause {
         get { return _pause; }
         set { _pause = value; }

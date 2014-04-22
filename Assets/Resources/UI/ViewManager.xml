@@ -1,4 +1,4 @@
-<?Meta date="14.04.10 18:06:14" ver="2" ?>
+<?Meta date="14.04.22 14:18:36" ver="2" ?>
 <GameObject Name="ViewManager">
   <Component Name="Transform">
     <Property Name="localPosition">(0.0, 0.0, -10.0)</Property>
@@ -11,6 +11,7 @@
   </Component>
   <Component Name="ViewManager">
     <Property Name="GameManager" />
+    <Property Name="SoundManager" />
     <Property Name="StartView" ValueType="UID">27590CDD4B6537AD25F20461</Property>
     <Property Name="ZOrderList" Type="List" ValueType="UID">
       <Value ValueType="UID">23B41ACD55F553A708BF0BDC</Value>
@@ -228,7 +229,7 @@
         <Property Name="applyRootMotion">True</Property>
         <Property Name="animatePhysics">False</Property>
         <Property Name="bodyPosition">(0.0, 0.0, 0.0)</Property>
-        <Property Name="bodyRotation">(0.0, 0.0, 22708690000000000.0, 0.0)</Property>
+        <Property Name="bodyRotation">(0.0, 0.0, 0.0, 0.0)</Property>
         <Property Name="stabilizeFeet">False</Property>
         <Property Name="feetPivotActive">0</Property>
         <Property Name="speed">1</Property>
@@ -1156,11 +1157,11 @@
           <Value Key="Default">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
           <Value Key="Pressed">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
         </Property>
-        <Property Name="CallExpression" />
+        <Property Name="CallExpression">Music_Off (UIEditor.Act.Expression)</Property>
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName" />
+        <Property Name="ActionName">BTN_MUSIC</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -1358,11 +1359,11 @@
           <Value Key="Default">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
           <Value Key="Pressed">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
         </Property>
-        <Property Name="CallExpression" />
+        <Property Name="CallExpression">Music_On (UIEditor.Act.Expression)</Property>
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName" />
+        <Property Name="ActionName">BTN_MUSIC</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -1373,7 +1374,7 @@
         <Property Name="Id" />
         <Property Name="Uid">2C8A061F25DA66CE559436BC</Property>
         <Property Name="ZOrder">1</Property>
-        <Property Name="IsVisible">True</Property>
+        <Property Name="IsVisible">False</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
@@ -2312,7 +2313,7 @@
     </GameObject>
     <GameObject Name="btn_music_off" Id="0CCB307F3A0B54BE412730B5">
       <Component Name="Transform">
-        <Property Name="localPosition">(-446.0, -94.0, -0.9)</Property>
+        <Property Name="localPosition">(-446.0, -94.0, -0.1)</Property>
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
@@ -2345,11 +2346,11 @@
           <Value Key="Default">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
           <Value Key="Pressed">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
         </Property>
-        <Property Name="CallExpression">Btn_Music_Off_to_On (UIEditor.Act.Expression)</Property>
+        <Property Name="CallExpression">Music_On (UIEditor.Act.Expression)</Property>
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore">Btn_Music_Off_to_On</Property>
         <Property Name="AllowActionStore">False</Property>
-        <Property Name="ActionName" />
+        <Property Name="ActionName">BTN_MUSIC</Property>
         <Property Name="ActionValue" />
         <Property Name="CustomBoundRect">False</Property>
         <Property Name="State">Default</Property>
@@ -2360,7 +2361,7 @@
         <Property Name="Id" />
         <Property Name="Uid">0CCB307F3A0B54BE412730B5</Property>
         <Property Name="ZOrder">1</Property>
-        <Property Name="IsVisible">True</Property>
+        <Property Name="IsVisible">False</Property>
         <Property Name="AllowAnimation">False</Property>
         <Property Name="AssociateAnimationClip" Type="Map" />
         <Property Name="IsFloatSize">True</Property>
@@ -2413,7 +2414,7 @@
     </GameObject>
     <GameObject Name="btn_music_on" Id="33260E771FB61EFB519B09D2">
       <Component Name="Transform">
-        <Property Name="localPosition">(-446.0, -94.0, -0.3)</Property>
+        <Property Name="localPosition">(-446.0, -94.0, -0.9)</Property>
         <Property Name="localRotation">(0.0, 0.0, 0.0, 1.0)</Property>
         <Property Name="localScale">(1.0, 1.0, 1.0)</Property>
         <Property Name="hasChanged">True</Property>
@@ -2446,7 +2447,7 @@
           <Value Key="Default">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
           <Value Key="Pressed">(x:0.00, y:0.00, width:90.00, height:90.00)</Value>
         </Property>
-        <Property Name="CallExpression" />
+        <Property Name="CallExpression">Music_Off (UIEditor.Act.Expression)</Property>
         <Property Name="EventHandler" />
         <Property Name="ActionIdWithStore" />
         <Property Name="AllowActionStore">False</Property>

@@ -32,6 +32,9 @@ public class AutoMoveObject : MonoBehaviour {
 
     [SerializeField] private bool isLimitedPosition;
     [SerializeField] private Vector2 limitPosition = new Vector2( 4000, 4000 );
+    [SerializeField] private Bounds _forbiddenBounds = new Bounds(
+            new Vector3( -1024.0f, 0.0f, 0.0f ),
+            new Vector3( 1024.0f, 768.0f, 1024.0f ) );
 
     [HideInInspector, SerializeField] private MapStringAnimationClip animationEventClips = new MapStringAnimationClip();
 
@@ -90,11 +93,14 @@ public class AutoMoveObject : MonoBehaviour {
     private Bounds _currentObstacleBounds;
     public Bounds CurrentObstacleBounds {
         get {
-            if ( _currentObstacle != null ) {
-                return GetChildrenBounds( _currentObstacle );
-            }
-            return new Bounds();
+            return _currentObstacle != null
+                           ? _currentObstacle.GetChildrenBounds()
+                           : new Bounds( Vector3.zero, Vector3.zero );
         }
+    }
+
+    private bool CanCreate {
+        get { return ( countToCreateObstacles == -1 || CountOfCreatedObstacles < countToCreateObstacles ); }
     }
 
     #endregion
@@ -102,7 +108,9 @@ public class AutoMoveObject : MonoBehaviour {
     #region Methods
 
     public void Reset() {
-//        Debug.Log( "Reset : " + name );
+        if ( ! gameObject.activeSelf ) {
+            return;
+        }
         speed = startSpeed;
         Vector2 obstaclesPosition = ObstaclesPool.transform.position;
         transform.position = new Vector3( obstaclesPosition.x, obstaclesPosition.y, transform.position.z );
@@ -111,7 +119,6 @@ public class AutoMoveObject : MonoBehaviour {
             obstacle.position = _obstacles[ obstacle.gameObject ];
             obstacle.gameObject.SetActive( false );
         }
-        isDone = false;
         Pause = true;
         _countOfCreatedObstacles = 0;
         _objectPool.Reset();
@@ -123,46 +130,36 @@ public class AutoMoveObject : MonoBehaviour {
     }
 
     protected void OnDrawGizmosSelected() {
-        if ( CurrentObstacle != null ) {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube( CurrentObstacleBounds.center, CurrentObstacleBounds.size );
+        if ( CurrentObstacle == null ) {
+            return;
         }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube( CurrentObstacleBounds.center, CurrentObstacleBounds.size );
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube( _forbiddenBounds.center, _forbiddenBounds.size );
     }
 
-    private void ApplyCollider( Transform obstacle, Bounds bounds ) {
-        foreach ( BoxCollider2D boxCollider in
-                ( from Transform child in obstacle select child.GetComponent<BoxCollider2D>() ).Where(
-                        collider => collider != null ) ) {
-            boxCollider.enabled = false;
+    private void ApplyCollider( Transform obstacle ) {
+        if ( name != "MoveBlipFlip" ) {
+            return;
         }
-//        BoxCollider2D obstacleCollider = obstacle.gameObject.AddComponent<BoxCollider2D>();
-//        obstacleCollider.center = bounds.center;
-//        obstacleCollider.size = bounds.size;
-    }
-
-    private Bounds GetChildrenBounds( GameObject parent ) {
-        Vector3 center = Vector3.zero;
-        Renderer renderer;
-        foreach ( Transform child in parent.transform ) {
-            renderer = child.GetComponent<Renderer>();
-            if ( renderer != null ) {
-                center += renderer.bounds.center;
-            }
+//        foreach ( BoxCollider2D boxCollider in
+//                obstacle.GetComponentsInChildren<Transform>()
+//                        .Select( child => child.GetComponent<BoxCollider2D>() )
+//                        .Where( boxCollider => boxCollider != null ) ) {
+//            Destroy( boxCollider );
+//        }
+        foreach ( Transform child in obstacle.transform ) {
+            BoxCollider2D obstacleCollider = child.gameObject.AddComponent<BoxCollider2D>();
+            Bounds childBounds = child.gameObject.GetChildrenBounds( true );
+            obstacleCollider.isTrigger = true;
+            obstacleCollider.center = child.InverseTransformPoint( childBounds.center );
+            obstacleCollider.size = childBounds.size;
         }
-        center /= parent.transform.childCount;
-        Bounds bounds = new Bounds( center, Vector3.zero );
-        foreach ( Transform child in parent.transform ) {
-            renderer = child.GetComponent<Renderer>();
-            if ( renderer != null ) {
-                bounds.Encapsulate( renderer.bounds );
-            }
-        }
-        return bounds;
     }
 
     private void GetNewObstacle() {
-        if ( countToCreateObstacles != -1 &&
-             CountOfCreatedObstacles >= countToCreateObstacles ) {
+        if ( ! CanCreate ) {
             isDone = true;
             return;
         }
@@ -176,9 +173,6 @@ public class AutoMoveObject : MonoBehaviour {
             CurrentObstacle.Enable( true );
         }
         CountOfCreatedObstacles++;
-//        if ( name == "MoveBlipFlip" ) {
-//            Debug.Log( _currentObstacle + " : " + _currentObstacle.transform.position );
-//        }
     }
 
     private void InstantiateAllObstacles() {
@@ -203,8 +197,8 @@ public class AutoMoveObject : MonoBehaviour {
             return;
         }
         GameObject go = Instantiate( obstacle ) as GameObject;
-        float z = go.transform.localPosition.z;
-        Bounds bounds = GetChildrenBounds( go );
+        ApplyCollider( go.transform );
+        Bounds bounds = go.GetChildrenBounds( true );
         float centerDiff = ( go.transform.position - bounds.center ).x;
         float headPosition = objectCreatePostion.x + bounds.extents.x + centerDiff;
         go.transform.parent = parent;
@@ -212,14 +206,14 @@ public class AutoMoveObject : MonoBehaviour {
                 headPosition,
                 useOriginalYPosition ? go.transform.position.y : objectCreatePostion.y,
                 go.transform.position.z );
+//        float z = go.transform.localPosition.z;
 //        go.transform.localPosition = new Vector3( go.transform.localPosition.x, go.transform.localPosition.y, z );
-        go.transform.Translate(
-                Random.Range( randomOffset.x, randomOffset.width ),
-                Random.Range( randomOffset.y, randomOffset.height ),
-                0 );
-        go.transform.localScale = obstacle.transform.localScale;
+//        go.transform.Translate(
+//                Random.Range( randomOffset.x, randomOffset.width ),
+//                Random.Range( randomOffset.y, randomOffset.height ),
+//                0 );
+//        go.transform.localScale = obstacle.transform.localScale;
         go.SetLayer( 1 );
-//        ApplyCollider( go.transform, bounds );
         go.name = obstacle.name;
         go.SetActive( false );
         _obstacles[ go ] = go.transform.position;
@@ -230,36 +224,22 @@ public class AutoMoveObject : MonoBehaviour {
         startSpeed = speed;
         InstantiateAllObstacles();
         GetNewObstacle();
-        //listGo = UIEditor.Node.NodeContainer.GetAllChildren(transform);
     }
-
+    //TODO Pause acceleration 
     private void TakeObstacleToOrigin() {
         foreach ( Transform obstacle in transform ) {
-            foreach ( Transform child in
-                    obstacle.transform.Cast<Transform>()
-                            .Where(
-                                    child =>
-                                    child.gameObject.activeInHierarchy && child.renderer.bounds.max.x < limitPosition.x) ) {
-                child.gameObject.SetActive( false );
+            obstacle.gameObject.EnableInBounds( _forbiddenBounds, false );
+            if ( obstacle.gameObject.HasActiveChilds() ) {
+                continue;
             }
-            if ( ! obstacle.gameObject.HasActiveChilds() ) {
-                obstacle.transform.parent = ObstaclesPool.transform;
-                obstacle.transform.position = _obstacles[ obstacle.gameObject ];
-                obstacle.gameObject.SetActive( false );
-//                if ( isDone ) {
-////                    Debug.Log( "Done : " + name );
-//                    _pause = true;
-//                }
+            obstacle.parent = ObstaclesPool.transform;
+            obstacle.position = _obstacles[ obstacle.gameObject ];
+            obstacle.gameObject.SetActive( false );
+            if ( CanCreate || transform.childCount > 0 ) {
+                continue;
             }
-        }
-    }
-
-    private void TryEnableCollider( Transform obstacle ) {
-        foreach ( BoxCollider2D collider in from Transform child in obstacle
-                                            let collider = child.GetComponent<BoxCollider2D>()
-                                            where collider != null && child.position.x < -256.0f
-                                            select collider ) {
-            collider.enabled = true;
+            gameObject.SetActive( false );
+            return;
         }
     }
 
@@ -267,7 +247,6 @@ public class AutoMoveObject : MonoBehaviour {
         if ( _pause || CurrentObstacle == null ) {
             return;
         }
-//        TryEnableCollider( CurrentObstacle.transform );
         transform.Translate( speed.x, speed.y, 0, Space.Self );
         if ( CurrentObstacleBounds.max.x + _obstacleGap < objectCreatePostion.x ) {
             GetNewObstacle();
