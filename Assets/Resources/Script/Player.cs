@@ -59,8 +59,8 @@ public class Player : MonoBehaviour {
 
     public void Reset() {
         foreach ( var go in listChild ) {
-            go.GetComponent<SpriteRenderer>().color = Color.white;
-            go.IsCollision = false;
+          //  go.GetComponent<SpriteRenderer>().color = Color.white;
+           go.IsCollision = false;
         }
     }
 
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour {
 
     public void Up() {
 //		if(gameObject.activeSelf)
-        transform.Translate( 0, _stepUp, 0 );
+        //transform.Translate( 0, _stepUp, 0 );
     }
 
     private void OnTriggerEnter2D( Collider2D other ) {
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour {
         if ( haveCollision ) {
             _actionGameOver();
         }
-        transform.Translate( 0, -_speedDown, 0 );
+       // transform.Translate( 0, -_speedDown, 0 );
     }
 
     #endregion
